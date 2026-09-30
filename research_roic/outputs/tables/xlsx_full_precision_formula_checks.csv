@@ -1,0 +1,9 @@
+﻿check,dictionary_reference,n_tested,n_pass,share_pass,max_abs_dev,median_abs_dev,tolerance,note
+"[full precision] calc_roic_ebit_contribution = Shapley formula (1/3, 1/6)",6.2,14610,14610,1.0,4.547473508864641e-13,1.8566962203814263e-18,row-specific (rounding propagated),
+"[full precision] calc_roic_tax_contribution = Shapley formula (1/3, 1/6)",6.2,14610,14610,1.0,5.684341886080802e-14,2.6020852139652106e-18,row-specific (rounding propagated),
+"[full precision] calc_roic_ic_contribution = Shapley formula (1/3, 1/6)",6.2,14610,14610,1.0,1.6431300764452317e-14,2.087089182034596e-18,row-specific (rounding propagated),
+[full precision] post-tax ROIC = NOPAT / avg IC,4,15284,15284,1.0,5.329070518200751e-15,3.469446951953614e-18,row-specific (rounding propagated),
+[full precision] pre-tax ROIC = EBIT / avg IC,4,15627,15627,1.0,3.552713678800501e-15,0.0,row-specific (rounding propagated),
+[full precision] ROIC change = ROIC[t] - ROIC[t-1],6.1,14610,14610,1.0,5.684341886080802e-14,3.469446951953614e-18,row-specific (rounding propagated),
+[full precision] C_EBIT + C_TAX + C_IC = change,6.2,14610,14610,1.0,2.2737367544323206e-13,8.673617379884035e-19,row-specific (rounding propagated),
+[full precision] annualised = (1 + q)^4 - 1,7.1,15260,15260,1.0,3.0517578125e-05,0.0,row-specific (rounding propagated),

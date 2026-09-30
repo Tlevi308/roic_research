@@ -1,0 +1,5 @@
+﻿file,path,exists,bytes,modified,sha256,unchanged_during_run
+panel_csv,C:\Users\User\roic_research\data\GuruFocus_quarterly_data.csv,True,24363937,2026-09-13T05:13:38.846275806,689674efc336d7914b632f6e466e5bd285cc0d5d589317bce413d8e4ae8abeb7,True
+relevance_csv,C:\Users\User\roic_research\data\stocks_per_quarter.csv,True,13737,2026-07-27T17:02:56.100515604,6c179c5a653e38a43be2fce40a7017be908e386258f40022b84b7bbdf0c361dd,True
+dictionary_docx,C:\Users\User\roic_research\data\dictionary_variables.docx,True,57949,2026-09-13T04:46:03.527752399,7590b7cb408bc985bae80ae227d3f04b30e72208468912d6ccb18c9a39eb5632,True
+crosscheck_xlsx,C:\Users\User\roic_research\data\GuruFocus_quarterly_data.xlsx,True,34735527,2026-09-13T05:13:14.396273613,7f3bb5de3d9150c92c6c599e8146e42200bfbc1fecb66270d25c133ae5554665,True

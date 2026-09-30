@@ -1,0 +1,116 @@
+{
+  "run_id": "20260913_104535",
+  "seconds": 39.7,
+  "config": "C:\\Users\\User\\roic_research\\research_roic\\config.yaml",
+  "config_copies": [
+    "C:\\Users\\User\\roic_research\\research_roic\\outputs\\logs\\config_used_20260913_104535.yaml",
+    "C:\\Users\\User\\roic_research\\research_roic\\outputs\\logs\\config_used_latest.yaml"
+  ],
+  "log": "C:\\Users\\User\\roic_research\\research_roic\\outputs\\logs\\run_01_prepare_data_20260913_104535.log",
+  "python": "3.12.3",
+  "pandas": "2.2.2",
+  "numpy": "1.26.4",
+  "data_as_of": "2026-09-05",
+  "rows_raw": 23214,
+  "columns_in_file": 119,
+  "sources": [
+    {
+      "file": "panel_csv",
+      "path": "C:\\Users\\User\\roic_research\\data\\GuruFocus_quarterly_data.csv",
+      "exists": true,
+      "bytes": 24363937,
+      "modified": "2026-09-13T05:13:38.846275806",
+      "sha256": "689674efc336d7914b632f6e466e5bd285cc0d5d589317bce413d8e4ae8abeb7",
+      "unchanged_during_run": true
+    },
+    {
+      "file": "relevance_csv",
+      "path": "C:\\Users\\User\\roic_research\\data\\stocks_per_quarter.csv",
+      "exists": true,
+      "bytes": 13737,
+      "modified": "2026-07-27T17:02:56.100515604",
+      "sha256": "6c179c5a653e38a43be2fce40a7017be908e386258f40022b84b7bbdf0c361dd",
+      "unchanged_during_run": true
+    },
+    {
+      "file": "dictionary_docx",
+      "path": "C:\\Users\\User\\roic_research\\data\\dictionary_variables.docx",
+      "exists": true,
+      "bytes": 57949,
+      "modified": "2026-09-13T04:46:03.527752399",
+      "sha256": "7590b7cb408bc985bae80ae227d3f04b30e72208468912d6ccb18c9a39eb5632",
+      "unchanged_during_run": true
+    },
+    {
+      "file": "crosscheck_xlsx",
+      "path": "C:\\Users\\User\\roic_research\\data\\GuruFocus_quarterly_data.xlsx",
+      "exists": true,
+      "bytes": 34735527,
+      "modified": "2026-09-13T05:13:14.396273613",
+      "sha256": "7f3bb5de3d9150c92c6c599e8146e42200bfbc1fecb66270d25c133ae5554665",
+      "unchanged_during_run": true
+    }
+  ],
+  "level_report": {
+    "roic_level_source": "recompute",
+    "roic_pretax_q": {
+      "set_nan_where_file_nan": 0,
+      "nan_where_file_has_value": 0,
+      "max_abs_dev_vs_rounded_file": 0.021304347826088588
+    },
+    "roic_posttax_q": {
+      "set_nan_where_file_nan": 0,
+      "nan_where_file_has_value": 0,
+      "max_abs_dev_vs_rounded_file": 0.021304347826088588
+    }
+  },
+  "return_cleaning": {
+    "zero_means_missing": {
+      "market_cap": {
+        "derived_column": "market_cap_clean",
+        "zeros_set_nan": 282,
+        "zeros_in_company_rows": 282
+      },
+      "valuations__per_share_data__month_end_stock_price": {
+        "derived_column": "price_clean",
+        "zeros_set_nan": 226,
+        "zeros_in_company_rows": 226
+      }
+    },
+    "data_as_of": "2026-09-05",
+    "rows_unrealized_window": 558,
+    "unrealized_by_period": {
+      "2026Q2": 558
+    },
+    "unrealized_raw_value_counts": {
+      "exact_zero": 555,
+      "nan": 3,
+      "other": 0
+    },
+    "realized_exact_zero_returns_kept": 10,
+    "momentum_exact_zero_set_nan": 157
+  },
+  "relevance_report": {
+    "path": "C:\\Users\\User\\roic_research\\data\\stocks_per_quarter.csv",
+    "n_rows": 872,
+    "columns": [
+      "ticker",
+      "start_quarter",
+      "end_quarter"
+    ],
+    "n_unique_tickers": 852,
+    "n_empty_ticker": 0,
+    "n_invalid_start": 0,
+    "invalid_start_examples": [],
+    "n_open_end": 503,
+    "n_invalid_end": 0,
+    "invalid_end_examples": [],
+    "n_ranges": 872,
+    "n_tickers": 852,
+    "n_tickers_with_multiple_ranges": 19,
+    "n_end_before_start": 0,
+    "n_start_equals_end": 3,
+    "overlapping_tickers": [],
+    "n_na_like_tickers": 0
+  }
+}

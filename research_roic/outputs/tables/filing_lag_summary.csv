@@ -1,0 +1,15 @@
+﻿statistic,value
+n_non_null,22968.0
+q00,-9220.0
+q01,23.0
+q05,34.0
+q25,392.0
+q50,399.0
+q75,405.0
+q90,780.0
+q95,786.0
+q99,790.0
+q100,1509.0
+share_filing_after_formation,0.898685127133403
+share_filing_lag_over_365d,0.8874134703295746
+share_negative_lag,0.0002612216465671122

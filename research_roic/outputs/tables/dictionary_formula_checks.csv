@@ -1,0 +1,24 @@
+﻿check,dictionary_reference,n_tested,n_pass,share_pass,max_abs_dev,median_abs_dev,tolerance,note
+tax expense = -tax_provision,4 calc_tax_expense_quarterly,22172,22172,1.0,0.0,0.0,1e-09,
+tax rate = tax expense / pretax income,4 calc_raw_tax_rate_quarterly,21838,21837,0.9999542082608297,44.44999999999999,0.0024457903810472387,row-specific (rounding propagated),CSV rounds the tax rate to 0.01
+NOPAT = EBIT x (1 - T),4 calc_nopat_quarterly,20777,20776,0.9999518698560909,201.38000000000034,0.0027125506073275574,row-specific (rounding propagated),
+IC raw = TCA - TCL + net PPE + goodwill,4 calc_ic_raw,16216,16216,1.0,0.020000000004074536,0.0,0.025,
+IC raw NaN pattern equals NaN of any input,4 calc_ic_raw,22969,22969,1.0,,,exact,
+average IC = (IC[t-1] + IC[t]) / 2 (previous quarter in sequence),4 calc_average_ic_raw_quarterly,15627,15627,1.0,0.005000000004656613,0.0,0.015,
+average IC is NaN after a sequence break,4 calc_average_ic_raw_quarterly,687,687,1.0,,,exact,
+"pre-tax ROIC (file, rounded) = recomputed ROIC rounded to 0.01",4 calc_roic_pretax_quarterly_ic_raw,15627,15627,1.0,0.021304347826088588,0.0025268324474043424,row-specific (rounding propagated),file value is display-rounded; recomputed value keeps full precision
+"post-tax ROIC (file, rounded) = recomputed ROIC rounded to 0.01",4 calc_roic_posttax_quarterly_ic_raw,15284,15283,0.9999345721015441,0.021304347826088588,0.002486159128676578,row-specific (rounding propagated),file value is display-rounded; recomputed value keeps full precision
+ROIC change = ROIC[t] - ROIC[t-1],6.1 calc_roic_posttax_change_quarterly,14610,14602,0.9994524298425735,0.02149840224785393,4.047688551122447e-07,row-specific (rounding propagated),
+Shapley: C_EBIT + C_TAX + C_IC = change in ROIC,6.2 / 11,14610,14610,1.0,1.0000001680054993e-06,8.673617379884035e-19,2e-06,
+decomposition residual = 0,6.2 calc_roic_decomposition_residual,14610,14610,1.0,0.0,0.0,5e-07,
+"Shapley C_EBIT rebuilt from E, Q, I (weights 1/3, 1/6)",6.2 calc_roic_*_contribution,14608,14405,0.9861035049288062,0.28493371688341806,3.051816577191724e-07,1e-05,confirms the OMML formula reading; inputs are CSV-rounded
+"Shapley C_TAX rebuilt from E, Q, I (weights 1/3, 1/6)",6.2 calc_roic_*_contribution,14608,14373,0.9839129244249726,0.24880259804580573,3.07095217311963e-07,1e-05,confirms the OMML formula reading; inputs are CSV-rounded
+"Shapley C_IC rebuilt from E, Q, I (weights 1/3, 1/6)",6.2 calc_roic_*_contribution,14608,14563,0.9969194961664841,0.021699939662825685,2.580189945173677e-07,1e-05,confirms the OMML formula reading; inputs are CSV-rounded
+debt = short-term + long-term debt incl. leases,4 calc_debt_value_quarterly,22969,22969,1.0,0.010000000009313226,0.0,0.015,
+"D/E (file, rounded) = debt / stockholders equity",4 calc_debt_to_equity_quarterly,21046,21046,1.0,76.40230769230766,0.002474174387239174,row-specific (rounding propagated),file value rounded to 0.01
+economic_interpretation_valid == (quality_flag == VALID),6.7,14610,14610,1.0,,,exact,
+annualised post-tax ROIC = (1 + q)^4 - 1,7.1 calc_roic_posttax_annualized_ic_raw,15260,15256,0.999737876802097,179006.44844055176,1.028617029288914e-06,row-specific (rounding propagated),
+Momentum_3Q = prod(1 + FQR[t-3..t-1]) - 1,not in dictionary,20627,20627,1.0,1.1257572651857117e-08,4.224038896438742e-10,1e-06,momentum is built only from returns realised before formation(t)
+period_key = calendar quarter of (fiscal end - 2 months),1 alignment,22969,22969,1.0,,,exact,
+KEY = period_key + '_' + symbol,not in dictionary,23214,23214,1.0,,,exact,all rows incl. benchmarks
+period_year + period_quarter = period_key,1,22969,22969,1.0,,,exact,
