@@ -1,0 +1,6 @@
+﻿duplicate_column,base_column,identical
+calc_debt_value_quarterly.1,calc_debt_value_quarterly,True
+cash_and_cash_equivalents.1,cash_and_cash_equivalents,True
+short_term_investments.1,short_term_investments,True
+market_cap.1,market_cap,True
+calc_debt_value_quarterly.2,calc_debt_value_quarterly,True

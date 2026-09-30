@@ -1,0 +1,12 @@
+﻿sector,population_rows,share_without_roic,1 current assets or current liabilities missing (IC undefined),"2 goodwill missing, other IC inputs present",3 net PPE missing,4 IC present but previous quarter missing / not consecutive,"5 NOPAT missing (EBIT, tax or pretax income)"
+Real Estate,1104,0.8143115942028986,824,67,0,6,2
+Financial Services,2430,0.7921810699588477,1895,0,5,13,12
+Energy,743,0.5262449528936743,1,362,0,20,8
+Utilities,1101,0.3851044504995459,31,326,0,25,42
+Consumer Cyclical,2180,0.26055045871559634,142,292,0,77,57
+Industrials,2556,0.15884194053208137,55,242,0,67,42
+Consumer Defensive,1301,0.15757109915449655,3,107,3,47,45
+Healthcare,2181,0.1499312242090784,86,179,0,45,17
+Basic Materials,769,0.0988296488946684,0,47,0,18,11
+Communication Services,777,0.08622908622908623,0,44,0,15,8
+Technology,2535,0.0631163708086785,7,80,5,54,14
