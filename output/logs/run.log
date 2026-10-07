@@ -1,0 +1,9 @@
+2026-10-05 20:39:27,803 | INFO    | roic.run | Run 2026-10-05 20:39:27 | config C:\Users\User\roic_research\research_roic\config.yaml
+2026-10-05 20:39:30,690 | INFO    | roic.data_io | Input loaded: 1905162 rows x 29 columns from data.parquet
+2026-10-05 20:39:37,562 | INFO    | roic.keys | Duplicates merged: 1905162 -> 1904054 -> 1903381 (step1 -1108, step2 -673)
+2026-10-05 20:39:42,732 | WARNING | roic.registry | Spec free_cash_flow   skipped (DISABLED; MISSING_INPUT:oancfy; MISSING_INPUT:capxy)
+2026-10-05 20:39:43,308 | INFO    | roic.pipeline | Panel built: 1903381 rows x 72 columns
+2026-10-05 20:39:57,359 | INFO    | roic.run | Cross-checked against GuruFocus (read-only)
+2026-10-05 20:40:13,819 | INFO    | roic.run | Panel written: C:\Users\User\roic_research\output\panel.parquet
+2026-10-05 20:41:04,961 | INFO    | roic.run | Excel written: panel_from_2025.xlsx (72623 rows from 2025)
+2026-10-05 20:41:05,194 | INFO    | roic.run | Finished in 97.4s. Report: C:\Users\User\roic_research\output\reports\report.md

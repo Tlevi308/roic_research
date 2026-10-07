@@ -1,0 +1,1084 @@
+﻿explanation_id,headline_key,effect_combination,dominant_driver,explanation
+0,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_POS,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT, the tax rate and invested capital contributed positively. EBIT was the dominant driver."
+1,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_POS,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT, the tax rate and invested capital contributed positively. The tax rate was the dominant driver."
+2,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_POS,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT, the tax rate and invested capital contributed positively. Invested capital was the dominant driver."
+3,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_POS,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT, the tax rate and invested capital contributed positively. No single driver dominated."
+4,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_POS,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT, the tax rate and invested capital contributed positively."
+5,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_NEG,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+6,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_NEG,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+7,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_NEG,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+8,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_NEG,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+9,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_NEG,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate contributed positively, while invested capital worked against the change."
+10,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_ZERO,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate contributed positively. EBIT was the dominant driver."
+11,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_ZERO,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate contributed positively. The tax rate was the dominant driver."
+12,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_ZERO,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate contributed positively. Invested capital was the dominant driver."
+13,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_ZERO,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate contributed positively. No single driver dominated."
+14,NEGATIVE_IC,EBIT_POS__TAX_POS__IC_ZERO,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate contributed positively."
+15,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_POS,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+16,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_POS,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+17,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_POS,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+18,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_POS,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+19,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_POS,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital contributed positively, while the tax rate worked against the change."
+20,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_NEG,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+21,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_NEG,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+22,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_NEG,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+23,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_NEG,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while the tax rate and invested capital worked against the change. No single driver dominated."
+24,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_NEG,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while the tax rate and invested capital worked against the change."
+25,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_ZERO,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+26,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_ZERO,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+27,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_ZERO,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+28,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_ZERO,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while the tax rate worked against the change. No single driver dominated."
+29,NEGATIVE_IC,EBIT_POS__TAX_NEG__IC_ZERO,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while the tax rate worked against the change."
+30,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_POS,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital contributed positively. EBIT was the dominant driver."
+31,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_POS,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital contributed positively. The tax rate was the dominant driver."
+32,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_POS,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital contributed positively. Invested capital was the dominant driver."
+33,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_POS,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital contributed positively. No single driver dominated."
+34,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_POS,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital contributed positively."
+35,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_NEG,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+36,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_NEG,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+37,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_NEG,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+38,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_NEG,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while invested capital worked against the change. No single driver dominated."
+39,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_NEG,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively, while invested capital worked against the change."
+40,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_ZERO,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively. EBIT was the dominant driver."
+41,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_ZERO,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively. The tax rate was the dominant driver."
+42,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_ZERO,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively. Invested capital was the dominant driver."
+43,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_ZERO,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively. No single driver dominated."
+44,NEGATIVE_IC,EBIT_POS__TAX_ZERO__IC_ZERO,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT contributed positively."
+45,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_POS,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+46,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_POS,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+47,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_POS,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+48,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_POS,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+49,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_POS,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital contributed positively, while EBIT worked against the change."
+50,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_NEG,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while EBIT and invested capital worked against the change. EBIT was the dominant driver."
+51,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_NEG,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while EBIT and invested capital worked against the change. The tax rate was the dominant driver."
+52,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_NEG,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while EBIT and invested capital worked against the change. Invested capital was the dominant driver."
+53,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_NEG,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while EBIT and invested capital worked against the change. No single driver dominated."
+54,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_NEG,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while EBIT and invested capital worked against the change."
+55,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_ZERO,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+56,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_ZERO,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+57,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_ZERO,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+58,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_ZERO,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while EBIT worked against the change. No single driver dominated."
+59,NEGATIVE_IC,EBIT_NEG__TAX_POS__IC_ZERO,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while EBIT worked against the change."
+60,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_POS,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while EBIT and the tax rate worked against the change. EBIT was the dominant driver."
+61,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_POS,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while EBIT and the tax rate worked against the change. The tax rate was the dominant driver."
+62,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_POS,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while EBIT and the tax rate worked against the change. Invested capital was the dominant driver."
+63,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_POS,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while EBIT and the tax rate worked against the change. No single driver dominated."
+64,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_POS,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while EBIT and the tax rate worked against the change."
+65,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_NEG,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT, the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+66,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_NEG,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT, the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+67,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_NEG,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT, the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+68,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_NEG,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT, the tax rate and invested capital worked against the change. No single driver dominated."
+69,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_NEG,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT, the tax rate and invested capital worked against the change."
+70,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_ZERO,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate worked against the change. EBIT was the dominant driver."
+71,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_ZERO,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate worked against the change. The tax rate was the dominant driver."
+72,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_ZERO,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate worked against the change. Invested capital was the dominant driver."
+73,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_ZERO,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate worked against the change. No single driver dominated."
+74,NEGATIVE_IC,EBIT_NEG__TAX_NEG__IC_ZERO,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and the tax rate worked against the change."
+75,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_POS,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+76,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_POS,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+77,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_POS,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+78,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_POS,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+79,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_POS,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while EBIT worked against the change."
+80,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_NEG,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital worked against the change. EBIT was the dominant driver."
+81,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_NEG,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital worked against the change. The tax rate was the dominant driver."
+82,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_NEG,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital worked against the change. Invested capital was the dominant driver."
+83,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_NEG,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital worked against the change. No single driver dominated."
+84,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_NEG,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT and invested capital worked against the change."
+85,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_ZERO,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT worked against the change. EBIT was the dominant driver."
+86,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_ZERO,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT worked against the change. The tax rate was the dominant driver."
+87,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_ZERO,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT worked against the change. Invested capital was the dominant driver."
+88,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_ZERO,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT worked against the change. No single driver dominated."
+89,NEGATIVE_IC,EBIT_NEG__TAX_ZERO__IC_ZERO,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. EBIT worked against the change."
+90,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_POS,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital contributed positively. EBIT was the dominant driver."
+91,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_POS,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital contributed positively. The tax rate was the dominant driver."
+92,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_POS,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital contributed positively. Invested capital was the dominant driver."
+93,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_POS,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital contributed positively. No single driver dominated."
+94,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_POS,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital contributed positively."
+95,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_NEG,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+96,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_NEG,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+97,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_NEG,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+98,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_NEG,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+99,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_NEG,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively, while invested capital worked against the change."
+100,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_ZERO,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively. EBIT was the dominant driver."
+101,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_ZERO,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively. The tax rate was the dominant driver."
+102,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_ZERO,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively. Invested capital was the dominant driver."
+103,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_ZERO,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively. No single driver dominated."
+104,NEGATIVE_IC,EBIT_ZERO__TAX_POS__IC_ZERO,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate contributed positively."
+105,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_POS,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+106,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_POS,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+107,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_POS,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+108,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_POS,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+109,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_POS,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively, while the tax rate worked against the change."
+110,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_NEG,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital worked against the change. EBIT was the dominant driver."
+111,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_NEG,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+112,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_NEG,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+113,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_NEG,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital worked against the change. No single driver dominated."
+114,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_NEG,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate and invested capital worked against the change."
+115,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_ZERO,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate worked against the change. EBIT was the dominant driver."
+116,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_ZERO,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate worked against the change. The tax rate was the dominant driver."
+117,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_ZERO,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate worked against the change. Invested capital was the dominant driver."
+118,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_ZERO,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate worked against the change. No single driver dominated."
+119,NEGATIVE_IC,EBIT_ZERO__TAX_NEG__IC_ZERO,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. The tax rate worked against the change."
+120,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_POS,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively. EBIT was the dominant driver."
+121,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_POS,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively. The tax rate was the dominant driver."
+122,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_POS,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively. Invested capital was the dominant driver."
+123,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_POS,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively. No single driver dominated."
+124,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_POS,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital contributed positively."
+125,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_NEG,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital worked against the change. EBIT was the dominant driver."
+126,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_NEG,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital worked against the change. The tax rate was the dominant driver."
+127,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_NEG,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital worked against the change. Invested capital was the dominant driver."
+128,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_NEG,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital worked against the change. No single driver dominated."
+129,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_NEG,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. Invested capital worked against the change."
+130,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_ZERO,EBIT,"Invested capital was negative, so the ratio is mechanical rather than economic. No driver moved materially. EBIT was the dominant driver."
+131,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_ZERO,TAX,"Invested capital was negative, so the ratio is mechanical rather than economic. No driver moved materially. The tax rate was the dominant driver."
+132,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_ZERO,IC,"Invested capital was negative, so the ratio is mechanical rather than economic. No driver moved materially. Invested capital was the dominant driver."
+133,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_ZERO,BALANCED,"Invested capital was negative, so the ratio is mechanical rather than economic. No driver moved materially. No single driver dominated."
+134,NEGATIVE_IC,EBIT_ZERO__TAX_ZERO__IC_ZERO,NONE,"Invested capital was negative, so the ratio is mechanical rather than economic. No driver moved materially."
+135,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_POS,EBIT,"NOPAT turned positive. EBIT, the tax rate and invested capital contributed positively. EBIT was the dominant driver."
+136,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_POS,TAX,"NOPAT turned positive. EBIT, the tax rate and invested capital contributed positively. The tax rate was the dominant driver."
+137,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_POS,IC,"NOPAT turned positive. EBIT, the tax rate and invested capital contributed positively. Invested capital was the dominant driver."
+138,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_POS,BALANCED,"NOPAT turned positive. EBIT, the tax rate and invested capital contributed positively. No single driver dominated."
+139,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_POS,NONE,"NOPAT turned positive. EBIT, the tax rate and invested capital contributed positively."
+140,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_NEG,EBIT,"NOPAT turned positive. EBIT and the tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+141,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_NEG,TAX,"NOPAT turned positive. EBIT and the tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+142,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_NEG,IC,"NOPAT turned positive. EBIT and the tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+143,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_NEG,BALANCED,"NOPAT turned positive. EBIT and the tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+144,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_NEG,NONE,"NOPAT turned positive. EBIT and the tax rate contributed positively, while invested capital worked against the change."
+145,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_ZERO,EBIT,NOPAT turned positive. EBIT and the tax rate contributed positively. EBIT was the dominant driver.
+146,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_ZERO,TAX,NOPAT turned positive. EBIT and the tax rate contributed positively. The tax rate was the dominant driver.
+147,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_ZERO,IC,NOPAT turned positive. EBIT and the tax rate contributed positively. Invested capital was the dominant driver.
+148,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_ZERO,BALANCED,NOPAT turned positive. EBIT and the tax rate contributed positively. No single driver dominated.
+149,LOSS_TO_PROFIT,EBIT_POS__TAX_POS__IC_ZERO,NONE,NOPAT turned positive. EBIT and the tax rate contributed positively.
+150,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_POS,EBIT,"NOPAT turned positive. EBIT and invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+151,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_POS,TAX,"NOPAT turned positive. EBIT and invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+152,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_POS,IC,"NOPAT turned positive. EBIT and invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+153,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_POS,BALANCED,"NOPAT turned positive. EBIT and invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+154,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_POS,NONE,"NOPAT turned positive. EBIT and invested capital contributed positively, while the tax rate worked against the change."
+155,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_NEG,EBIT,"NOPAT turned positive. EBIT contributed positively, while the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+156,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_NEG,TAX,"NOPAT turned positive. EBIT contributed positively, while the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+157,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_NEG,IC,"NOPAT turned positive. EBIT contributed positively, while the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+158,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_NEG,BALANCED,"NOPAT turned positive. EBIT contributed positively, while the tax rate and invested capital worked against the change. No single driver dominated."
+159,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_NEG,NONE,"NOPAT turned positive. EBIT contributed positively, while the tax rate and invested capital worked against the change."
+160,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_ZERO,EBIT,"NOPAT turned positive. EBIT contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+161,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_ZERO,TAX,"NOPAT turned positive. EBIT contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+162,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_ZERO,IC,"NOPAT turned positive. EBIT contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+163,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_ZERO,BALANCED,"NOPAT turned positive. EBIT contributed positively, while the tax rate worked against the change. No single driver dominated."
+164,LOSS_TO_PROFIT,EBIT_POS__TAX_NEG__IC_ZERO,NONE,"NOPAT turned positive. EBIT contributed positively, while the tax rate worked against the change."
+165,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_POS,EBIT,NOPAT turned positive. EBIT and invested capital contributed positively. EBIT was the dominant driver.
+166,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_POS,TAX,NOPAT turned positive. EBIT and invested capital contributed positively. The tax rate was the dominant driver.
+167,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_POS,IC,NOPAT turned positive. EBIT and invested capital contributed positively. Invested capital was the dominant driver.
+168,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_POS,BALANCED,NOPAT turned positive. EBIT and invested capital contributed positively. No single driver dominated.
+169,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_POS,NONE,NOPAT turned positive. EBIT and invested capital contributed positively.
+170,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_NEG,EBIT,"NOPAT turned positive. EBIT contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+171,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_NEG,TAX,"NOPAT turned positive. EBIT contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+172,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_NEG,IC,"NOPAT turned positive. EBIT contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+173,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_NEG,BALANCED,"NOPAT turned positive. EBIT contributed positively, while invested capital worked against the change. No single driver dominated."
+174,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_NEG,NONE,"NOPAT turned positive. EBIT contributed positively, while invested capital worked against the change."
+175,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_ZERO,EBIT,NOPAT turned positive. EBIT contributed positively. EBIT was the dominant driver.
+176,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_ZERO,TAX,NOPAT turned positive. EBIT contributed positively. The tax rate was the dominant driver.
+177,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_ZERO,IC,NOPAT turned positive. EBIT contributed positively. Invested capital was the dominant driver.
+178,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_ZERO,BALANCED,NOPAT turned positive. EBIT contributed positively. No single driver dominated.
+179,LOSS_TO_PROFIT,EBIT_POS__TAX_ZERO__IC_ZERO,NONE,NOPAT turned positive. EBIT contributed positively.
+180,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_POS,EBIT,"NOPAT turned positive. The tax rate and invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+181,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_POS,TAX,"NOPAT turned positive. The tax rate and invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+182,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_POS,IC,"NOPAT turned positive. The tax rate and invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+183,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_POS,BALANCED,"NOPAT turned positive. The tax rate and invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+184,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_POS,NONE,"NOPAT turned positive. The tax rate and invested capital contributed positively, while EBIT worked against the change."
+185,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_NEG,EBIT,"NOPAT turned positive. The tax rate contributed positively, while EBIT and invested capital worked against the change. EBIT was the dominant driver."
+186,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_NEG,TAX,"NOPAT turned positive. The tax rate contributed positively, while EBIT and invested capital worked against the change. The tax rate was the dominant driver."
+187,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_NEG,IC,"NOPAT turned positive. The tax rate contributed positively, while EBIT and invested capital worked against the change. Invested capital was the dominant driver."
+188,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_NEG,BALANCED,"NOPAT turned positive. The tax rate contributed positively, while EBIT and invested capital worked against the change. No single driver dominated."
+189,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_NEG,NONE,"NOPAT turned positive. The tax rate contributed positively, while EBIT and invested capital worked against the change."
+190,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_ZERO,EBIT,"NOPAT turned positive. The tax rate contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+191,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_ZERO,TAX,"NOPAT turned positive. The tax rate contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+192,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_ZERO,IC,"NOPAT turned positive. The tax rate contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+193,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_ZERO,BALANCED,"NOPAT turned positive. The tax rate contributed positively, while EBIT worked against the change. No single driver dominated."
+194,LOSS_TO_PROFIT,EBIT_NEG__TAX_POS__IC_ZERO,NONE,"NOPAT turned positive. The tax rate contributed positively, while EBIT worked against the change."
+195,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_POS,EBIT,"NOPAT turned positive. Invested capital contributed positively, while EBIT and the tax rate worked against the change. EBIT was the dominant driver."
+196,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_POS,TAX,"NOPAT turned positive. Invested capital contributed positively, while EBIT and the tax rate worked against the change. The tax rate was the dominant driver."
+197,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_POS,IC,"NOPAT turned positive. Invested capital contributed positively, while EBIT and the tax rate worked against the change. Invested capital was the dominant driver."
+198,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_POS,BALANCED,"NOPAT turned positive. Invested capital contributed positively, while EBIT and the tax rate worked against the change. No single driver dominated."
+199,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_POS,NONE,"NOPAT turned positive. Invested capital contributed positively, while EBIT and the tax rate worked against the change."
+200,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_NEG,EBIT,"NOPAT turned positive. EBIT, the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+201,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_NEG,TAX,"NOPAT turned positive. EBIT, the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+202,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_NEG,IC,"NOPAT turned positive. EBIT, the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+203,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_NEG,BALANCED,"NOPAT turned positive. EBIT, the tax rate and invested capital worked against the change. No single driver dominated."
+204,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_NEG,NONE,"NOPAT turned positive. EBIT, the tax rate and invested capital worked against the change."
+205,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_ZERO,EBIT,NOPAT turned positive. EBIT and the tax rate worked against the change. EBIT was the dominant driver.
+206,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_ZERO,TAX,NOPAT turned positive. EBIT and the tax rate worked against the change. The tax rate was the dominant driver.
+207,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_ZERO,IC,NOPAT turned positive. EBIT and the tax rate worked against the change. Invested capital was the dominant driver.
+208,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_ZERO,BALANCED,NOPAT turned positive. EBIT and the tax rate worked against the change. No single driver dominated.
+209,LOSS_TO_PROFIT,EBIT_NEG__TAX_NEG__IC_ZERO,NONE,NOPAT turned positive. EBIT and the tax rate worked against the change.
+210,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_POS,EBIT,"NOPAT turned positive. Invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+211,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_POS,TAX,"NOPAT turned positive. Invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+212,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_POS,IC,"NOPAT turned positive. Invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+213,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_POS,BALANCED,"NOPAT turned positive. Invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+214,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_POS,NONE,"NOPAT turned positive. Invested capital contributed positively, while EBIT worked against the change."
+215,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_NEG,EBIT,NOPAT turned positive. EBIT and invested capital worked against the change. EBIT was the dominant driver.
+216,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_NEG,TAX,NOPAT turned positive. EBIT and invested capital worked against the change. The tax rate was the dominant driver.
+217,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_NEG,IC,NOPAT turned positive. EBIT and invested capital worked against the change. Invested capital was the dominant driver.
+218,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_NEG,BALANCED,NOPAT turned positive. EBIT and invested capital worked against the change. No single driver dominated.
+219,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_NEG,NONE,NOPAT turned positive. EBIT and invested capital worked against the change.
+220,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_ZERO,EBIT,NOPAT turned positive. EBIT worked against the change. EBIT was the dominant driver.
+221,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_ZERO,TAX,NOPAT turned positive. EBIT worked against the change. The tax rate was the dominant driver.
+222,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_ZERO,IC,NOPAT turned positive. EBIT worked against the change. Invested capital was the dominant driver.
+223,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_ZERO,BALANCED,NOPAT turned positive. EBIT worked against the change. No single driver dominated.
+224,LOSS_TO_PROFIT,EBIT_NEG__TAX_ZERO__IC_ZERO,NONE,NOPAT turned positive. EBIT worked against the change.
+225,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_POS,EBIT,NOPAT turned positive. The tax rate and invested capital contributed positively. EBIT was the dominant driver.
+226,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_POS,TAX,NOPAT turned positive. The tax rate and invested capital contributed positively. The tax rate was the dominant driver.
+227,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_POS,IC,NOPAT turned positive. The tax rate and invested capital contributed positively. Invested capital was the dominant driver.
+228,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_POS,BALANCED,NOPAT turned positive. The tax rate and invested capital contributed positively. No single driver dominated.
+229,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_POS,NONE,NOPAT turned positive. The tax rate and invested capital contributed positively.
+230,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_NEG,EBIT,"NOPAT turned positive. The tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+231,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_NEG,TAX,"NOPAT turned positive. The tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+232,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_NEG,IC,"NOPAT turned positive. The tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+233,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_NEG,BALANCED,"NOPAT turned positive. The tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+234,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_NEG,NONE,"NOPAT turned positive. The tax rate contributed positively, while invested capital worked against the change."
+235,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_ZERO,EBIT,NOPAT turned positive. The tax rate contributed positively. EBIT was the dominant driver.
+236,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_ZERO,TAX,NOPAT turned positive. The tax rate contributed positively. The tax rate was the dominant driver.
+237,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_ZERO,IC,NOPAT turned positive. The tax rate contributed positively. Invested capital was the dominant driver.
+238,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_ZERO,BALANCED,NOPAT turned positive. The tax rate contributed positively. No single driver dominated.
+239,LOSS_TO_PROFIT,EBIT_ZERO__TAX_POS__IC_ZERO,NONE,NOPAT turned positive. The tax rate contributed positively.
+240,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_POS,EBIT,"NOPAT turned positive. Invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+241,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_POS,TAX,"NOPAT turned positive. Invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+242,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_POS,IC,"NOPAT turned positive. Invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+243,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_POS,BALANCED,"NOPAT turned positive. Invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+244,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_POS,NONE,"NOPAT turned positive. Invested capital contributed positively, while the tax rate worked against the change."
+245,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_NEG,EBIT,NOPAT turned positive. The tax rate and invested capital worked against the change. EBIT was the dominant driver.
+246,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_NEG,TAX,NOPAT turned positive. The tax rate and invested capital worked against the change. The tax rate was the dominant driver.
+247,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_NEG,IC,NOPAT turned positive. The tax rate and invested capital worked against the change. Invested capital was the dominant driver.
+248,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_NEG,BALANCED,NOPAT turned positive. The tax rate and invested capital worked against the change. No single driver dominated.
+249,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_NEG,NONE,NOPAT turned positive. The tax rate and invested capital worked against the change.
+250,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_ZERO,EBIT,NOPAT turned positive. The tax rate worked against the change. EBIT was the dominant driver.
+251,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_ZERO,TAX,NOPAT turned positive. The tax rate worked against the change. The tax rate was the dominant driver.
+252,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_ZERO,IC,NOPAT turned positive. The tax rate worked against the change. Invested capital was the dominant driver.
+253,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_ZERO,BALANCED,NOPAT turned positive. The tax rate worked against the change. No single driver dominated.
+254,LOSS_TO_PROFIT,EBIT_ZERO__TAX_NEG__IC_ZERO,NONE,NOPAT turned positive. The tax rate worked against the change.
+255,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_POS,EBIT,NOPAT turned positive. Invested capital contributed positively. EBIT was the dominant driver.
+256,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_POS,TAX,NOPAT turned positive. Invested capital contributed positively. The tax rate was the dominant driver.
+257,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_POS,IC,NOPAT turned positive. Invested capital contributed positively. Invested capital was the dominant driver.
+258,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_POS,BALANCED,NOPAT turned positive. Invested capital contributed positively. No single driver dominated.
+259,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_POS,NONE,NOPAT turned positive. Invested capital contributed positively.
+260,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_NEG,EBIT,NOPAT turned positive. Invested capital worked against the change. EBIT was the dominant driver.
+261,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_NEG,TAX,NOPAT turned positive. Invested capital worked against the change. The tax rate was the dominant driver.
+262,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_NEG,IC,NOPAT turned positive. Invested capital worked against the change. Invested capital was the dominant driver.
+263,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_NEG,BALANCED,NOPAT turned positive. Invested capital worked against the change. No single driver dominated.
+264,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_NEG,NONE,NOPAT turned positive. Invested capital worked against the change.
+265,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_ZERO,EBIT,NOPAT turned positive. No driver moved materially. EBIT was the dominant driver.
+266,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_ZERO,TAX,NOPAT turned positive. No driver moved materially. The tax rate was the dominant driver.
+267,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_ZERO,IC,NOPAT turned positive. No driver moved materially. Invested capital was the dominant driver.
+268,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_ZERO,BALANCED,NOPAT turned positive. No driver moved materially. No single driver dominated.
+269,LOSS_TO_PROFIT,EBIT_ZERO__TAX_ZERO__IC_ZERO,NONE,NOPAT turned positive. No driver moved materially.
+270,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_POS,EBIT,"NOPAT turned negative. EBIT, the tax rate and invested capital contributed positively. EBIT was the dominant driver."
+271,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_POS,TAX,"NOPAT turned negative. EBIT, the tax rate and invested capital contributed positively. The tax rate was the dominant driver."
+272,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_POS,IC,"NOPAT turned negative. EBIT, the tax rate and invested capital contributed positively. Invested capital was the dominant driver."
+273,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_POS,BALANCED,"NOPAT turned negative. EBIT, the tax rate and invested capital contributed positively. No single driver dominated."
+274,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_POS,NONE,"NOPAT turned negative. EBIT, the tax rate and invested capital contributed positively."
+275,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_NEG,EBIT,"NOPAT turned negative. EBIT and the tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+276,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_NEG,TAX,"NOPAT turned negative. EBIT and the tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+277,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_NEG,IC,"NOPAT turned negative. EBIT and the tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+278,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_NEG,BALANCED,"NOPAT turned negative. EBIT and the tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+279,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_NEG,NONE,"NOPAT turned negative. EBIT and the tax rate contributed positively, while invested capital worked against the change."
+280,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_ZERO,EBIT,NOPAT turned negative. EBIT and the tax rate contributed positively. EBIT was the dominant driver.
+281,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_ZERO,TAX,NOPAT turned negative. EBIT and the tax rate contributed positively. The tax rate was the dominant driver.
+282,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_ZERO,IC,NOPAT turned negative. EBIT and the tax rate contributed positively. Invested capital was the dominant driver.
+283,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_ZERO,BALANCED,NOPAT turned negative. EBIT and the tax rate contributed positively. No single driver dominated.
+284,PROFIT_TO_LOSS,EBIT_POS__TAX_POS__IC_ZERO,NONE,NOPAT turned negative. EBIT and the tax rate contributed positively.
+285,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_POS,EBIT,"NOPAT turned negative. EBIT and invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+286,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_POS,TAX,"NOPAT turned negative. EBIT and invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+287,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_POS,IC,"NOPAT turned negative. EBIT and invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+288,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_POS,BALANCED,"NOPAT turned negative. EBIT and invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+289,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_POS,NONE,"NOPAT turned negative. EBIT and invested capital contributed positively, while the tax rate worked against the change."
+290,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_NEG,EBIT,"NOPAT turned negative. EBIT contributed positively, while the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+291,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_NEG,TAX,"NOPAT turned negative. EBIT contributed positively, while the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+292,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_NEG,IC,"NOPAT turned negative. EBIT contributed positively, while the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+293,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_NEG,BALANCED,"NOPAT turned negative. EBIT contributed positively, while the tax rate and invested capital worked against the change. No single driver dominated."
+294,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_NEG,NONE,"NOPAT turned negative. EBIT contributed positively, while the tax rate and invested capital worked against the change."
+295,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_ZERO,EBIT,"NOPAT turned negative. EBIT contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+296,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_ZERO,TAX,"NOPAT turned negative. EBIT contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+297,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_ZERO,IC,"NOPAT turned negative. EBIT contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+298,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_ZERO,BALANCED,"NOPAT turned negative. EBIT contributed positively, while the tax rate worked against the change. No single driver dominated."
+299,PROFIT_TO_LOSS,EBIT_POS__TAX_NEG__IC_ZERO,NONE,"NOPAT turned negative. EBIT contributed positively, while the tax rate worked against the change."
+300,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_POS,EBIT,NOPAT turned negative. EBIT and invested capital contributed positively. EBIT was the dominant driver.
+301,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_POS,TAX,NOPAT turned negative. EBIT and invested capital contributed positively. The tax rate was the dominant driver.
+302,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_POS,IC,NOPAT turned negative. EBIT and invested capital contributed positively. Invested capital was the dominant driver.
+303,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_POS,BALANCED,NOPAT turned negative. EBIT and invested capital contributed positively. No single driver dominated.
+304,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_POS,NONE,NOPAT turned negative. EBIT and invested capital contributed positively.
+305,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_NEG,EBIT,"NOPAT turned negative. EBIT contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+306,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_NEG,TAX,"NOPAT turned negative. EBIT contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+307,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_NEG,IC,"NOPAT turned negative. EBIT contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+308,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_NEG,BALANCED,"NOPAT turned negative. EBIT contributed positively, while invested capital worked against the change. No single driver dominated."
+309,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_NEG,NONE,"NOPAT turned negative. EBIT contributed positively, while invested capital worked against the change."
+310,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_ZERO,EBIT,NOPAT turned negative. EBIT contributed positively. EBIT was the dominant driver.
+311,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_ZERO,TAX,NOPAT turned negative. EBIT contributed positively. The tax rate was the dominant driver.
+312,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_ZERO,IC,NOPAT turned negative. EBIT contributed positively. Invested capital was the dominant driver.
+313,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_ZERO,BALANCED,NOPAT turned negative. EBIT contributed positively. No single driver dominated.
+314,PROFIT_TO_LOSS,EBIT_POS__TAX_ZERO__IC_ZERO,NONE,NOPAT turned negative. EBIT contributed positively.
+315,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_POS,EBIT,"NOPAT turned negative. The tax rate and invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+316,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_POS,TAX,"NOPAT turned negative. The tax rate and invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+317,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_POS,IC,"NOPAT turned negative. The tax rate and invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+318,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_POS,BALANCED,"NOPAT turned negative. The tax rate and invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+319,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_POS,NONE,"NOPAT turned negative. The tax rate and invested capital contributed positively, while EBIT worked against the change."
+320,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_NEG,EBIT,"NOPAT turned negative. The tax rate contributed positively, while EBIT and invested capital worked against the change. EBIT was the dominant driver."
+321,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_NEG,TAX,"NOPAT turned negative. The tax rate contributed positively, while EBIT and invested capital worked against the change. The tax rate was the dominant driver."
+322,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_NEG,IC,"NOPAT turned negative. The tax rate contributed positively, while EBIT and invested capital worked against the change. Invested capital was the dominant driver."
+323,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_NEG,BALANCED,"NOPAT turned negative. The tax rate contributed positively, while EBIT and invested capital worked against the change. No single driver dominated."
+324,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_NEG,NONE,"NOPAT turned negative. The tax rate contributed positively, while EBIT and invested capital worked against the change."
+325,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_ZERO,EBIT,"NOPAT turned negative. The tax rate contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+326,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_ZERO,TAX,"NOPAT turned negative. The tax rate contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+327,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_ZERO,IC,"NOPAT turned negative. The tax rate contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+328,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_ZERO,BALANCED,"NOPAT turned negative. The tax rate contributed positively, while EBIT worked against the change. No single driver dominated."
+329,PROFIT_TO_LOSS,EBIT_NEG__TAX_POS__IC_ZERO,NONE,"NOPAT turned negative. The tax rate contributed positively, while EBIT worked against the change."
+330,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_POS,EBIT,"NOPAT turned negative. Invested capital contributed positively, while EBIT and the tax rate worked against the change. EBIT was the dominant driver."
+331,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_POS,TAX,"NOPAT turned negative. Invested capital contributed positively, while EBIT and the tax rate worked against the change. The tax rate was the dominant driver."
+332,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_POS,IC,"NOPAT turned negative. Invested capital contributed positively, while EBIT and the tax rate worked against the change. Invested capital was the dominant driver."
+333,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_POS,BALANCED,"NOPAT turned negative. Invested capital contributed positively, while EBIT and the tax rate worked against the change. No single driver dominated."
+334,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_POS,NONE,"NOPAT turned negative. Invested capital contributed positively, while EBIT and the tax rate worked against the change."
+335,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_NEG,EBIT,"NOPAT turned negative. EBIT, the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+336,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_NEG,TAX,"NOPAT turned negative. EBIT, the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+337,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_NEG,IC,"NOPAT turned negative. EBIT, the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+338,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_NEG,BALANCED,"NOPAT turned negative. EBIT, the tax rate and invested capital worked against the change. No single driver dominated."
+339,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_NEG,NONE,"NOPAT turned negative. EBIT, the tax rate and invested capital worked against the change."
+340,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_ZERO,EBIT,NOPAT turned negative. EBIT and the tax rate worked against the change. EBIT was the dominant driver.
+341,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_ZERO,TAX,NOPAT turned negative. EBIT and the tax rate worked against the change. The tax rate was the dominant driver.
+342,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_ZERO,IC,NOPAT turned negative. EBIT and the tax rate worked against the change. Invested capital was the dominant driver.
+343,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_ZERO,BALANCED,NOPAT turned negative. EBIT and the tax rate worked against the change. No single driver dominated.
+344,PROFIT_TO_LOSS,EBIT_NEG__TAX_NEG__IC_ZERO,NONE,NOPAT turned negative. EBIT and the tax rate worked against the change.
+345,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_POS,EBIT,"NOPAT turned negative. Invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+346,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_POS,TAX,"NOPAT turned negative. Invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+347,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_POS,IC,"NOPAT turned negative. Invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+348,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_POS,BALANCED,"NOPAT turned negative. Invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+349,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_POS,NONE,"NOPAT turned negative. Invested capital contributed positively, while EBIT worked against the change."
+350,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_NEG,EBIT,NOPAT turned negative. EBIT and invested capital worked against the change. EBIT was the dominant driver.
+351,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_NEG,TAX,NOPAT turned negative. EBIT and invested capital worked against the change. The tax rate was the dominant driver.
+352,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_NEG,IC,NOPAT turned negative. EBIT and invested capital worked against the change. Invested capital was the dominant driver.
+353,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_NEG,BALANCED,NOPAT turned negative. EBIT and invested capital worked against the change. No single driver dominated.
+354,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_NEG,NONE,NOPAT turned negative. EBIT and invested capital worked against the change.
+355,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_ZERO,EBIT,NOPAT turned negative. EBIT worked against the change. EBIT was the dominant driver.
+356,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_ZERO,TAX,NOPAT turned negative. EBIT worked against the change. The tax rate was the dominant driver.
+357,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_ZERO,IC,NOPAT turned negative. EBIT worked against the change. Invested capital was the dominant driver.
+358,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_ZERO,BALANCED,NOPAT turned negative. EBIT worked against the change. No single driver dominated.
+359,PROFIT_TO_LOSS,EBIT_NEG__TAX_ZERO__IC_ZERO,NONE,NOPAT turned negative. EBIT worked against the change.
+360,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_POS,EBIT,NOPAT turned negative. The tax rate and invested capital contributed positively. EBIT was the dominant driver.
+361,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_POS,TAX,NOPAT turned negative. The tax rate and invested capital contributed positively. The tax rate was the dominant driver.
+362,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_POS,IC,NOPAT turned negative. The tax rate and invested capital contributed positively. Invested capital was the dominant driver.
+363,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_POS,BALANCED,NOPAT turned negative. The tax rate and invested capital contributed positively. No single driver dominated.
+364,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_POS,NONE,NOPAT turned negative. The tax rate and invested capital contributed positively.
+365,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_NEG,EBIT,"NOPAT turned negative. The tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+366,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_NEG,TAX,"NOPAT turned negative. The tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+367,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_NEG,IC,"NOPAT turned negative. The tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+368,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_NEG,BALANCED,"NOPAT turned negative. The tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+369,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_NEG,NONE,"NOPAT turned negative. The tax rate contributed positively, while invested capital worked against the change."
+370,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_ZERO,EBIT,NOPAT turned negative. The tax rate contributed positively. EBIT was the dominant driver.
+371,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_ZERO,TAX,NOPAT turned negative. The tax rate contributed positively. The tax rate was the dominant driver.
+372,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_ZERO,IC,NOPAT turned negative. The tax rate contributed positively. Invested capital was the dominant driver.
+373,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_ZERO,BALANCED,NOPAT turned negative. The tax rate contributed positively. No single driver dominated.
+374,PROFIT_TO_LOSS,EBIT_ZERO__TAX_POS__IC_ZERO,NONE,NOPAT turned negative. The tax rate contributed positively.
+375,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_POS,EBIT,"NOPAT turned negative. Invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+376,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_POS,TAX,"NOPAT turned negative. Invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+377,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_POS,IC,"NOPAT turned negative. Invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+378,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_POS,BALANCED,"NOPAT turned negative. Invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+379,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_POS,NONE,"NOPAT turned negative. Invested capital contributed positively, while the tax rate worked against the change."
+380,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_NEG,EBIT,NOPAT turned negative. The tax rate and invested capital worked against the change. EBIT was the dominant driver.
+381,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_NEG,TAX,NOPAT turned negative. The tax rate and invested capital worked against the change. The tax rate was the dominant driver.
+382,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_NEG,IC,NOPAT turned negative. The tax rate and invested capital worked against the change. Invested capital was the dominant driver.
+383,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_NEG,BALANCED,NOPAT turned negative. The tax rate and invested capital worked against the change. No single driver dominated.
+384,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_NEG,NONE,NOPAT turned negative. The tax rate and invested capital worked against the change.
+385,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_ZERO,EBIT,NOPAT turned negative. The tax rate worked against the change. EBIT was the dominant driver.
+386,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_ZERO,TAX,NOPAT turned negative. The tax rate worked against the change. The tax rate was the dominant driver.
+387,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_ZERO,IC,NOPAT turned negative. The tax rate worked against the change. Invested capital was the dominant driver.
+388,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_ZERO,BALANCED,NOPAT turned negative. The tax rate worked against the change. No single driver dominated.
+389,PROFIT_TO_LOSS,EBIT_ZERO__TAX_NEG__IC_ZERO,NONE,NOPAT turned negative. The tax rate worked against the change.
+390,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_POS,EBIT,NOPAT turned negative. Invested capital contributed positively. EBIT was the dominant driver.
+391,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_POS,TAX,NOPAT turned negative. Invested capital contributed positively. The tax rate was the dominant driver.
+392,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_POS,IC,NOPAT turned negative. Invested capital contributed positively. Invested capital was the dominant driver.
+393,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_POS,BALANCED,NOPAT turned negative. Invested capital contributed positively. No single driver dominated.
+394,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_POS,NONE,NOPAT turned negative. Invested capital contributed positively.
+395,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_NEG,EBIT,NOPAT turned negative. Invested capital worked against the change. EBIT was the dominant driver.
+396,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_NEG,TAX,NOPAT turned negative. Invested capital worked against the change. The tax rate was the dominant driver.
+397,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_NEG,IC,NOPAT turned negative. Invested capital worked against the change. Invested capital was the dominant driver.
+398,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_NEG,BALANCED,NOPAT turned negative. Invested capital worked against the change. No single driver dominated.
+399,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_NEG,NONE,NOPAT turned negative. Invested capital worked against the change.
+400,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_ZERO,EBIT,NOPAT turned negative. No driver moved materially. EBIT was the dominant driver.
+401,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_ZERO,TAX,NOPAT turned negative. No driver moved materially. The tax rate was the dominant driver.
+402,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_ZERO,IC,NOPAT turned negative. No driver moved materially. Invested capital was the dominant driver.
+403,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_ZERO,BALANCED,NOPAT turned negative. No driver moved materially. No single driver dominated.
+404,PROFIT_TO_LOSS,EBIT_ZERO__TAX_ZERO__IC_ZERO,NONE,NOPAT turned negative. No driver moved materially.
+405,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_POS,EBIT,"ROIC became less negative, but the change was mechanical. EBIT, the tax rate and invested capital contributed positively. EBIT was the dominant driver."
+406,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_POS,TAX,"ROIC became less negative, but the change was mechanical. EBIT, the tax rate and invested capital contributed positively. The tax rate was the dominant driver."
+407,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_POS,IC,"ROIC became less negative, but the change was mechanical. EBIT, the tax rate and invested capital contributed positively. Invested capital was the dominant driver."
+408,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_POS,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT, the tax rate and invested capital contributed positively. No single driver dominated."
+409,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_POS,NONE,"ROIC became less negative, but the change was mechanical. EBIT, the tax rate and invested capital contributed positively."
+410,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_NEG,EBIT,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+411,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_NEG,TAX,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+412,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_NEG,IC,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+413,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_NEG,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+414,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_NEG,NONE,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate contributed positively, while invested capital worked against the change."
+415,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_ZERO,EBIT,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate contributed positively. EBIT was the dominant driver."
+416,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_ZERO,TAX,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate contributed positively. The tax rate was the dominant driver."
+417,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_ZERO,IC,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate contributed positively. Invested capital was the dominant driver."
+418,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_ZERO,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate contributed positively. No single driver dominated."
+419,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_POS__IC_ZERO,NONE,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate contributed positively."
+420,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_POS,EBIT,"ROIC became less negative, but the change was mechanical. EBIT and invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+421,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_POS,TAX,"ROIC became less negative, but the change was mechanical. EBIT and invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+422,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_POS,IC,"ROIC became less negative, but the change was mechanical. EBIT and invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+423,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_POS,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT and invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+424,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_POS,NONE,"ROIC became less negative, but the change was mechanical. EBIT and invested capital contributed positively, while the tax rate worked against the change."
+425,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_NEG,EBIT,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+426,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_NEG,TAX,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+427,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_NEG,IC,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+428,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_NEG,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while the tax rate and invested capital worked against the change. No single driver dominated."
+429,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_NEG,NONE,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while the tax rate and invested capital worked against the change."
+430,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_ZERO,EBIT,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+431,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_ZERO,TAX,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+432,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_ZERO,IC,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+433,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_ZERO,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while the tax rate worked against the change. No single driver dominated."
+434,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_NEG__IC_ZERO,NONE,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while the tax rate worked against the change."
+435,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_POS,EBIT,"ROIC became less negative, but the change was mechanical. EBIT and invested capital contributed positively. EBIT was the dominant driver."
+436,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_POS,TAX,"ROIC became less negative, but the change was mechanical. EBIT and invested capital contributed positively. The tax rate was the dominant driver."
+437,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_POS,IC,"ROIC became less negative, but the change was mechanical. EBIT and invested capital contributed positively. Invested capital was the dominant driver."
+438,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_POS,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT and invested capital contributed positively. No single driver dominated."
+439,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_POS,NONE,"ROIC became less negative, but the change was mechanical. EBIT and invested capital contributed positively."
+440,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_NEG,EBIT,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+441,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_NEG,TAX,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+442,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_NEG,IC,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+443,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_NEG,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while invested capital worked against the change. No single driver dominated."
+444,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_NEG,NONE,"ROIC became less negative, but the change was mechanical. EBIT contributed positively, while invested capital worked against the change."
+445,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_ZERO,EBIT,"ROIC became less negative, but the change was mechanical. EBIT contributed positively. EBIT was the dominant driver."
+446,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_ZERO,TAX,"ROIC became less negative, but the change was mechanical. EBIT contributed positively. The tax rate was the dominant driver."
+447,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_ZERO,IC,"ROIC became less negative, but the change was mechanical. EBIT contributed positively. Invested capital was the dominant driver."
+448,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_ZERO,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT contributed positively. No single driver dominated."
+449,NEGATIVE_NOPAT_INCREASE,EBIT_POS__TAX_ZERO__IC_ZERO,NONE,"ROIC became less negative, but the change was mechanical. EBIT contributed positively."
+450,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_POS,EBIT,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+451,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_POS,TAX,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+452,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_POS,IC,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+453,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_POS,BALANCED,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+454,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_POS,NONE,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital contributed positively, while EBIT worked against the change."
+455,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_NEG,EBIT,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while EBIT and invested capital worked against the change. EBIT was the dominant driver."
+456,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_NEG,TAX,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while EBIT and invested capital worked against the change. The tax rate was the dominant driver."
+457,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_NEG,IC,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while EBIT and invested capital worked against the change. Invested capital was the dominant driver."
+458,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_NEG,BALANCED,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while EBIT and invested capital worked against the change. No single driver dominated."
+459,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_NEG,NONE,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while EBIT and invested capital worked against the change."
+460,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_ZERO,EBIT,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+461,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_ZERO,TAX,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+462,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_ZERO,IC,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+463,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_ZERO,BALANCED,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while EBIT worked against the change. No single driver dominated."
+464,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_POS__IC_ZERO,NONE,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while EBIT worked against the change."
+465,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_POS,EBIT,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while EBIT and the tax rate worked against the change. EBIT was the dominant driver."
+466,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_POS,TAX,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while EBIT and the tax rate worked against the change. The tax rate was the dominant driver."
+467,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_POS,IC,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while EBIT and the tax rate worked against the change. Invested capital was the dominant driver."
+468,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_POS,BALANCED,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while EBIT and the tax rate worked against the change. No single driver dominated."
+469,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_POS,NONE,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while EBIT and the tax rate worked against the change."
+470,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_NEG,EBIT,"ROIC became less negative, but the change was mechanical. EBIT, the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+471,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_NEG,TAX,"ROIC became less negative, but the change was mechanical. EBIT, the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+472,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_NEG,IC,"ROIC became less negative, but the change was mechanical. EBIT, the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+473,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_NEG,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT, the tax rate and invested capital worked against the change. No single driver dominated."
+474,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_NEG,NONE,"ROIC became less negative, but the change was mechanical. EBIT, the tax rate and invested capital worked against the change."
+475,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_ZERO,EBIT,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate worked against the change. EBIT was the dominant driver."
+476,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_ZERO,TAX,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate worked against the change. The tax rate was the dominant driver."
+477,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_ZERO,IC,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate worked against the change. Invested capital was the dominant driver."
+478,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_ZERO,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate worked against the change. No single driver dominated."
+479,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_NEG__IC_ZERO,NONE,"ROIC became less negative, but the change was mechanical. EBIT and the tax rate worked against the change."
+480,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_POS,EBIT,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+481,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_POS,TAX,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+482,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_POS,IC,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+483,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_POS,BALANCED,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+484,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_POS,NONE,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while EBIT worked against the change."
+485,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_NEG,EBIT,"ROIC became less negative, but the change was mechanical. EBIT and invested capital worked against the change. EBIT was the dominant driver."
+486,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_NEG,TAX,"ROIC became less negative, but the change was mechanical. EBIT and invested capital worked against the change. The tax rate was the dominant driver."
+487,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_NEG,IC,"ROIC became less negative, but the change was mechanical. EBIT and invested capital worked against the change. Invested capital was the dominant driver."
+488,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_NEG,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT and invested capital worked against the change. No single driver dominated."
+489,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_NEG,NONE,"ROIC became less negative, but the change was mechanical. EBIT and invested capital worked against the change."
+490,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,EBIT,"ROIC became less negative, but the change was mechanical. EBIT worked against the change. EBIT was the dominant driver."
+491,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,TAX,"ROIC became less negative, but the change was mechanical. EBIT worked against the change. The tax rate was the dominant driver."
+492,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,IC,"ROIC became less negative, but the change was mechanical. EBIT worked against the change. Invested capital was the dominant driver."
+493,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,BALANCED,"ROIC became less negative, but the change was mechanical. EBIT worked against the change. No single driver dominated."
+494,NEGATIVE_NOPAT_INCREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,NONE,"ROIC became less negative, but the change was mechanical. EBIT worked against the change."
+495,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_POS,EBIT,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital contributed positively. EBIT was the dominant driver."
+496,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_POS,TAX,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital contributed positively. The tax rate was the dominant driver."
+497,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_POS,IC,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital contributed positively. Invested capital was the dominant driver."
+498,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_POS,BALANCED,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital contributed positively. No single driver dominated."
+499,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_POS,NONE,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital contributed positively."
+500,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_NEG,EBIT,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+501,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_NEG,TAX,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+502,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_NEG,IC,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+503,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_NEG,BALANCED,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+504,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_NEG,NONE,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively, while invested capital worked against the change."
+505,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_ZERO,EBIT,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively. EBIT was the dominant driver."
+506,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_ZERO,TAX,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively. The tax rate was the dominant driver."
+507,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_ZERO,IC,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively. Invested capital was the dominant driver."
+508,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_ZERO,BALANCED,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively. No single driver dominated."
+509,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_POS__IC_ZERO,NONE,"ROIC became less negative, but the change was mechanical. The tax rate contributed positively."
+510,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_POS,EBIT,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+511,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_POS,TAX,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+512,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_POS,IC,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+513,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_POS,BALANCED,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+514,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_POS,NONE,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively, while the tax rate worked against the change."
+515,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_NEG,EBIT,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital worked against the change. EBIT was the dominant driver."
+516,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_NEG,TAX,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+517,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_NEG,IC,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+518,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_NEG,BALANCED,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital worked against the change. No single driver dominated."
+519,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_NEG,NONE,"ROIC became less negative, but the change was mechanical. The tax rate and invested capital worked against the change."
+520,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,EBIT,"ROIC became less negative, but the change was mechanical. The tax rate worked against the change. EBIT was the dominant driver."
+521,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,TAX,"ROIC became less negative, but the change was mechanical. The tax rate worked against the change. The tax rate was the dominant driver."
+522,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,IC,"ROIC became less negative, but the change was mechanical. The tax rate worked against the change. Invested capital was the dominant driver."
+523,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,BALANCED,"ROIC became less negative, but the change was mechanical. The tax rate worked against the change. No single driver dominated."
+524,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,NONE,"ROIC became less negative, but the change was mechanical. The tax rate worked against the change."
+525,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_POS,EBIT,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively. EBIT was the dominant driver."
+526,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_POS,TAX,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively. The tax rate was the dominant driver."
+527,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_POS,IC,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively. Invested capital was the dominant driver."
+528,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_POS,BALANCED,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively. No single driver dominated."
+529,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_POS,NONE,"ROIC became less negative, but the change was mechanical. Invested capital contributed positively."
+530,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,EBIT,"ROIC became less negative, but the change was mechanical. Invested capital worked against the change. EBIT was the dominant driver."
+531,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,TAX,"ROIC became less negative, but the change was mechanical. Invested capital worked against the change. The tax rate was the dominant driver."
+532,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,IC,"ROIC became less negative, but the change was mechanical. Invested capital worked against the change. Invested capital was the dominant driver."
+533,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,BALANCED,"ROIC became less negative, but the change was mechanical. Invested capital worked against the change. No single driver dominated."
+534,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,NONE,"ROIC became less negative, but the change was mechanical. Invested capital worked against the change."
+535,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,EBIT,"ROIC became less negative, but the change was mechanical. No driver moved materially. EBIT was the dominant driver."
+536,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,TAX,"ROIC became less negative, but the change was mechanical. No driver moved materially. The tax rate was the dominant driver."
+537,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,IC,"ROIC became less negative, but the change was mechanical. No driver moved materially. Invested capital was the dominant driver."
+538,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,BALANCED,"ROIC became less negative, but the change was mechanical. No driver moved materially. No single driver dominated."
+539,NEGATIVE_NOPAT_INCREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,NONE,"ROIC became less negative, but the change was mechanical. No driver moved materially."
+540,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_POS,EBIT,"ROIC became more negative. EBIT, the tax rate and invested capital contributed positively. EBIT was the dominant driver."
+541,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_POS,TAX,"ROIC became more negative. EBIT, the tax rate and invested capital contributed positively. The tax rate was the dominant driver."
+542,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_POS,IC,"ROIC became more negative. EBIT, the tax rate and invested capital contributed positively. Invested capital was the dominant driver."
+543,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_POS,BALANCED,"ROIC became more negative. EBIT, the tax rate and invested capital contributed positively. No single driver dominated."
+544,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_POS,NONE,"ROIC became more negative. EBIT, the tax rate and invested capital contributed positively."
+545,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_NEG,EBIT,"ROIC became more negative. EBIT and the tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+546,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_NEG,TAX,"ROIC became more negative. EBIT and the tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+547,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_NEG,IC,"ROIC became more negative. EBIT and the tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+548,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_NEG,BALANCED,"ROIC became more negative. EBIT and the tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+549,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_NEG,NONE,"ROIC became more negative. EBIT and the tax rate contributed positively, while invested capital worked against the change."
+550,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_ZERO,EBIT,ROIC became more negative. EBIT and the tax rate contributed positively. EBIT was the dominant driver.
+551,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_ZERO,TAX,ROIC became more negative. EBIT and the tax rate contributed positively. The tax rate was the dominant driver.
+552,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_ZERO,IC,ROIC became more negative. EBIT and the tax rate contributed positively. Invested capital was the dominant driver.
+553,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_ZERO,BALANCED,ROIC became more negative. EBIT and the tax rate contributed positively. No single driver dominated.
+554,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_POS__IC_ZERO,NONE,ROIC became more negative. EBIT and the tax rate contributed positively.
+555,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_POS,EBIT,"ROIC became more negative. EBIT and invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+556,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_POS,TAX,"ROIC became more negative. EBIT and invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+557,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_POS,IC,"ROIC became more negative. EBIT and invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+558,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_POS,BALANCED,"ROIC became more negative. EBIT and invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+559,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_POS,NONE,"ROIC became more negative. EBIT and invested capital contributed positively, while the tax rate worked against the change."
+560,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_NEG,EBIT,"ROIC became more negative. EBIT contributed positively, while the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+561,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_NEG,TAX,"ROIC became more negative. EBIT contributed positively, while the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+562,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_NEG,IC,"ROIC became more negative. EBIT contributed positively, while the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+563,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_NEG,BALANCED,"ROIC became more negative. EBIT contributed positively, while the tax rate and invested capital worked against the change. No single driver dominated."
+564,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_NEG,NONE,"ROIC became more negative. EBIT contributed positively, while the tax rate and invested capital worked against the change."
+565,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_ZERO,EBIT,"ROIC became more negative. EBIT contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+566,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_ZERO,TAX,"ROIC became more negative. EBIT contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+567,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_ZERO,IC,"ROIC became more negative. EBIT contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+568,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_ZERO,BALANCED,"ROIC became more negative. EBIT contributed positively, while the tax rate worked against the change. No single driver dominated."
+569,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_NEG__IC_ZERO,NONE,"ROIC became more negative. EBIT contributed positively, while the tax rate worked against the change."
+570,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_POS,EBIT,ROIC became more negative. EBIT and invested capital contributed positively. EBIT was the dominant driver.
+571,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_POS,TAX,ROIC became more negative. EBIT and invested capital contributed positively. The tax rate was the dominant driver.
+572,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_POS,IC,ROIC became more negative. EBIT and invested capital contributed positively. Invested capital was the dominant driver.
+573,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_POS,BALANCED,ROIC became more negative. EBIT and invested capital contributed positively. No single driver dominated.
+574,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_POS,NONE,ROIC became more negative. EBIT and invested capital contributed positively.
+575,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_NEG,EBIT,"ROIC became more negative. EBIT contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+576,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_NEG,TAX,"ROIC became more negative. EBIT contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+577,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_NEG,IC,"ROIC became more negative. EBIT contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+578,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_NEG,BALANCED,"ROIC became more negative. EBIT contributed positively, while invested capital worked against the change. No single driver dominated."
+579,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_NEG,NONE,"ROIC became more negative. EBIT contributed positively, while invested capital worked against the change."
+580,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_ZERO,EBIT,ROIC became more negative. EBIT contributed positively. EBIT was the dominant driver.
+581,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_ZERO,TAX,ROIC became more negative. EBIT contributed positively. The tax rate was the dominant driver.
+582,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_ZERO,IC,ROIC became more negative. EBIT contributed positively. Invested capital was the dominant driver.
+583,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_ZERO,BALANCED,ROIC became more negative. EBIT contributed positively. No single driver dominated.
+584,NEGATIVE_NOPAT_DECREASE,EBIT_POS__TAX_ZERO__IC_ZERO,NONE,ROIC became more negative. EBIT contributed positively.
+585,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_POS,EBIT,"ROIC became more negative. The tax rate and invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+586,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_POS,TAX,"ROIC became more negative. The tax rate and invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+587,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_POS,IC,"ROIC became more negative. The tax rate and invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+588,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_POS,BALANCED,"ROIC became more negative. The tax rate and invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+589,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_POS,NONE,"ROIC became more negative. The tax rate and invested capital contributed positively, while EBIT worked against the change."
+590,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_NEG,EBIT,"ROIC became more negative. The tax rate contributed positively, while EBIT and invested capital worked against the change. EBIT was the dominant driver."
+591,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_NEG,TAX,"ROIC became more negative. The tax rate contributed positively, while EBIT and invested capital worked against the change. The tax rate was the dominant driver."
+592,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_NEG,IC,"ROIC became more negative. The tax rate contributed positively, while EBIT and invested capital worked against the change. Invested capital was the dominant driver."
+593,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_NEG,BALANCED,"ROIC became more negative. The tax rate contributed positively, while EBIT and invested capital worked against the change. No single driver dominated."
+594,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_NEG,NONE,"ROIC became more negative. The tax rate contributed positively, while EBIT and invested capital worked against the change."
+595,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_ZERO,EBIT,"ROIC became more negative. The tax rate contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+596,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_ZERO,TAX,"ROIC became more negative. The tax rate contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+597,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_ZERO,IC,"ROIC became more negative. The tax rate contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+598,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_ZERO,BALANCED,"ROIC became more negative. The tax rate contributed positively, while EBIT worked against the change. No single driver dominated."
+599,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_POS__IC_ZERO,NONE,"ROIC became more negative. The tax rate contributed positively, while EBIT worked against the change."
+600,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_POS,EBIT,"ROIC became more negative. Invested capital contributed positively, while EBIT and the tax rate worked against the change. EBIT was the dominant driver."
+601,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_POS,TAX,"ROIC became more negative. Invested capital contributed positively, while EBIT and the tax rate worked against the change. The tax rate was the dominant driver."
+602,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_POS,IC,"ROIC became more negative. Invested capital contributed positively, while EBIT and the tax rate worked against the change. Invested capital was the dominant driver."
+603,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_POS,BALANCED,"ROIC became more negative. Invested capital contributed positively, while EBIT and the tax rate worked against the change. No single driver dominated."
+604,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_POS,NONE,"ROIC became more negative. Invested capital contributed positively, while EBIT and the tax rate worked against the change."
+605,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_NEG,EBIT,"ROIC became more negative. EBIT, the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+606,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_NEG,TAX,"ROIC became more negative. EBIT, the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+607,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_NEG,IC,"ROIC became more negative. EBIT, the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+608,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_NEG,BALANCED,"ROIC became more negative. EBIT, the tax rate and invested capital worked against the change. No single driver dominated."
+609,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_NEG,NONE,"ROIC became more negative. EBIT, the tax rate and invested capital worked against the change."
+610,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_ZERO,EBIT,ROIC became more negative. EBIT and the tax rate worked against the change. EBIT was the dominant driver.
+611,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_ZERO,TAX,ROIC became more negative. EBIT and the tax rate worked against the change. The tax rate was the dominant driver.
+612,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_ZERO,IC,ROIC became more negative. EBIT and the tax rate worked against the change. Invested capital was the dominant driver.
+613,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_ZERO,BALANCED,ROIC became more negative. EBIT and the tax rate worked against the change. No single driver dominated.
+614,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_NEG__IC_ZERO,NONE,ROIC became more negative. EBIT and the tax rate worked against the change.
+615,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_POS,EBIT,"ROIC became more negative. Invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+616,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_POS,TAX,"ROIC became more negative. Invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+617,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_POS,IC,"ROIC became more negative. Invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+618,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_POS,BALANCED,"ROIC became more negative. Invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+619,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_POS,NONE,"ROIC became more negative. Invested capital contributed positively, while EBIT worked against the change."
+620,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_NEG,EBIT,ROIC became more negative. EBIT and invested capital worked against the change. EBIT was the dominant driver.
+621,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_NEG,TAX,ROIC became more negative. EBIT and invested capital worked against the change. The tax rate was the dominant driver.
+622,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_NEG,IC,ROIC became more negative. EBIT and invested capital worked against the change. Invested capital was the dominant driver.
+623,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_NEG,BALANCED,ROIC became more negative. EBIT and invested capital worked against the change. No single driver dominated.
+624,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_NEG,NONE,ROIC became more negative. EBIT and invested capital worked against the change.
+625,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,EBIT,ROIC became more negative. EBIT worked against the change. EBIT was the dominant driver.
+626,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,TAX,ROIC became more negative. EBIT worked against the change. The tax rate was the dominant driver.
+627,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,IC,ROIC became more negative. EBIT worked against the change. Invested capital was the dominant driver.
+628,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,BALANCED,ROIC became more negative. EBIT worked against the change. No single driver dominated.
+629,NEGATIVE_NOPAT_DECREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,NONE,ROIC became more negative. EBIT worked against the change.
+630,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_POS,EBIT,ROIC became more negative. The tax rate and invested capital contributed positively. EBIT was the dominant driver.
+631,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_POS,TAX,ROIC became more negative. The tax rate and invested capital contributed positively. The tax rate was the dominant driver.
+632,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_POS,IC,ROIC became more negative. The tax rate and invested capital contributed positively. Invested capital was the dominant driver.
+633,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_POS,BALANCED,ROIC became more negative. The tax rate and invested capital contributed positively. No single driver dominated.
+634,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_POS,NONE,ROIC became more negative. The tax rate and invested capital contributed positively.
+635,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_NEG,EBIT,"ROIC became more negative. The tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+636,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_NEG,TAX,"ROIC became more negative. The tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+637,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_NEG,IC,"ROIC became more negative. The tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+638,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_NEG,BALANCED,"ROIC became more negative. The tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+639,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_NEG,NONE,"ROIC became more negative. The tax rate contributed positively, while invested capital worked against the change."
+640,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_ZERO,EBIT,ROIC became more negative. The tax rate contributed positively. EBIT was the dominant driver.
+641,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_ZERO,TAX,ROIC became more negative. The tax rate contributed positively. The tax rate was the dominant driver.
+642,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_ZERO,IC,ROIC became more negative. The tax rate contributed positively. Invested capital was the dominant driver.
+643,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_ZERO,BALANCED,ROIC became more negative. The tax rate contributed positively. No single driver dominated.
+644,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_POS__IC_ZERO,NONE,ROIC became more negative. The tax rate contributed positively.
+645,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_POS,EBIT,"ROIC became more negative. Invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+646,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_POS,TAX,"ROIC became more negative. Invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+647,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_POS,IC,"ROIC became more negative. Invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+648,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_POS,BALANCED,"ROIC became more negative. Invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+649,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_POS,NONE,"ROIC became more negative. Invested capital contributed positively, while the tax rate worked against the change."
+650,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_NEG,EBIT,ROIC became more negative. The tax rate and invested capital worked against the change. EBIT was the dominant driver.
+651,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_NEG,TAX,ROIC became more negative. The tax rate and invested capital worked against the change. The tax rate was the dominant driver.
+652,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_NEG,IC,ROIC became more negative. The tax rate and invested capital worked against the change. Invested capital was the dominant driver.
+653,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_NEG,BALANCED,ROIC became more negative. The tax rate and invested capital worked against the change. No single driver dominated.
+654,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_NEG,NONE,ROIC became more negative. The tax rate and invested capital worked against the change.
+655,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,EBIT,ROIC became more negative. The tax rate worked against the change. EBIT was the dominant driver.
+656,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,TAX,ROIC became more negative. The tax rate worked against the change. The tax rate was the dominant driver.
+657,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,IC,ROIC became more negative. The tax rate worked against the change. Invested capital was the dominant driver.
+658,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,BALANCED,ROIC became more negative. The tax rate worked against the change. No single driver dominated.
+659,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,NONE,ROIC became more negative. The tax rate worked against the change.
+660,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_POS,EBIT,ROIC became more negative. Invested capital contributed positively. EBIT was the dominant driver.
+661,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_POS,TAX,ROIC became more negative. Invested capital contributed positively. The tax rate was the dominant driver.
+662,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_POS,IC,ROIC became more negative. Invested capital contributed positively. Invested capital was the dominant driver.
+663,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_POS,BALANCED,ROIC became more negative. Invested capital contributed positively. No single driver dominated.
+664,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_POS,NONE,ROIC became more negative. Invested capital contributed positively.
+665,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,EBIT,ROIC became more negative. Invested capital worked against the change. EBIT was the dominant driver.
+666,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,TAX,ROIC became more negative. Invested capital worked against the change. The tax rate was the dominant driver.
+667,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,IC,ROIC became more negative. Invested capital worked against the change. Invested capital was the dominant driver.
+668,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,BALANCED,ROIC became more negative. Invested capital worked against the change. No single driver dominated.
+669,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,NONE,ROIC became more negative. Invested capital worked against the change.
+670,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,EBIT,ROIC became more negative. No driver moved materially. EBIT was the dominant driver.
+671,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,TAX,ROIC became more negative. No driver moved materially. The tax rate was the dominant driver.
+672,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,IC,ROIC became more negative. No driver moved materially. Invested capital was the dominant driver.
+673,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,BALANCED,ROIC became more negative. No driver moved materially. No single driver dominated.
+674,NEGATIVE_NOPAT_DECREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,NONE,ROIC became more negative. No driver moved materially.
+675,INCREASE,EBIT_POS__TAX_POS__IC_POS,EBIT,"ROIC increased. EBIT, the tax rate and invested capital contributed positively. EBIT was the dominant driver."
+676,INCREASE,EBIT_POS__TAX_POS__IC_POS,TAX,"ROIC increased. EBIT, the tax rate and invested capital contributed positively. The tax rate was the dominant driver."
+677,INCREASE,EBIT_POS__TAX_POS__IC_POS,IC,"ROIC increased. EBIT, the tax rate and invested capital contributed positively. Invested capital was the dominant driver."
+678,INCREASE,EBIT_POS__TAX_POS__IC_POS,BALANCED,"ROIC increased. EBIT, the tax rate and invested capital contributed positively. No single driver dominated."
+679,INCREASE,EBIT_POS__TAX_POS__IC_POS,NONE,"ROIC increased. EBIT, the tax rate and invested capital contributed positively."
+680,INCREASE,EBIT_POS__TAX_POS__IC_NEG,EBIT,"ROIC increased. EBIT and the tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+681,INCREASE,EBIT_POS__TAX_POS__IC_NEG,TAX,"ROIC increased. EBIT and the tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+682,INCREASE,EBIT_POS__TAX_POS__IC_NEG,IC,"ROIC increased. EBIT and the tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+683,INCREASE,EBIT_POS__TAX_POS__IC_NEG,BALANCED,"ROIC increased. EBIT and the tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+684,INCREASE,EBIT_POS__TAX_POS__IC_NEG,NONE,"ROIC increased. EBIT and the tax rate contributed positively, while invested capital worked against the change."
+685,INCREASE,EBIT_POS__TAX_POS__IC_ZERO,EBIT,ROIC increased. EBIT and the tax rate contributed positively. EBIT was the dominant driver.
+686,INCREASE,EBIT_POS__TAX_POS__IC_ZERO,TAX,ROIC increased. EBIT and the tax rate contributed positively. The tax rate was the dominant driver.
+687,INCREASE,EBIT_POS__TAX_POS__IC_ZERO,IC,ROIC increased. EBIT and the tax rate contributed positively. Invested capital was the dominant driver.
+688,INCREASE,EBIT_POS__TAX_POS__IC_ZERO,BALANCED,ROIC increased. EBIT and the tax rate contributed positively. No single driver dominated.
+689,INCREASE,EBIT_POS__TAX_POS__IC_ZERO,NONE,ROIC increased. EBIT and the tax rate contributed positively.
+690,INCREASE,EBIT_POS__TAX_NEG__IC_POS,EBIT,"ROIC increased. EBIT and invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+691,INCREASE,EBIT_POS__TAX_NEG__IC_POS,TAX,"ROIC increased. EBIT and invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+692,INCREASE,EBIT_POS__TAX_NEG__IC_POS,IC,"ROIC increased. EBIT and invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+693,INCREASE,EBIT_POS__TAX_NEG__IC_POS,BALANCED,"ROIC increased. EBIT and invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+694,INCREASE,EBIT_POS__TAX_NEG__IC_POS,NONE,"ROIC increased. EBIT and invested capital contributed positively, while the tax rate worked against the change."
+695,INCREASE,EBIT_POS__TAX_NEG__IC_NEG,EBIT,"ROIC increased. EBIT contributed positively, while the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+696,INCREASE,EBIT_POS__TAX_NEG__IC_NEG,TAX,"ROIC increased. EBIT contributed positively, while the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+697,INCREASE,EBIT_POS__TAX_NEG__IC_NEG,IC,"ROIC increased. EBIT contributed positively, while the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+698,INCREASE,EBIT_POS__TAX_NEG__IC_NEG,BALANCED,"ROIC increased. EBIT contributed positively, while the tax rate and invested capital worked against the change. No single driver dominated."
+699,INCREASE,EBIT_POS__TAX_NEG__IC_NEG,NONE,"ROIC increased. EBIT contributed positively, while the tax rate and invested capital worked against the change."
+700,INCREASE,EBIT_POS__TAX_NEG__IC_ZERO,EBIT,"ROIC increased. EBIT contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+701,INCREASE,EBIT_POS__TAX_NEG__IC_ZERO,TAX,"ROIC increased. EBIT contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+702,INCREASE,EBIT_POS__TAX_NEG__IC_ZERO,IC,"ROIC increased. EBIT contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+703,INCREASE,EBIT_POS__TAX_NEG__IC_ZERO,BALANCED,"ROIC increased. EBIT contributed positively, while the tax rate worked against the change. No single driver dominated."
+704,INCREASE,EBIT_POS__TAX_NEG__IC_ZERO,NONE,"ROIC increased. EBIT contributed positively, while the tax rate worked against the change."
+705,INCREASE,EBIT_POS__TAX_ZERO__IC_POS,EBIT,ROIC increased. EBIT and invested capital contributed positively. EBIT was the dominant driver.
+706,INCREASE,EBIT_POS__TAX_ZERO__IC_POS,TAX,ROIC increased. EBIT and invested capital contributed positively. The tax rate was the dominant driver.
+707,INCREASE,EBIT_POS__TAX_ZERO__IC_POS,IC,ROIC increased. EBIT and invested capital contributed positively. Invested capital was the dominant driver.
+708,INCREASE,EBIT_POS__TAX_ZERO__IC_POS,BALANCED,ROIC increased. EBIT and invested capital contributed positively. No single driver dominated.
+709,INCREASE,EBIT_POS__TAX_ZERO__IC_POS,NONE,ROIC increased. EBIT and invested capital contributed positively.
+710,INCREASE,EBIT_POS__TAX_ZERO__IC_NEG,EBIT,"ROIC increased. EBIT contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+711,INCREASE,EBIT_POS__TAX_ZERO__IC_NEG,TAX,"ROIC increased. EBIT contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+712,INCREASE,EBIT_POS__TAX_ZERO__IC_NEG,IC,"ROIC increased. EBIT contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+713,INCREASE,EBIT_POS__TAX_ZERO__IC_NEG,BALANCED,"ROIC increased. EBIT contributed positively, while invested capital worked against the change. No single driver dominated."
+714,INCREASE,EBIT_POS__TAX_ZERO__IC_NEG,NONE,"ROIC increased. EBIT contributed positively, while invested capital worked against the change."
+715,INCREASE,EBIT_POS__TAX_ZERO__IC_ZERO,EBIT,ROIC increased. EBIT contributed positively. EBIT was the dominant driver.
+716,INCREASE,EBIT_POS__TAX_ZERO__IC_ZERO,TAX,ROIC increased. EBIT contributed positively. The tax rate was the dominant driver.
+717,INCREASE,EBIT_POS__TAX_ZERO__IC_ZERO,IC,ROIC increased. EBIT contributed positively. Invested capital was the dominant driver.
+718,INCREASE,EBIT_POS__TAX_ZERO__IC_ZERO,BALANCED,ROIC increased. EBIT contributed positively. No single driver dominated.
+719,INCREASE,EBIT_POS__TAX_ZERO__IC_ZERO,NONE,ROIC increased. EBIT contributed positively.
+720,INCREASE,EBIT_NEG__TAX_POS__IC_POS,EBIT,"ROIC increased. The tax rate and invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+721,INCREASE,EBIT_NEG__TAX_POS__IC_POS,TAX,"ROIC increased. The tax rate and invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+722,INCREASE,EBIT_NEG__TAX_POS__IC_POS,IC,"ROIC increased. The tax rate and invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+723,INCREASE,EBIT_NEG__TAX_POS__IC_POS,BALANCED,"ROIC increased. The tax rate and invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+724,INCREASE,EBIT_NEG__TAX_POS__IC_POS,NONE,"ROIC increased. The tax rate and invested capital contributed positively, while EBIT worked against the change."
+725,INCREASE,EBIT_NEG__TAX_POS__IC_NEG,EBIT,"ROIC increased. The tax rate contributed positively, while EBIT and invested capital worked against the change. EBIT was the dominant driver."
+726,INCREASE,EBIT_NEG__TAX_POS__IC_NEG,TAX,"ROIC increased. The tax rate contributed positively, while EBIT and invested capital worked against the change. The tax rate was the dominant driver."
+727,INCREASE,EBIT_NEG__TAX_POS__IC_NEG,IC,"ROIC increased. The tax rate contributed positively, while EBIT and invested capital worked against the change. Invested capital was the dominant driver."
+728,INCREASE,EBIT_NEG__TAX_POS__IC_NEG,BALANCED,"ROIC increased. The tax rate contributed positively, while EBIT and invested capital worked against the change. No single driver dominated."
+729,INCREASE,EBIT_NEG__TAX_POS__IC_NEG,NONE,"ROIC increased. The tax rate contributed positively, while EBIT and invested capital worked against the change."
+730,INCREASE,EBIT_NEG__TAX_POS__IC_ZERO,EBIT,"ROIC increased. The tax rate contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+731,INCREASE,EBIT_NEG__TAX_POS__IC_ZERO,TAX,"ROIC increased. The tax rate contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+732,INCREASE,EBIT_NEG__TAX_POS__IC_ZERO,IC,"ROIC increased. The tax rate contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+733,INCREASE,EBIT_NEG__TAX_POS__IC_ZERO,BALANCED,"ROIC increased. The tax rate contributed positively, while EBIT worked against the change. No single driver dominated."
+734,INCREASE,EBIT_NEG__TAX_POS__IC_ZERO,NONE,"ROIC increased. The tax rate contributed positively, while EBIT worked against the change."
+735,INCREASE,EBIT_NEG__TAX_NEG__IC_POS,EBIT,"ROIC increased. Invested capital contributed positively, while EBIT and the tax rate worked against the change. EBIT was the dominant driver."
+736,INCREASE,EBIT_NEG__TAX_NEG__IC_POS,TAX,"ROIC increased. Invested capital contributed positively, while EBIT and the tax rate worked against the change. The tax rate was the dominant driver."
+737,INCREASE,EBIT_NEG__TAX_NEG__IC_POS,IC,"ROIC increased. Invested capital contributed positively, while EBIT and the tax rate worked against the change. Invested capital was the dominant driver."
+738,INCREASE,EBIT_NEG__TAX_NEG__IC_POS,BALANCED,"ROIC increased. Invested capital contributed positively, while EBIT and the tax rate worked against the change. No single driver dominated."
+739,INCREASE,EBIT_NEG__TAX_NEG__IC_POS,NONE,"ROIC increased. Invested capital contributed positively, while EBIT and the tax rate worked against the change."
+740,INCREASE,EBIT_NEG__TAX_NEG__IC_NEG,EBIT,"ROIC increased. EBIT, the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+741,INCREASE,EBIT_NEG__TAX_NEG__IC_NEG,TAX,"ROIC increased. EBIT, the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+742,INCREASE,EBIT_NEG__TAX_NEG__IC_NEG,IC,"ROIC increased. EBIT, the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+743,INCREASE,EBIT_NEG__TAX_NEG__IC_NEG,BALANCED,"ROIC increased. EBIT, the tax rate and invested capital worked against the change. No single driver dominated."
+744,INCREASE,EBIT_NEG__TAX_NEG__IC_NEG,NONE,"ROIC increased. EBIT, the tax rate and invested capital worked against the change."
+745,INCREASE,EBIT_NEG__TAX_NEG__IC_ZERO,EBIT,ROIC increased. EBIT and the tax rate worked against the change. EBIT was the dominant driver.
+746,INCREASE,EBIT_NEG__TAX_NEG__IC_ZERO,TAX,ROIC increased. EBIT and the tax rate worked against the change. The tax rate was the dominant driver.
+747,INCREASE,EBIT_NEG__TAX_NEG__IC_ZERO,IC,ROIC increased. EBIT and the tax rate worked against the change. Invested capital was the dominant driver.
+748,INCREASE,EBIT_NEG__TAX_NEG__IC_ZERO,BALANCED,ROIC increased. EBIT and the tax rate worked against the change. No single driver dominated.
+749,INCREASE,EBIT_NEG__TAX_NEG__IC_ZERO,NONE,ROIC increased. EBIT and the tax rate worked against the change.
+750,INCREASE,EBIT_NEG__TAX_ZERO__IC_POS,EBIT,"ROIC increased. Invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+751,INCREASE,EBIT_NEG__TAX_ZERO__IC_POS,TAX,"ROIC increased. Invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+752,INCREASE,EBIT_NEG__TAX_ZERO__IC_POS,IC,"ROIC increased. Invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+753,INCREASE,EBIT_NEG__TAX_ZERO__IC_POS,BALANCED,"ROIC increased. Invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+754,INCREASE,EBIT_NEG__TAX_ZERO__IC_POS,NONE,"ROIC increased. Invested capital contributed positively, while EBIT worked against the change."
+755,INCREASE,EBIT_NEG__TAX_ZERO__IC_NEG,EBIT,ROIC increased. EBIT and invested capital worked against the change. EBIT was the dominant driver.
+756,INCREASE,EBIT_NEG__TAX_ZERO__IC_NEG,TAX,ROIC increased. EBIT and invested capital worked against the change. The tax rate was the dominant driver.
+757,INCREASE,EBIT_NEG__TAX_ZERO__IC_NEG,IC,ROIC increased. EBIT and invested capital worked against the change. Invested capital was the dominant driver.
+758,INCREASE,EBIT_NEG__TAX_ZERO__IC_NEG,BALANCED,ROIC increased. EBIT and invested capital worked against the change. No single driver dominated.
+759,INCREASE,EBIT_NEG__TAX_ZERO__IC_NEG,NONE,ROIC increased. EBIT and invested capital worked against the change.
+760,INCREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,EBIT,ROIC increased. EBIT worked against the change. EBIT was the dominant driver.
+761,INCREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,TAX,ROIC increased. EBIT worked against the change. The tax rate was the dominant driver.
+762,INCREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,IC,ROIC increased. EBIT worked against the change. Invested capital was the dominant driver.
+763,INCREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,BALANCED,ROIC increased. EBIT worked against the change. No single driver dominated.
+764,INCREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,NONE,ROIC increased. EBIT worked against the change.
+765,INCREASE,EBIT_ZERO__TAX_POS__IC_POS,EBIT,ROIC increased. The tax rate and invested capital contributed positively. EBIT was the dominant driver.
+766,INCREASE,EBIT_ZERO__TAX_POS__IC_POS,TAX,ROIC increased. The tax rate and invested capital contributed positively. The tax rate was the dominant driver.
+767,INCREASE,EBIT_ZERO__TAX_POS__IC_POS,IC,ROIC increased. The tax rate and invested capital contributed positively. Invested capital was the dominant driver.
+768,INCREASE,EBIT_ZERO__TAX_POS__IC_POS,BALANCED,ROIC increased. The tax rate and invested capital contributed positively. No single driver dominated.
+769,INCREASE,EBIT_ZERO__TAX_POS__IC_POS,NONE,ROIC increased. The tax rate and invested capital contributed positively.
+770,INCREASE,EBIT_ZERO__TAX_POS__IC_NEG,EBIT,"ROIC increased. The tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+771,INCREASE,EBIT_ZERO__TAX_POS__IC_NEG,TAX,"ROIC increased. The tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+772,INCREASE,EBIT_ZERO__TAX_POS__IC_NEG,IC,"ROIC increased. The tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+773,INCREASE,EBIT_ZERO__TAX_POS__IC_NEG,BALANCED,"ROIC increased. The tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+774,INCREASE,EBIT_ZERO__TAX_POS__IC_NEG,NONE,"ROIC increased. The tax rate contributed positively, while invested capital worked against the change."
+775,INCREASE,EBIT_ZERO__TAX_POS__IC_ZERO,EBIT,ROIC increased. The tax rate contributed positively. EBIT was the dominant driver.
+776,INCREASE,EBIT_ZERO__TAX_POS__IC_ZERO,TAX,ROIC increased. The tax rate contributed positively. The tax rate was the dominant driver.
+777,INCREASE,EBIT_ZERO__TAX_POS__IC_ZERO,IC,ROIC increased. The tax rate contributed positively. Invested capital was the dominant driver.
+778,INCREASE,EBIT_ZERO__TAX_POS__IC_ZERO,BALANCED,ROIC increased. The tax rate contributed positively. No single driver dominated.
+779,INCREASE,EBIT_ZERO__TAX_POS__IC_ZERO,NONE,ROIC increased. The tax rate contributed positively.
+780,INCREASE,EBIT_ZERO__TAX_NEG__IC_POS,EBIT,"ROIC increased. Invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+781,INCREASE,EBIT_ZERO__TAX_NEG__IC_POS,TAX,"ROIC increased. Invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+782,INCREASE,EBIT_ZERO__TAX_NEG__IC_POS,IC,"ROIC increased. Invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+783,INCREASE,EBIT_ZERO__TAX_NEG__IC_POS,BALANCED,"ROIC increased. Invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+784,INCREASE,EBIT_ZERO__TAX_NEG__IC_POS,NONE,"ROIC increased. Invested capital contributed positively, while the tax rate worked against the change."
+785,INCREASE,EBIT_ZERO__TAX_NEG__IC_NEG,EBIT,ROIC increased. The tax rate and invested capital worked against the change. EBIT was the dominant driver.
+786,INCREASE,EBIT_ZERO__TAX_NEG__IC_NEG,TAX,ROIC increased. The tax rate and invested capital worked against the change. The tax rate was the dominant driver.
+787,INCREASE,EBIT_ZERO__TAX_NEG__IC_NEG,IC,ROIC increased. The tax rate and invested capital worked against the change. Invested capital was the dominant driver.
+788,INCREASE,EBIT_ZERO__TAX_NEG__IC_NEG,BALANCED,ROIC increased. The tax rate and invested capital worked against the change. No single driver dominated.
+789,INCREASE,EBIT_ZERO__TAX_NEG__IC_NEG,NONE,ROIC increased. The tax rate and invested capital worked against the change.
+790,INCREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,EBIT,ROIC increased. The tax rate worked against the change. EBIT was the dominant driver.
+791,INCREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,TAX,ROIC increased. The tax rate worked against the change. The tax rate was the dominant driver.
+792,INCREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,IC,ROIC increased. The tax rate worked against the change. Invested capital was the dominant driver.
+793,INCREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,BALANCED,ROIC increased. The tax rate worked against the change. No single driver dominated.
+794,INCREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,NONE,ROIC increased. The tax rate worked against the change.
+795,INCREASE,EBIT_ZERO__TAX_ZERO__IC_POS,EBIT,ROIC increased. Invested capital contributed positively. EBIT was the dominant driver.
+796,INCREASE,EBIT_ZERO__TAX_ZERO__IC_POS,TAX,ROIC increased. Invested capital contributed positively. The tax rate was the dominant driver.
+797,INCREASE,EBIT_ZERO__TAX_ZERO__IC_POS,IC,ROIC increased. Invested capital contributed positively. Invested capital was the dominant driver.
+798,INCREASE,EBIT_ZERO__TAX_ZERO__IC_POS,BALANCED,ROIC increased. Invested capital contributed positively. No single driver dominated.
+799,INCREASE,EBIT_ZERO__TAX_ZERO__IC_POS,NONE,ROIC increased. Invested capital contributed positively.
+800,INCREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,EBIT,ROIC increased. Invested capital worked against the change. EBIT was the dominant driver.
+801,INCREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,TAX,ROIC increased. Invested capital worked against the change. The tax rate was the dominant driver.
+802,INCREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,IC,ROIC increased. Invested capital worked against the change. Invested capital was the dominant driver.
+803,INCREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,BALANCED,ROIC increased. Invested capital worked against the change. No single driver dominated.
+804,INCREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,NONE,ROIC increased. Invested capital worked against the change.
+805,INCREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,EBIT,ROIC increased. No driver moved materially. EBIT was the dominant driver.
+806,INCREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,TAX,ROIC increased. No driver moved materially. The tax rate was the dominant driver.
+807,INCREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,IC,ROIC increased. No driver moved materially. Invested capital was the dominant driver.
+808,INCREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,BALANCED,ROIC increased. No driver moved materially. No single driver dominated.
+809,INCREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,NONE,ROIC increased. No driver moved materially.
+810,DECREASE,EBIT_POS__TAX_POS__IC_POS,EBIT,"ROIC decreased. EBIT, the tax rate and invested capital contributed positively. EBIT was the dominant driver."
+811,DECREASE,EBIT_POS__TAX_POS__IC_POS,TAX,"ROIC decreased. EBIT, the tax rate and invested capital contributed positively. The tax rate was the dominant driver."
+812,DECREASE,EBIT_POS__TAX_POS__IC_POS,IC,"ROIC decreased. EBIT, the tax rate and invested capital contributed positively. Invested capital was the dominant driver."
+813,DECREASE,EBIT_POS__TAX_POS__IC_POS,BALANCED,"ROIC decreased. EBIT, the tax rate and invested capital contributed positively. No single driver dominated."
+814,DECREASE,EBIT_POS__TAX_POS__IC_POS,NONE,"ROIC decreased. EBIT, the tax rate and invested capital contributed positively."
+815,DECREASE,EBIT_POS__TAX_POS__IC_NEG,EBIT,"ROIC decreased. EBIT and the tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+816,DECREASE,EBIT_POS__TAX_POS__IC_NEG,TAX,"ROIC decreased. EBIT and the tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+817,DECREASE,EBIT_POS__TAX_POS__IC_NEG,IC,"ROIC decreased. EBIT and the tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+818,DECREASE,EBIT_POS__TAX_POS__IC_NEG,BALANCED,"ROIC decreased. EBIT and the tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+819,DECREASE,EBIT_POS__TAX_POS__IC_NEG,NONE,"ROIC decreased. EBIT and the tax rate contributed positively, while invested capital worked against the change."
+820,DECREASE,EBIT_POS__TAX_POS__IC_ZERO,EBIT,ROIC decreased. EBIT and the tax rate contributed positively. EBIT was the dominant driver.
+821,DECREASE,EBIT_POS__TAX_POS__IC_ZERO,TAX,ROIC decreased. EBIT and the tax rate contributed positively. The tax rate was the dominant driver.
+822,DECREASE,EBIT_POS__TAX_POS__IC_ZERO,IC,ROIC decreased. EBIT and the tax rate contributed positively. Invested capital was the dominant driver.
+823,DECREASE,EBIT_POS__TAX_POS__IC_ZERO,BALANCED,ROIC decreased. EBIT and the tax rate contributed positively. No single driver dominated.
+824,DECREASE,EBIT_POS__TAX_POS__IC_ZERO,NONE,ROIC decreased. EBIT and the tax rate contributed positively.
+825,DECREASE,EBIT_POS__TAX_NEG__IC_POS,EBIT,"ROIC decreased. EBIT and invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+826,DECREASE,EBIT_POS__TAX_NEG__IC_POS,TAX,"ROIC decreased. EBIT and invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+827,DECREASE,EBIT_POS__TAX_NEG__IC_POS,IC,"ROIC decreased. EBIT and invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+828,DECREASE,EBIT_POS__TAX_NEG__IC_POS,BALANCED,"ROIC decreased. EBIT and invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+829,DECREASE,EBIT_POS__TAX_NEG__IC_POS,NONE,"ROIC decreased. EBIT and invested capital contributed positively, while the tax rate worked against the change."
+830,DECREASE,EBIT_POS__TAX_NEG__IC_NEG,EBIT,"ROIC decreased. EBIT contributed positively, while the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+831,DECREASE,EBIT_POS__TAX_NEG__IC_NEG,TAX,"ROIC decreased. EBIT contributed positively, while the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+832,DECREASE,EBIT_POS__TAX_NEG__IC_NEG,IC,"ROIC decreased. EBIT contributed positively, while the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+833,DECREASE,EBIT_POS__TAX_NEG__IC_NEG,BALANCED,"ROIC decreased. EBIT contributed positively, while the tax rate and invested capital worked against the change. No single driver dominated."
+834,DECREASE,EBIT_POS__TAX_NEG__IC_NEG,NONE,"ROIC decreased. EBIT contributed positively, while the tax rate and invested capital worked against the change."
+835,DECREASE,EBIT_POS__TAX_NEG__IC_ZERO,EBIT,"ROIC decreased. EBIT contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+836,DECREASE,EBIT_POS__TAX_NEG__IC_ZERO,TAX,"ROIC decreased. EBIT contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+837,DECREASE,EBIT_POS__TAX_NEG__IC_ZERO,IC,"ROIC decreased. EBIT contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+838,DECREASE,EBIT_POS__TAX_NEG__IC_ZERO,BALANCED,"ROIC decreased. EBIT contributed positively, while the tax rate worked against the change. No single driver dominated."
+839,DECREASE,EBIT_POS__TAX_NEG__IC_ZERO,NONE,"ROIC decreased. EBIT contributed positively, while the tax rate worked against the change."
+840,DECREASE,EBIT_POS__TAX_ZERO__IC_POS,EBIT,ROIC decreased. EBIT and invested capital contributed positively. EBIT was the dominant driver.
+841,DECREASE,EBIT_POS__TAX_ZERO__IC_POS,TAX,ROIC decreased. EBIT and invested capital contributed positively. The tax rate was the dominant driver.
+842,DECREASE,EBIT_POS__TAX_ZERO__IC_POS,IC,ROIC decreased. EBIT and invested capital contributed positively. Invested capital was the dominant driver.
+843,DECREASE,EBIT_POS__TAX_ZERO__IC_POS,BALANCED,ROIC decreased. EBIT and invested capital contributed positively. No single driver dominated.
+844,DECREASE,EBIT_POS__TAX_ZERO__IC_POS,NONE,ROIC decreased. EBIT and invested capital contributed positively.
+845,DECREASE,EBIT_POS__TAX_ZERO__IC_NEG,EBIT,"ROIC decreased. EBIT contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+846,DECREASE,EBIT_POS__TAX_ZERO__IC_NEG,TAX,"ROIC decreased. EBIT contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+847,DECREASE,EBIT_POS__TAX_ZERO__IC_NEG,IC,"ROIC decreased. EBIT contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+848,DECREASE,EBIT_POS__TAX_ZERO__IC_NEG,BALANCED,"ROIC decreased. EBIT contributed positively, while invested capital worked against the change. No single driver dominated."
+849,DECREASE,EBIT_POS__TAX_ZERO__IC_NEG,NONE,"ROIC decreased. EBIT contributed positively, while invested capital worked against the change."
+850,DECREASE,EBIT_POS__TAX_ZERO__IC_ZERO,EBIT,ROIC decreased. EBIT contributed positively. EBIT was the dominant driver.
+851,DECREASE,EBIT_POS__TAX_ZERO__IC_ZERO,TAX,ROIC decreased. EBIT contributed positively. The tax rate was the dominant driver.
+852,DECREASE,EBIT_POS__TAX_ZERO__IC_ZERO,IC,ROIC decreased. EBIT contributed positively. Invested capital was the dominant driver.
+853,DECREASE,EBIT_POS__TAX_ZERO__IC_ZERO,BALANCED,ROIC decreased. EBIT contributed positively. No single driver dominated.
+854,DECREASE,EBIT_POS__TAX_ZERO__IC_ZERO,NONE,ROIC decreased. EBIT contributed positively.
+855,DECREASE,EBIT_NEG__TAX_POS__IC_POS,EBIT,"ROIC decreased. The tax rate and invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+856,DECREASE,EBIT_NEG__TAX_POS__IC_POS,TAX,"ROIC decreased. The tax rate and invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+857,DECREASE,EBIT_NEG__TAX_POS__IC_POS,IC,"ROIC decreased. The tax rate and invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+858,DECREASE,EBIT_NEG__TAX_POS__IC_POS,BALANCED,"ROIC decreased. The tax rate and invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+859,DECREASE,EBIT_NEG__TAX_POS__IC_POS,NONE,"ROIC decreased. The tax rate and invested capital contributed positively, while EBIT worked against the change."
+860,DECREASE,EBIT_NEG__TAX_POS__IC_NEG,EBIT,"ROIC decreased. The tax rate contributed positively, while EBIT and invested capital worked against the change. EBIT was the dominant driver."
+861,DECREASE,EBIT_NEG__TAX_POS__IC_NEG,TAX,"ROIC decreased. The tax rate contributed positively, while EBIT and invested capital worked against the change. The tax rate was the dominant driver."
+862,DECREASE,EBIT_NEG__TAX_POS__IC_NEG,IC,"ROIC decreased. The tax rate contributed positively, while EBIT and invested capital worked against the change. Invested capital was the dominant driver."
+863,DECREASE,EBIT_NEG__TAX_POS__IC_NEG,BALANCED,"ROIC decreased. The tax rate contributed positively, while EBIT and invested capital worked against the change. No single driver dominated."
+864,DECREASE,EBIT_NEG__TAX_POS__IC_NEG,NONE,"ROIC decreased. The tax rate contributed positively, while EBIT and invested capital worked against the change."
+865,DECREASE,EBIT_NEG__TAX_POS__IC_ZERO,EBIT,"ROIC decreased. The tax rate contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+866,DECREASE,EBIT_NEG__TAX_POS__IC_ZERO,TAX,"ROIC decreased. The tax rate contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+867,DECREASE,EBIT_NEG__TAX_POS__IC_ZERO,IC,"ROIC decreased. The tax rate contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+868,DECREASE,EBIT_NEG__TAX_POS__IC_ZERO,BALANCED,"ROIC decreased. The tax rate contributed positively, while EBIT worked against the change. No single driver dominated."
+869,DECREASE,EBIT_NEG__TAX_POS__IC_ZERO,NONE,"ROIC decreased. The tax rate contributed positively, while EBIT worked against the change."
+870,DECREASE,EBIT_NEG__TAX_NEG__IC_POS,EBIT,"ROIC decreased. Invested capital contributed positively, while EBIT and the tax rate worked against the change. EBIT was the dominant driver."
+871,DECREASE,EBIT_NEG__TAX_NEG__IC_POS,TAX,"ROIC decreased. Invested capital contributed positively, while EBIT and the tax rate worked against the change. The tax rate was the dominant driver."
+872,DECREASE,EBIT_NEG__TAX_NEG__IC_POS,IC,"ROIC decreased. Invested capital contributed positively, while EBIT and the tax rate worked against the change. Invested capital was the dominant driver."
+873,DECREASE,EBIT_NEG__TAX_NEG__IC_POS,BALANCED,"ROIC decreased. Invested capital contributed positively, while EBIT and the tax rate worked against the change. No single driver dominated."
+874,DECREASE,EBIT_NEG__TAX_NEG__IC_POS,NONE,"ROIC decreased. Invested capital contributed positively, while EBIT and the tax rate worked against the change."
+875,DECREASE,EBIT_NEG__TAX_NEG__IC_NEG,EBIT,"ROIC decreased. EBIT, the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+876,DECREASE,EBIT_NEG__TAX_NEG__IC_NEG,TAX,"ROIC decreased. EBIT, the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+877,DECREASE,EBIT_NEG__TAX_NEG__IC_NEG,IC,"ROIC decreased. EBIT, the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+878,DECREASE,EBIT_NEG__TAX_NEG__IC_NEG,BALANCED,"ROIC decreased. EBIT, the tax rate and invested capital worked against the change. No single driver dominated."
+879,DECREASE,EBIT_NEG__TAX_NEG__IC_NEG,NONE,"ROIC decreased. EBIT, the tax rate and invested capital worked against the change."
+880,DECREASE,EBIT_NEG__TAX_NEG__IC_ZERO,EBIT,ROIC decreased. EBIT and the tax rate worked against the change. EBIT was the dominant driver.
+881,DECREASE,EBIT_NEG__TAX_NEG__IC_ZERO,TAX,ROIC decreased. EBIT and the tax rate worked against the change. The tax rate was the dominant driver.
+882,DECREASE,EBIT_NEG__TAX_NEG__IC_ZERO,IC,ROIC decreased. EBIT and the tax rate worked against the change. Invested capital was the dominant driver.
+883,DECREASE,EBIT_NEG__TAX_NEG__IC_ZERO,BALANCED,ROIC decreased. EBIT and the tax rate worked against the change. No single driver dominated.
+884,DECREASE,EBIT_NEG__TAX_NEG__IC_ZERO,NONE,ROIC decreased. EBIT and the tax rate worked against the change.
+885,DECREASE,EBIT_NEG__TAX_ZERO__IC_POS,EBIT,"ROIC decreased. Invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+886,DECREASE,EBIT_NEG__TAX_ZERO__IC_POS,TAX,"ROIC decreased. Invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+887,DECREASE,EBIT_NEG__TAX_ZERO__IC_POS,IC,"ROIC decreased. Invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+888,DECREASE,EBIT_NEG__TAX_ZERO__IC_POS,BALANCED,"ROIC decreased. Invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+889,DECREASE,EBIT_NEG__TAX_ZERO__IC_POS,NONE,"ROIC decreased. Invested capital contributed positively, while EBIT worked against the change."
+890,DECREASE,EBIT_NEG__TAX_ZERO__IC_NEG,EBIT,ROIC decreased. EBIT and invested capital worked against the change. EBIT was the dominant driver.
+891,DECREASE,EBIT_NEG__TAX_ZERO__IC_NEG,TAX,ROIC decreased. EBIT and invested capital worked against the change. The tax rate was the dominant driver.
+892,DECREASE,EBIT_NEG__TAX_ZERO__IC_NEG,IC,ROIC decreased. EBIT and invested capital worked against the change. Invested capital was the dominant driver.
+893,DECREASE,EBIT_NEG__TAX_ZERO__IC_NEG,BALANCED,ROIC decreased. EBIT and invested capital worked against the change. No single driver dominated.
+894,DECREASE,EBIT_NEG__TAX_ZERO__IC_NEG,NONE,ROIC decreased. EBIT and invested capital worked against the change.
+895,DECREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,EBIT,ROIC decreased. EBIT worked against the change. EBIT was the dominant driver.
+896,DECREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,TAX,ROIC decreased. EBIT worked against the change. The tax rate was the dominant driver.
+897,DECREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,IC,ROIC decreased. EBIT worked against the change. Invested capital was the dominant driver.
+898,DECREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,BALANCED,ROIC decreased. EBIT worked against the change. No single driver dominated.
+899,DECREASE,EBIT_NEG__TAX_ZERO__IC_ZERO,NONE,ROIC decreased. EBIT worked against the change.
+900,DECREASE,EBIT_ZERO__TAX_POS__IC_POS,EBIT,ROIC decreased. The tax rate and invested capital contributed positively. EBIT was the dominant driver.
+901,DECREASE,EBIT_ZERO__TAX_POS__IC_POS,TAX,ROIC decreased. The tax rate and invested capital contributed positively. The tax rate was the dominant driver.
+902,DECREASE,EBIT_ZERO__TAX_POS__IC_POS,IC,ROIC decreased. The tax rate and invested capital contributed positively. Invested capital was the dominant driver.
+903,DECREASE,EBIT_ZERO__TAX_POS__IC_POS,BALANCED,ROIC decreased. The tax rate and invested capital contributed positively. No single driver dominated.
+904,DECREASE,EBIT_ZERO__TAX_POS__IC_POS,NONE,ROIC decreased. The tax rate and invested capital contributed positively.
+905,DECREASE,EBIT_ZERO__TAX_POS__IC_NEG,EBIT,"ROIC decreased. The tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+906,DECREASE,EBIT_ZERO__TAX_POS__IC_NEG,TAX,"ROIC decreased. The tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+907,DECREASE,EBIT_ZERO__TAX_POS__IC_NEG,IC,"ROIC decreased. The tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+908,DECREASE,EBIT_ZERO__TAX_POS__IC_NEG,BALANCED,"ROIC decreased. The tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+909,DECREASE,EBIT_ZERO__TAX_POS__IC_NEG,NONE,"ROIC decreased. The tax rate contributed positively, while invested capital worked against the change."
+910,DECREASE,EBIT_ZERO__TAX_POS__IC_ZERO,EBIT,ROIC decreased. The tax rate contributed positively. EBIT was the dominant driver.
+911,DECREASE,EBIT_ZERO__TAX_POS__IC_ZERO,TAX,ROIC decreased. The tax rate contributed positively. The tax rate was the dominant driver.
+912,DECREASE,EBIT_ZERO__TAX_POS__IC_ZERO,IC,ROIC decreased. The tax rate contributed positively. Invested capital was the dominant driver.
+913,DECREASE,EBIT_ZERO__TAX_POS__IC_ZERO,BALANCED,ROIC decreased. The tax rate contributed positively. No single driver dominated.
+914,DECREASE,EBIT_ZERO__TAX_POS__IC_ZERO,NONE,ROIC decreased. The tax rate contributed positively.
+915,DECREASE,EBIT_ZERO__TAX_NEG__IC_POS,EBIT,"ROIC decreased. Invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+916,DECREASE,EBIT_ZERO__TAX_NEG__IC_POS,TAX,"ROIC decreased. Invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+917,DECREASE,EBIT_ZERO__TAX_NEG__IC_POS,IC,"ROIC decreased. Invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+918,DECREASE,EBIT_ZERO__TAX_NEG__IC_POS,BALANCED,"ROIC decreased. Invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+919,DECREASE,EBIT_ZERO__TAX_NEG__IC_POS,NONE,"ROIC decreased. Invested capital contributed positively, while the tax rate worked against the change."
+920,DECREASE,EBIT_ZERO__TAX_NEG__IC_NEG,EBIT,ROIC decreased. The tax rate and invested capital worked against the change. EBIT was the dominant driver.
+921,DECREASE,EBIT_ZERO__TAX_NEG__IC_NEG,TAX,ROIC decreased. The tax rate and invested capital worked against the change. The tax rate was the dominant driver.
+922,DECREASE,EBIT_ZERO__TAX_NEG__IC_NEG,IC,ROIC decreased. The tax rate and invested capital worked against the change. Invested capital was the dominant driver.
+923,DECREASE,EBIT_ZERO__TAX_NEG__IC_NEG,BALANCED,ROIC decreased. The tax rate and invested capital worked against the change. No single driver dominated.
+924,DECREASE,EBIT_ZERO__TAX_NEG__IC_NEG,NONE,ROIC decreased. The tax rate and invested capital worked against the change.
+925,DECREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,EBIT,ROIC decreased. The tax rate worked against the change. EBIT was the dominant driver.
+926,DECREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,TAX,ROIC decreased. The tax rate worked against the change. The tax rate was the dominant driver.
+927,DECREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,IC,ROIC decreased. The tax rate worked against the change. Invested capital was the dominant driver.
+928,DECREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,BALANCED,ROIC decreased. The tax rate worked against the change. No single driver dominated.
+929,DECREASE,EBIT_ZERO__TAX_NEG__IC_ZERO,NONE,ROIC decreased. The tax rate worked against the change.
+930,DECREASE,EBIT_ZERO__TAX_ZERO__IC_POS,EBIT,ROIC decreased. Invested capital contributed positively. EBIT was the dominant driver.
+931,DECREASE,EBIT_ZERO__TAX_ZERO__IC_POS,TAX,ROIC decreased. Invested capital contributed positively. The tax rate was the dominant driver.
+932,DECREASE,EBIT_ZERO__TAX_ZERO__IC_POS,IC,ROIC decreased. Invested capital contributed positively. Invested capital was the dominant driver.
+933,DECREASE,EBIT_ZERO__TAX_ZERO__IC_POS,BALANCED,ROIC decreased. Invested capital contributed positively. No single driver dominated.
+934,DECREASE,EBIT_ZERO__TAX_ZERO__IC_POS,NONE,ROIC decreased. Invested capital contributed positively.
+935,DECREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,EBIT,ROIC decreased. Invested capital worked against the change. EBIT was the dominant driver.
+936,DECREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,TAX,ROIC decreased. Invested capital worked against the change. The tax rate was the dominant driver.
+937,DECREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,IC,ROIC decreased. Invested capital worked against the change. Invested capital was the dominant driver.
+938,DECREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,BALANCED,ROIC decreased. Invested capital worked against the change. No single driver dominated.
+939,DECREASE,EBIT_ZERO__TAX_ZERO__IC_NEG,NONE,ROIC decreased. Invested capital worked against the change.
+940,DECREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,EBIT,ROIC decreased. No driver moved materially. EBIT was the dominant driver.
+941,DECREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,TAX,ROIC decreased. No driver moved materially. The tax rate was the dominant driver.
+942,DECREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,IC,ROIC decreased. No driver moved materially. Invested capital was the dominant driver.
+943,DECREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,BALANCED,ROIC decreased. No driver moved materially. No single driver dominated.
+944,DECREASE,EBIT_ZERO__TAX_ZERO__IC_ZERO,NONE,ROIC decreased. No driver moved materially.
+945,UNCHANGED,EBIT_POS__TAX_POS__IC_POS,EBIT,"ROIC was essentially unchanged. EBIT, the tax rate and invested capital contributed positively. EBIT was the dominant driver."
+946,UNCHANGED,EBIT_POS__TAX_POS__IC_POS,TAX,"ROIC was essentially unchanged. EBIT, the tax rate and invested capital contributed positively. The tax rate was the dominant driver."
+947,UNCHANGED,EBIT_POS__TAX_POS__IC_POS,IC,"ROIC was essentially unchanged. EBIT, the tax rate and invested capital contributed positively. Invested capital was the dominant driver."
+948,UNCHANGED,EBIT_POS__TAX_POS__IC_POS,BALANCED,"ROIC was essentially unchanged. EBIT, the tax rate and invested capital contributed positively. No single driver dominated."
+949,UNCHANGED,EBIT_POS__TAX_POS__IC_POS,NONE,"ROIC was essentially unchanged. EBIT, the tax rate and invested capital contributed positively."
+950,UNCHANGED,EBIT_POS__TAX_POS__IC_NEG,EBIT,"ROIC was essentially unchanged. EBIT and the tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+951,UNCHANGED,EBIT_POS__TAX_POS__IC_NEG,TAX,"ROIC was essentially unchanged. EBIT and the tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+952,UNCHANGED,EBIT_POS__TAX_POS__IC_NEG,IC,"ROIC was essentially unchanged. EBIT and the tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+953,UNCHANGED,EBIT_POS__TAX_POS__IC_NEG,BALANCED,"ROIC was essentially unchanged. EBIT and the tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+954,UNCHANGED,EBIT_POS__TAX_POS__IC_NEG,NONE,"ROIC was essentially unchanged. EBIT and the tax rate contributed positively, while invested capital worked against the change."
+955,UNCHANGED,EBIT_POS__TAX_POS__IC_ZERO,EBIT,ROIC was essentially unchanged. EBIT and the tax rate contributed positively. EBIT was the dominant driver.
+956,UNCHANGED,EBIT_POS__TAX_POS__IC_ZERO,TAX,ROIC was essentially unchanged. EBIT and the tax rate contributed positively. The tax rate was the dominant driver.
+957,UNCHANGED,EBIT_POS__TAX_POS__IC_ZERO,IC,ROIC was essentially unchanged. EBIT and the tax rate contributed positively. Invested capital was the dominant driver.
+958,UNCHANGED,EBIT_POS__TAX_POS__IC_ZERO,BALANCED,ROIC was essentially unchanged. EBIT and the tax rate contributed positively. No single driver dominated.
+959,UNCHANGED,EBIT_POS__TAX_POS__IC_ZERO,NONE,ROIC was essentially unchanged. EBIT and the tax rate contributed positively.
+960,UNCHANGED,EBIT_POS__TAX_NEG__IC_POS,EBIT,"ROIC was essentially unchanged. EBIT and invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+961,UNCHANGED,EBIT_POS__TAX_NEG__IC_POS,TAX,"ROIC was essentially unchanged. EBIT and invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+962,UNCHANGED,EBIT_POS__TAX_NEG__IC_POS,IC,"ROIC was essentially unchanged. EBIT and invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+963,UNCHANGED,EBIT_POS__TAX_NEG__IC_POS,BALANCED,"ROIC was essentially unchanged. EBIT and invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+964,UNCHANGED,EBIT_POS__TAX_NEG__IC_POS,NONE,"ROIC was essentially unchanged. EBIT and invested capital contributed positively, while the tax rate worked against the change."
+965,UNCHANGED,EBIT_POS__TAX_NEG__IC_NEG,EBIT,"ROIC was essentially unchanged. EBIT contributed positively, while the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+966,UNCHANGED,EBIT_POS__TAX_NEG__IC_NEG,TAX,"ROIC was essentially unchanged. EBIT contributed positively, while the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+967,UNCHANGED,EBIT_POS__TAX_NEG__IC_NEG,IC,"ROIC was essentially unchanged. EBIT contributed positively, while the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+968,UNCHANGED,EBIT_POS__TAX_NEG__IC_NEG,BALANCED,"ROIC was essentially unchanged. EBIT contributed positively, while the tax rate and invested capital worked against the change. No single driver dominated."
+969,UNCHANGED,EBIT_POS__TAX_NEG__IC_NEG,NONE,"ROIC was essentially unchanged. EBIT contributed positively, while the tax rate and invested capital worked against the change."
+970,UNCHANGED,EBIT_POS__TAX_NEG__IC_ZERO,EBIT,"ROIC was essentially unchanged. EBIT contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+971,UNCHANGED,EBIT_POS__TAX_NEG__IC_ZERO,TAX,"ROIC was essentially unchanged. EBIT contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+972,UNCHANGED,EBIT_POS__TAX_NEG__IC_ZERO,IC,"ROIC was essentially unchanged. EBIT contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+973,UNCHANGED,EBIT_POS__TAX_NEG__IC_ZERO,BALANCED,"ROIC was essentially unchanged. EBIT contributed positively, while the tax rate worked against the change. No single driver dominated."
+974,UNCHANGED,EBIT_POS__TAX_NEG__IC_ZERO,NONE,"ROIC was essentially unchanged. EBIT contributed positively, while the tax rate worked against the change."
+975,UNCHANGED,EBIT_POS__TAX_ZERO__IC_POS,EBIT,ROIC was essentially unchanged. EBIT and invested capital contributed positively. EBIT was the dominant driver.
+976,UNCHANGED,EBIT_POS__TAX_ZERO__IC_POS,TAX,ROIC was essentially unchanged. EBIT and invested capital contributed positively. The tax rate was the dominant driver.
+977,UNCHANGED,EBIT_POS__TAX_ZERO__IC_POS,IC,ROIC was essentially unchanged. EBIT and invested capital contributed positively. Invested capital was the dominant driver.
+978,UNCHANGED,EBIT_POS__TAX_ZERO__IC_POS,BALANCED,ROIC was essentially unchanged. EBIT and invested capital contributed positively. No single driver dominated.
+979,UNCHANGED,EBIT_POS__TAX_ZERO__IC_POS,NONE,ROIC was essentially unchanged. EBIT and invested capital contributed positively.
+980,UNCHANGED,EBIT_POS__TAX_ZERO__IC_NEG,EBIT,"ROIC was essentially unchanged. EBIT contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+981,UNCHANGED,EBIT_POS__TAX_ZERO__IC_NEG,TAX,"ROIC was essentially unchanged. EBIT contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+982,UNCHANGED,EBIT_POS__TAX_ZERO__IC_NEG,IC,"ROIC was essentially unchanged. EBIT contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+983,UNCHANGED,EBIT_POS__TAX_ZERO__IC_NEG,BALANCED,"ROIC was essentially unchanged. EBIT contributed positively, while invested capital worked against the change. No single driver dominated."
+984,UNCHANGED,EBIT_POS__TAX_ZERO__IC_NEG,NONE,"ROIC was essentially unchanged. EBIT contributed positively, while invested capital worked against the change."
+985,UNCHANGED,EBIT_POS__TAX_ZERO__IC_ZERO,EBIT,ROIC was essentially unchanged. EBIT contributed positively. EBIT was the dominant driver.
+986,UNCHANGED,EBIT_POS__TAX_ZERO__IC_ZERO,TAX,ROIC was essentially unchanged. EBIT contributed positively. The tax rate was the dominant driver.
+987,UNCHANGED,EBIT_POS__TAX_ZERO__IC_ZERO,IC,ROIC was essentially unchanged. EBIT contributed positively. Invested capital was the dominant driver.
+988,UNCHANGED,EBIT_POS__TAX_ZERO__IC_ZERO,BALANCED,ROIC was essentially unchanged. EBIT contributed positively. No single driver dominated.
+989,UNCHANGED,EBIT_POS__TAX_ZERO__IC_ZERO,NONE,ROIC was essentially unchanged. EBIT contributed positively.
+990,UNCHANGED,EBIT_NEG__TAX_POS__IC_POS,EBIT,"ROIC was essentially unchanged. The tax rate and invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+991,UNCHANGED,EBIT_NEG__TAX_POS__IC_POS,TAX,"ROIC was essentially unchanged. The tax rate and invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+992,UNCHANGED,EBIT_NEG__TAX_POS__IC_POS,IC,"ROIC was essentially unchanged. The tax rate and invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+993,UNCHANGED,EBIT_NEG__TAX_POS__IC_POS,BALANCED,"ROIC was essentially unchanged. The tax rate and invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+994,UNCHANGED,EBIT_NEG__TAX_POS__IC_POS,NONE,"ROIC was essentially unchanged. The tax rate and invested capital contributed positively, while EBIT worked against the change."
+995,UNCHANGED,EBIT_NEG__TAX_POS__IC_NEG,EBIT,"ROIC was essentially unchanged. The tax rate contributed positively, while EBIT and invested capital worked against the change. EBIT was the dominant driver."
+996,UNCHANGED,EBIT_NEG__TAX_POS__IC_NEG,TAX,"ROIC was essentially unchanged. The tax rate contributed positively, while EBIT and invested capital worked against the change. The tax rate was the dominant driver."
+997,UNCHANGED,EBIT_NEG__TAX_POS__IC_NEG,IC,"ROIC was essentially unchanged. The tax rate contributed positively, while EBIT and invested capital worked against the change. Invested capital was the dominant driver."
+998,UNCHANGED,EBIT_NEG__TAX_POS__IC_NEG,BALANCED,"ROIC was essentially unchanged. The tax rate contributed positively, while EBIT and invested capital worked against the change. No single driver dominated."
+999,UNCHANGED,EBIT_NEG__TAX_POS__IC_NEG,NONE,"ROIC was essentially unchanged. The tax rate contributed positively, while EBIT and invested capital worked against the change."
+1000,UNCHANGED,EBIT_NEG__TAX_POS__IC_ZERO,EBIT,"ROIC was essentially unchanged. The tax rate contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+1001,UNCHANGED,EBIT_NEG__TAX_POS__IC_ZERO,TAX,"ROIC was essentially unchanged. The tax rate contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+1002,UNCHANGED,EBIT_NEG__TAX_POS__IC_ZERO,IC,"ROIC was essentially unchanged. The tax rate contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+1003,UNCHANGED,EBIT_NEG__TAX_POS__IC_ZERO,BALANCED,"ROIC was essentially unchanged. The tax rate contributed positively, while EBIT worked against the change. No single driver dominated."
+1004,UNCHANGED,EBIT_NEG__TAX_POS__IC_ZERO,NONE,"ROIC was essentially unchanged. The tax rate contributed positively, while EBIT worked against the change."
+1005,UNCHANGED,EBIT_NEG__TAX_NEG__IC_POS,EBIT,"ROIC was essentially unchanged. Invested capital contributed positively, while EBIT and the tax rate worked against the change. EBIT was the dominant driver."
+1006,UNCHANGED,EBIT_NEG__TAX_NEG__IC_POS,TAX,"ROIC was essentially unchanged. Invested capital contributed positively, while EBIT and the tax rate worked against the change. The tax rate was the dominant driver."
+1007,UNCHANGED,EBIT_NEG__TAX_NEG__IC_POS,IC,"ROIC was essentially unchanged. Invested capital contributed positively, while EBIT and the tax rate worked against the change. Invested capital was the dominant driver."
+1008,UNCHANGED,EBIT_NEG__TAX_NEG__IC_POS,BALANCED,"ROIC was essentially unchanged. Invested capital contributed positively, while EBIT and the tax rate worked against the change. No single driver dominated."
+1009,UNCHANGED,EBIT_NEG__TAX_NEG__IC_POS,NONE,"ROIC was essentially unchanged. Invested capital contributed positively, while EBIT and the tax rate worked against the change."
+1010,UNCHANGED,EBIT_NEG__TAX_NEG__IC_NEG,EBIT,"ROIC was essentially unchanged. EBIT, the tax rate and invested capital worked against the change. EBIT was the dominant driver."
+1011,UNCHANGED,EBIT_NEG__TAX_NEG__IC_NEG,TAX,"ROIC was essentially unchanged. EBIT, the tax rate and invested capital worked against the change. The tax rate was the dominant driver."
+1012,UNCHANGED,EBIT_NEG__TAX_NEG__IC_NEG,IC,"ROIC was essentially unchanged. EBIT, the tax rate and invested capital worked against the change. Invested capital was the dominant driver."
+1013,UNCHANGED,EBIT_NEG__TAX_NEG__IC_NEG,BALANCED,"ROIC was essentially unchanged. EBIT, the tax rate and invested capital worked against the change. No single driver dominated."
+1014,UNCHANGED,EBIT_NEG__TAX_NEG__IC_NEG,NONE,"ROIC was essentially unchanged. EBIT, the tax rate and invested capital worked against the change."
+1015,UNCHANGED,EBIT_NEG__TAX_NEG__IC_ZERO,EBIT,ROIC was essentially unchanged. EBIT and the tax rate worked against the change. EBIT was the dominant driver.
+1016,UNCHANGED,EBIT_NEG__TAX_NEG__IC_ZERO,TAX,ROIC was essentially unchanged. EBIT and the tax rate worked against the change. The tax rate was the dominant driver.
+1017,UNCHANGED,EBIT_NEG__TAX_NEG__IC_ZERO,IC,ROIC was essentially unchanged. EBIT and the tax rate worked against the change. Invested capital was the dominant driver.
+1018,UNCHANGED,EBIT_NEG__TAX_NEG__IC_ZERO,BALANCED,ROIC was essentially unchanged. EBIT and the tax rate worked against the change. No single driver dominated.
+1019,UNCHANGED,EBIT_NEG__TAX_NEG__IC_ZERO,NONE,ROIC was essentially unchanged. EBIT and the tax rate worked against the change.
+1020,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_POS,EBIT,"ROIC was essentially unchanged. Invested capital contributed positively, while EBIT worked against the change. EBIT was the dominant driver."
+1021,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_POS,TAX,"ROIC was essentially unchanged. Invested capital contributed positively, while EBIT worked against the change. The tax rate was the dominant driver."
+1022,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_POS,IC,"ROIC was essentially unchanged. Invested capital contributed positively, while EBIT worked against the change. Invested capital was the dominant driver."
+1023,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_POS,BALANCED,"ROIC was essentially unchanged. Invested capital contributed positively, while EBIT worked against the change. No single driver dominated."
+1024,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_POS,NONE,"ROIC was essentially unchanged. Invested capital contributed positively, while EBIT worked against the change."
+1025,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_NEG,EBIT,ROIC was essentially unchanged. EBIT and invested capital worked against the change. EBIT was the dominant driver.
+1026,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_NEG,TAX,ROIC was essentially unchanged. EBIT and invested capital worked against the change. The tax rate was the dominant driver.
+1027,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_NEG,IC,ROIC was essentially unchanged. EBIT and invested capital worked against the change. Invested capital was the dominant driver.
+1028,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_NEG,BALANCED,ROIC was essentially unchanged. EBIT and invested capital worked against the change. No single driver dominated.
+1029,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_NEG,NONE,ROIC was essentially unchanged. EBIT and invested capital worked against the change.
+1030,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_ZERO,EBIT,ROIC was essentially unchanged. EBIT worked against the change. EBIT was the dominant driver.
+1031,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_ZERO,TAX,ROIC was essentially unchanged. EBIT worked against the change. The tax rate was the dominant driver.
+1032,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_ZERO,IC,ROIC was essentially unchanged. EBIT worked against the change. Invested capital was the dominant driver.
+1033,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_ZERO,BALANCED,ROIC was essentially unchanged. EBIT worked against the change. No single driver dominated.
+1034,UNCHANGED,EBIT_NEG__TAX_ZERO__IC_ZERO,NONE,ROIC was essentially unchanged. EBIT worked against the change.
+1035,UNCHANGED,EBIT_ZERO__TAX_POS__IC_POS,EBIT,ROIC was essentially unchanged. The tax rate and invested capital contributed positively. EBIT was the dominant driver.
+1036,UNCHANGED,EBIT_ZERO__TAX_POS__IC_POS,TAX,ROIC was essentially unchanged. The tax rate and invested capital contributed positively. The tax rate was the dominant driver.
+1037,UNCHANGED,EBIT_ZERO__TAX_POS__IC_POS,IC,ROIC was essentially unchanged. The tax rate and invested capital contributed positively. Invested capital was the dominant driver.
+1038,UNCHANGED,EBIT_ZERO__TAX_POS__IC_POS,BALANCED,ROIC was essentially unchanged. The tax rate and invested capital contributed positively. No single driver dominated.
+1039,UNCHANGED,EBIT_ZERO__TAX_POS__IC_POS,NONE,ROIC was essentially unchanged. The tax rate and invested capital contributed positively.
+1040,UNCHANGED,EBIT_ZERO__TAX_POS__IC_NEG,EBIT,"ROIC was essentially unchanged. The tax rate contributed positively, while invested capital worked against the change. EBIT was the dominant driver."
+1041,UNCHANGED,EBIT_ZERO__TAX_POS__IC_NEG,TAX,"ROIC was essentially unchanged. The tax rate contributed positively, while invested capital worked against the change. The tax rate was the dominant driver."
+1042,UNCHANGED,EBIT_ZERO__TAX_POS__IC_NEG,IC,"ROIC was essentially unchanged. The tax rate contributed positively, while invested capital worked against the change. Invested capital was the dominant driver."
+1043,UNCHANGED,EBIT_ZERO__TAX_POS__IC_NEG,BALANCED,"ROIC was essentially unchanged. The tax rate contributed positively, while invested capital worked against the change. No single driver dominated."
+1044,UNCHANGED,EBIT_ZERO__TAX_POS__IC_NEG,NONE,"ROIC was essentially unchanged. The tax rate contributed positively, while invested capital worked against the change."
+1045,UNCHANGED,EBIT_ZERO__TAX_POS__IC_ZERO,EBIT,ROIC was essentially unchanged. The tax rate contributed positively. EBIT was the dominant driver.
+1046,UNCHANGED,EBIT_ZERO__TAX_POS__IC_ZERO,TAX,ROIC was essentially unchanged. The tax rate contributed positively. The tax rate was the dominant driver.
+1047,UNCHANGED,EBIT_ZERO__TAX_POS__IC_ZERO,IC,ROIC was essentially unchanged. The tax rate contributed positively. Invested capital was the dominant driver.
+1048,UNCHANGED,EBIT_ZERO__TAX_POS__IC_ZERO,BALANCED,ROIC was essentially unchanged. The tax rate contributed positively. No single driver dominated.
+1049,UNCHANGED,EBIT_ZERO__TAX_POS__IC_ZERO,NONE,ROIC was essentially unchanged. The tax rate contributed positively.
+1050,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_POS,EBIT,"ROIC was essentially unchanged. Invested capital contributed positively, while the tax rate worked against the change. EBIT was the dominant driver."
+1051,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_POS,TAX,"ROIC was essentially unchanged. Invested capital contributed positively, while the tax rate worked against the change. The tax rate was the dominant driver."
+1052,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_POS,IC,"ROIC was essentially unchanged. Invested capital contributed positively, while the tax rate worked against the change. Invested capital was the dominant driver."
+1053,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_POS,BALANCED,"ROIC was essentially unchanged. Invested capital contributed positively, while the tax rate worked against the change. No single driver dominated."
+1054,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_POS,NONE,"ROIC was essentially unchanged. Invested capital contributed positively, while the tax rate worked against the change."
+1055,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_NEG,EBIT,ROIC was essentially unchanged. The tax rate and invested capital worked against the change. EBIT was the dominant driver.
+1056,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_NEG,TAX,ROIC was essentially unchanged. The tax rate and invested capital worked against the change. The tax rate was the dominant driver.
+1057,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_NEG,IC,ROIC was essentially unchanged. The tax rate and invested capital worked against the change. Invested capital was the dominant driver.
+1058,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_NEG,BALANCED,ROIC was essentially unchanged. The tax rate and invested capital worked against the change. No single driver dominated.
+1059,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_NEG,NONE,ROIC was essentially unchanged. The tax rate and invested capital worked against the change.
+1060,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_ZERO,EBIT,ROIC was essentially unchanged. The tax rate worked against the change. EBIT was the dominant driver.
+1061,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_ZERO,TAX,ROIC was essentially unchanged. The tax rate worked against the change. The tax rate was the dominant driver.
+1062,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_ZERO,IC,ROIC was essentially unchanged. The tax rate worked against the change. Invested capital was the dominant driver.
+1063,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_ZERO,BALANCED,ROIC was essentially unchanged. The tax rate worked against the change. No single driver dominated.
+1064,UNCHANGED,EBIT_ZERO__TAX_NEG__IC_ZERO,NONE,ROIC was essentially unchanged. The tax rate worked against the change.
+1065,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_POS,EBIT,ROIC was essentially unchanged. Invested capital contributed positively. EBIT was the dominant driver.
+1066,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_POS,TAX,ROIC was essentially unchanged. Invested capital contributed positively. The tax rate was the dominant driver.
+1067,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_POS,IC,ROIC was essentially unchanged. Invested capital contributed positively. Invested capital was the dominant driver.
+1068,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_POS,BALANCED,ROIC was essentially unchanged. Invested capital contributed positively. No single driver dominated.
+1069,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_POS,NONE,ROIC was essentially unchanged. Invested capital contributed positively.
+1070,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_NEG,EBIT,ROIC was essentially unchanged. Invested capital worked against the change. EBIT was the dominant driver.
+1071,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_NEG,TAX,ROIC was essentially unchanged. Invested capital worked against the change. The tax rate was the dominant driver.
+1072,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_NEG,IC,ROIC was essentially unchanged. Invested capital worked against the change. Invested capital was the dominant driver.
+1073,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_NEG,BALANCED,ROIC was essentially unchanged. Invested capital worked against the change. No single driver dominated.
+1074,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_NEG,NONE,ROIC was essentially unchanged. Invested capital worked against the change.
+1075,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_ZERO,EBIT,ROIC was essentially unchanged. No driver moved materially. EBIT was the dominant driver.
+1076,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_ZERO,TAX,ROIC was essentially unchanged. No driver moved materially. The tax rate was the dominant driver.
+1077,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_ZERO,IC,ROIC was essentially unchanged. No driver moved materially. Invested capital was the dominant driver.
+1078,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_ZERO,BALANCED,ROIC was essentially unchanged. No driver moved materially. No single driver dominated.
+1079,UNCHANGED,EBIT_ZERO__TAX_ZERO__IC_ZERO,NONE,ROIC was essentially unchanged. No driver moved materially.
+1081,INVALID,UNCLASSIFIED,UNCLASSIFIED,No comparison is available (UNCLASSIFIED_NONCONSECUTIVE).
+1082,INVALID,UNCLASSIFIED,UNCLASSIFIED,No comparison is available (UNCLASSIFIED_MISSING_DATA).
+1083,INVALID,UNCLASSIFIED,UNCLASSIFIED,No comparison is available (UNCLASSIFIED_ZERO_IC).

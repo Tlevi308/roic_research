@@ -1,0 +1,55 @@
+{
+  "run_stamp": "2026-10-05 20:39:27",
+  "seconds": 97.41,
+  "config_path": "C:\\Users\\User\\roic_research\\research_roic\\config.yaml",
+  "config_copy": "C:\\Users\\User\\roic_research\\output\\logs\\config_used.yaml",
+  "log_path": "C:\\Users\\User\\roic_research\\output\\logs\\run.log",
+  "python": "3.12.3",
+  "pandas": "2.2.2",
+  "numpy": "1.26.4",
+  "rows_in_source": 1905162,
+  "dedup": {
+    "rows_in": 1905162,
+    "removed_step1_same_date": 1108,
+    "rows_after_step1": 1904054,
+    "removed_step2_same_period": 673,
+    "rows_out": 1903381
+  },
+  "rows_in_panel": 1903381,
+  "columns": 72,
+  "columns_skipped": [
+    "free_cash_flow",
+    "calc_free_cash_flow_ttm",
+    "calc_ev_to_fcf_quarterly"
+  ],
+  "consecutive_prev_share": 0.9768312282196786,
+  "panel_file": "C:\\Users\\User\\roic_research\\output\\panel.parquet",
+  "excel": {
+    "path": "C:\\Users\\User\\roic_research\\output\\panel_from_2025.xlsx",
+    "rows_written": 72623,
+    "rows_available": 72623,
+    "truncated": false
+  },
+  "sources_unchanged": true,
+  "sources": [
+    {
+      "file": "input_parquet",
+      "path": "C:\\Users\\User\\roic_research\\data\\data.parquet",
+      "exists": true,
+      "bytes": 73220252,
+      "modified": "2026-10-05T05:25:42.828347921",
+      "sha256": "903de7cf6b52802c87f6d0d6f0dd2c7d3c5960df6b7764f22688fd6b20b2a2e8",
+      "unchanged_during_run": true
+    },
+    {
+      "file": "gurufocus_csv",
+      "path": "C:\\Users\\User\\roic_research\\data\\GuruFocus_quarterly_data.csv",
+      "exists": true,
+      "bytes": 24363937,
+      "modified": "2026-09-13T05:13:38.846275806",
+      "sha256": "689674efc336d7914b632f6e466e5bd285cc0d5d589317bce413d8e4ae8abeb7",
+      "unchanged_during_run": true
+    }
+  ],
+  "unexpected_crosscheck_breaches": []
+}

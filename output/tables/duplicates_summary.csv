@@ -1,0 +1,6 @@
+﻿measure,value
+rows in source,1905162
+"removed in step 1 (same gvkey and date, values merged)",1108
+rows after step 1,1904054
+"removed in step 2 (same period, different date, first row wins)",673
+rows in panel,1903381

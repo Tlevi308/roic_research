@@ -1,0 +1,3 @@
+﻿file,path,exists,bytes,modified,sha256,unchanged_during_run
+input_parquet,C:\Users\User\roic_research\data\data.parquet,True,73220252,2026-10-05T05:25:42.828347921,903de7cf6b52802c87f6d0d6f0dd2c7d3c5960df6b7764f22688fd6b20b2a2e8,True
+gurufocus_csv,C:\Users\User\roic_research\data\GuruFocus_quarterly_data.csv,True,24363937,2026-09-13T05:13:38.846275806,689674efc336d7914b632f6e466e5bd285cc0d5d589317bce413d8e4ae8abeb7,True

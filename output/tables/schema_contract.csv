@@ -1,0 +1,73 @@
+﻿position,column,dtype,n_declared_levels,source,spec,status,reason,note
+1,KEY,string,,identity,,,,
+2,symbol,string,,identity,,,,
+3,company,string,,identity,,,,
+4,sector,string,,identity,,,,
+5,fiscal_period_end_date,datetime64[ns],,identity,,,,
+6,run_date,string,,identity,,,,
+7,calc_tax_expense_quarterly,float64,,calc,tax,COMPUTED,,txtq is already positive-for-expense; no sign flip
+8,pretax_income,float64,,input field,,,,
+9,calc_raw_tax_rate_quarterly,float64,,calc,tax,COMPUTED,,txtq is already positive-for-expense; no sign flip
+10,ebit,float64,,input field,,,,
+11,calc_nopat_quarterly,float64,,calc,nopat,COMPUTED,,
+12,calc_nopat_decomposition_status,category,3,calc,nopat_bridge,COMPUTED,,2-factor Shapley; not gated on invested capital
+13,calc_nopat_change_quarterly,float64,,calc,nopat_bridge,COMPUTED,,2-factor Shapley; not gated on invested capital
+14,calc_nopat_change_direction,category,4,calc,nopat_bridge,COMPUTED,,2-factor Shapley; not gated on invested capital
+15,calc_nopat_ebit_contribution,float64,,calc,nopat_bridge,COMPUTED,,2-factor Shapley; not gated on invested capital
+16,calc_nopat_tax_contribution,float64,,calc,nopat_bridge,COMPUTED,,2-factor Shapley; not gated on invested capital
+17,calc_nopat_decomposition_residual,float64,,calc,nopat_bridge,COMPUTED,,2-factor Shapley; not gated on invested capital
+18,calc_nopat_ebit_effect,category,4,calc,nopat_bridge,COMPUTED,,2-factor Shapley; not gated on invested capital
+19,calc_nopat_tax_effect,category,4,calc,nopat_bridge,COMPUTED,,2-factor Shapley; not gated on invested capital
+20,calc_nopat_effect_combination,category,10,calc,nopat_bridge,COMPUTED,,2-factor Shapley; not gated on invested capital
+21,total_current_assets,float64,,input field,,,,
+22,total_current_liabilities,float64,,input field,,,,
+23,goodwill,float64,,input field,,,,
+24,net_ppe,float64,,input field,,,,
+25,calc_ic_raw,float64,,calc,invested_capital,COMPUTED,,working capital mandatory; PPE/goodwill missing = 0
+26,calc_average_ic_raw_quarterly,float64,,calc,invested_capital,COMPUTED,,working capital mandatory; PPE/goodwill missing = 0
+27,calc_roic_pretax_quarterly_ic_raw,float64,,calc,roic,COMPUTED,,
+28,calc_roic_pretax_annualized_ic_raw,float64,,calc,roic,COMPUTED,,
+29,calc_roic_posttax_quarterly_ic_raw,float64,,calc,roic,COMPUTED,,
+30,calc_roic_posttax_annualized_ic_raw,float64,,calc,roic,COMPUTED,,
+31,calc_roic_decomposition_status,category,4,calc,roic_bridge,COMPUTED,,3-factor Shapley over 8 coalitions
+32,calc_roic_posttax_change_quarterly,float64,,calc,roic_bridge,COMPUTED,,3-factor Shapley over 8 coalitions
+33,calc_roic_posttax_change_direction,category,4,calc,roic_bridge,COMPUTED,,3-factor Shapley over 8 coalitions
+34,calc_roic_ebit_contribution,float64,,calc,roic_bridge,COMPUTED,,3-factor Shapley over 8 coalitions
+35,calc_roic_tax_contribution,float64,,calc,roic_bridge,COMPUTED,,3-factor Shapley over 8 coalitions
+36,calc_roic_ic_contribution,float64,,calc,roic_bridge,COMPUTED,,3-factor Shapley over 8 coalitions
+37,calc_roic_decomposition_residual,float64,,calc,roic_bridge,COMPUTED,,3-factor Shapley over 8 coalitions
+38,calc_roic_ebit_effect,category,4,calc,roic_bridge,COMPUTED,,3-factor Shapley over 8 coalitions
+39,calc_roic_tax_effect,category,4,calc,roic_bridge,COMPUTED,,3-factor Shapley over 8 coalitions
+40,calc_roic_ic_effect,category,4,calc,roic_bridge,COMPUTED,,3-factor Shapley over 8 coalitions
+41,calc_roic_effect_combination,category,28,calc,roic_bridge,COMPUTED,,3-factor Shapley over 8 coalitions
+42,calc_ebit_movement,category,4,calc,movements,COMPUTED,,"EBIT/tax gated on NOPAT status, IC on ROIC status"
+43,calc_tax_rate_movement,category,4,calc,movements,COMPUTED,,"EBIT/tax gated on NOPAT status, IC on ROIC status"
+44,calc_ic_movement,category,4,calc,movements,COMPUTED,,"EBIT/tax gated on NOPAT status, IC on ROIC status"
+45,calc_raw_movement_combination,category,28,calc,movements,COMPUTED,,"EBIT/tax gated on NOPAT status, IC on ROIC status"
+46,calc_roic_has_opposing_effects,boolean,,calc,driver_stats,COMPUTED,,
+47,calc_roic_positive_driver_count,Int8,,calc,driver_stats,COMPUTED,,
+48,calc_roic_negative_driver_count,Int8,,calc,driver_stats,COMPUTED,,
+49,calc_roic_neutral_driver_count,Int8,,calc,driver_stats,COMPUTED,,
+50,calc_roic_active_driver_count,Int8,,calc,driver_stats,COMPUTED,,
+51,calc_roic_effect_structure,category,9,calc,driver_stats,COMPUTED,,
+52,calc_roic_total_absolute_contribution,float64,,calc,dominance,COMPUTED,,
+53,calc_roic_ebit_absolute_share,float64,,calc,dominance,COMPUTED,,
+54,calc_roic_tax_absolute_share,float64,,calc,dominance,COMPUTED,,
+55,calc_roic_ic_absolute_share,float64,,calc,dominance,COMPUTED,,
+56,calc_roic_dominant_driver,category,6,calc,dominance,COMPUTED,,
+57,calc_roic_dominant_driver_effect,category,4,calc,dominance,COMPUTED,,
+58,calc_roic_offset_ratio,float64,,calc,dominance,COMPUTED,,
+59,calc_ebit_sign_regime,category,10,calc,sign_regimes,COMPUTED,,"income-statement only: survives zero, negative or missing capital"
+60,calc_nopat_sign_regime,category,10,calc,sign_regimes,COMPUTED,,"income-statement only: survives zero, negative or missing capital"
+61,calc_tax_rate_quality_flag,category,4,calc,quality,COMPUTED,,
+62,calc_roic_quality_flag,category,4,calc,quality,COMPUTED,,
+63,calc_roic_explanation,category,,calc,explanation,COMPUTED,,closed catalogue; wording follows the Shapley signs
+64,short_term_debt,float64,,input field,,,,
+65,long_term_debt,float64,,input field,,,,
+66,calc_debt_value_quarterly,float64,,calc,debt,COMPUTED,,
+67,equity,float64,,calc,equity,COMPUTED,,equity = assets - liabilities (researcher 2026-10-05)
+68,calc_debt_to_equity_quarterly,float64,,calc,equity,COMPUTED,,equity = assets - liabilities (researcher 2026-10-05)
+69,market_cap,float64,,input field,,,,
+70,free_cash_flow,float64,,calc,free_cash_flow,SKIPPED,DISABLED; MISSING_INPUT:oancfy; MISSING_INPUT:capxy,needs fyearq/fqtr to split the year-to-date items
+71,calc_free_cash_flow_ttm,float64,,calc,free_cash_flow,SKIPPED,DISABLED; MISSING_INPUT:oancfy; MISSING_INPUT:capxy,needs fyearq/fqtr to split the year-to-date items
+72,calc_ev_to_fcf_quarterly,float64,,calc,free_cash_flow,SKIPPED,DISABLED; MISSING_INPUT:oancfy; MISSING_INPUT:capxy,needs fyearq/fqtr to split the year-to-date items

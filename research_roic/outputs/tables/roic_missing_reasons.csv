@@ -1,6 +1,0 @@
-﻿reason,rows,rows_per_quarter
-1 current assets or current liabilities missing (IC undefined),3044,78.05128205128206
-"2 goodwill missing, other IC inputs present",1746,44.76923076923077
-3 net PPE missing,13,0.3333333333333333
-4 IC present but previous quarter missing / not consecutive,387,9.923076923076923
-"5 NOPAT missing (EBIT, tax or pretax income)",258,6.615384615384615

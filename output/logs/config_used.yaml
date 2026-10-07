@@ -1,0 +1,182 @@
+# =====================================================================
+# ROIC panel from Compustat Fundamentals Quarterly - configuration
+#
+# Every research parameter lives here. Paths are relative to THIS file.
+# Source files under ../data are read-only: the pipeline never writes
+# there and verifies their SHA-256 hashes before and after each run.
+#
+# To add an INPUT field       -> add one entry under `field_map`.
+# To add a CALC column        -> add one CalcSpec in src/registry.py and
+#                                one name under `schema.column_order`.
+# Nothing else in the code holds a column list.
+# =====================================================================
+
+project:
+  name: roic_panel_compustat
+  stage: wrds_panel
+  seed: 20261005          # fixed seed for every random operation (tests)
+
+paths:
+  input_parquet: ../data/data.parquet
+  gurufocus_csv: ../data/GuruFocus_quarterly_data.csv   # read-only, cross-check only
+  output_dir: ../output
+
+# ---------------------------------------------------------------------
+# input: logical field name -> source column (a list means "first
+# non-null wins", in order). A mapped field that is absent from the file
+# is reported in input_fields.csv and every calc that needs it is
+# emitted as NaN with reason MISSING_INPUT - never an error, never a fill.
+# ---------------------------------------------------------------------
+input:
+  identifier_fields:
+    gvkey: gvkey            # stable Compustat firm id - always present
+    symbol: tic             # ticker exactly as in WRDS, suffix included
+    company: conm
+    sector: gsector         # raw GICS code, shown as it appears in the data
+    fiscal_period_end_date: datadate
+  field_map:
+    total_current_assets: actq
+    total_current_liabilities: lctq
+    net_ppe: ppentq
+    goodwill: gdwlq
+    total_assets: atq
+    total_liabilities: ltq
+    ebit: oiadpq            # Operating Income After Depreciation (researcher: oiadpq only)
+    pretax_income: piq
+    tax_provision_raw: txtq  # Compustat sign is already positive-for-expense
+    short_term_debt: dlcq
+    long_term_debt: dlttq
+    market_cap: mkvaltq
+    # present in the file but not used by any enabled calc:
+    #   cheq, seqq, teqq, xintq, capxy, oancfy, exchg, costat
+    # absent from this pull (their calcs stay NaN until they appear):
+    #   fyearq, fqtr, rdq, fyr, ivstq
+
+# ---------------------------------------------------------------------
+# timing: period_key = calendar quarter of (fiscal period end - 2 months)
+#   2026-03-31 -> 2026-01-31 -> 2026Q1
+#   2025-09-30 -> 2025-07-31 -> 2025Q3
+#   2025-08-31 -> 2025-06-30 -> 2025Q2
+#   2026-01-31 -> 2025-11-30 -> 2025Q4   (January rolls back a year)
+# KEY = period_key + "_" + symbol, e.g. 2016Q4_A
+# ---------------------------------------------------------------------
+timing:
+  quarter_shift_months: 2
+  key_separator: "_"
+
+panel:
+  # a row links to the previous quarter only when BOTH hold
+  consecutive:
+    key_gap_quarters: 1
+    min_days: 60
+    max_days: 130
+  # duplicate handling (researcher 2026-10-04):
+  #   step 1 - same (gvkey, datadate): first row stays, its missing values
+  #            are filled from the following rows of the same group
+  #   step 2 - same (gvkey, period_key) but different datadate: the first
+  #            row decides and its values decide; no value is merged
+  dedup:
+    collapse_same_datadate: true
+    keep_first_per_period: true
+
+# ---------------------------------------------------------------------
+# materiality bands. "money" has a unit floor so a tiny firm's noise is
+# not called a move; "ratio" deliberately has NO unit floor, because ROIC
+# lives around 0.05 and a floor of 1.0 would swamp the relative term.
+# ---------------------------------------------------------------------
+bands:
+  money:
+    rel: 0.005            # 0.5% of the larger quarter
+    abs_floor: 1.0e-9
+    unit_floor: 1.0
+  ratio:
+    rel: 0.001            # 10 basis points
+    abs_floor: 1.0e-4
+    unit_floor: 0.0
+  sign:
+    rel: 1.0e-9           # "the reported value is zero", not materiality
+    abs_floor: 1.0e-9
+    unit_floor: 1.0
+
+decomposition:
+  dominance_gap: 0.05     # top share - runner-up <= this -> BALANCED
+  annualize_periods: 4    # (1+r)^4 - 1, defined only when 1+r > 0
+
+calcs:
+  # explicit decision not to compute (researcher 2026-10-04): no fiscal
+  # quarter inference, no CAPEX, no FCF. Columns stay in the schema as NaN.
+  disabled:
+    - free_cash_flow
+    - calc_free_cash_flow_ttm
+    - calc_ev_to_fcf_quarterly
+
+output:
+  panel_file: panel.parquet
+  excel_from_year: 2025           # change this one number to move the Excel slice
+  excel_file_pattern: panel_from_{year}.xlsx
+  parquet_compression: zstd
+  parquet_row_group_size: 200000
+  excel_max_rows: 1048575         # Excel's own limit, minus the header
+
+validation:
+  gurufocus_crosscheck: true
+  min_correlation: 0.95
+  median_ratio_range: [0.99, 1.01]
+  coverage_tolerance_pp: 0.3
+  # an UNEXPECTED threshold breach stops the run and reports; the gaps below
+  # are definitional, were pre-registered, and are documented instead
+  stop_on_unexpected_breach: true
+  # each entry names the cause; a breach WITHOUT an entry stops the run
+  expected_gaps:
+    # root cause 1: the EBIT definition. GuruFocus measures EBIT as piq+xintq
+    # (measured 2026-09-30: 71% within 1%, vs 18% for oiadpq); the dictionary
+    # and the researcher both say oiadpq, so oiadpq it is. Everything below
+    # inherits that difference.
+    ebit: "GuruFocus EBIT measured as piq+xintq; here oiadpq per the dictionary"
+    calc_nopat_quarterly: "downstream of the ebit definition"
+    calc_nopat_change_quarterly: "downstream of ebit; first differences amplify the gap"
+    calc_roic_pretax_quarterly_ic_raw: "downstream of ebit; GuruFocus rounds to 2 decimals"
+    calc_roic_posttax_quarterly_ic_raw: "downstream of ebit; GuruFocus rounds to 2 decimals"
+    calc_roic_posttax_change_quarterly: "downstream of ebit; first differences amplify"
+    calc_roic_ebit_contribution: "downstream of ebit (correlation 0.999, level ratio 0.80)"
+    calc_roic_tax_contribution: "downstream of ebit"
+    calc_roic_ic_contribution: "downstream of ebit"
+    # root cause 2: the short-term debt field
+    short_term_debt: "dlcq includes the current portion of long-term debt"
+    long_term_debt: "dlttq includes capitalised leases, not ASC 842 operating leases"
+    calc_debt_value_quarterly: "downstream of short_term_debt (median ratio 1.0000)"
+    # root cause 3: definitions set by the researcher
+    equity: "equity = atq - ltq (total equity incl. minority interest); GuruFocus used seqq"
+    calc_debt_to_equity_quarterly: >-
+      denominator differs with equity; Pearson is dominated by near-zero-equity
+      outliers while the median relative deviation is 1.4%
+    calc_raw_tax_rate_quarterly: "never clipped to [0,1] here; GuruFocus rounds to 2dp"
+    free_cash_flow: "not computed in this build (no fyearq/fqtr)"
+    calc_free_cash_flow_ttm: "not computed in this build"
+    calc_ev_to_fcf_quarterly: "not computed in this build"
+    # label families: agreement is bounded by how often the two vendors agree on
+    # the inputs (crosscheck_input_agreement.csv). Measured drivers: the ebit
+    # definition, GuruFocus publishing its ratios rounded to 2 decimals, and
+    # ~6.5% of rows where one side simply has data the other does not.
+    calc_nopat_decomposition_status: "coverage differs; 1,303 of 1,465 flag gaps are one-sided NaN"
+    calc_nopat_change_direction: "downstream of ebit; near-band rows flip"
+    calc_nopat_ebit_effect: "downstream of ebit"
+    calc_nopat_tax_effect: "downstream of ebit via the contribution weights"
+    calc_nopat_effect_combination: "cross-product of the two effects above"
+    calc_roic_decomposition_status: "coverage differs on invested capital"
+    calc_roic_posttax_change_direction: "downstream of ebit; near-band rows flip"
+    calc_roic_ebit_effect: "downstream of ebit"
+    calc_roic_tax_effect: "downstream of ebit"
+    calc_roic_ic_effect: "downstream of ebit"
+    calc_roic_effect_combination: "cross-product of the three effects above"
+    calc_ebit_movement: "downstream of ebit"
+    calc_tax_rate_movement: "GuruFocus rates are rounded to 2dp; vendor inputs differ"
+    calc_ic_movement: "coverage and vintage differences in the capital base"
+    calc_raw_movement_combination: "cross-product of the three movements above"
+    calc_roic_effect_structure: "downstream of the three effects"
+    calc_roic_dominant_driver: "downstream of the three contributions"
+    calc_roic_dominant_driver_effect: "downstream of the dominant driver"
+    calc_ebit_sign_regime: "downstream of ebit"
+    calc_nopat_sign_regime: "downstream of ebit"
+    calc_tax_rate_quality_flag: "6.5% disagreement, 89% of it one-sided NaN coverage"
+    calc_roic_quality_flag: "downstream of the ROIC status"

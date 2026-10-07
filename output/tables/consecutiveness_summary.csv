@@ -1,0 +1,12 @@
+﻿measure,value
+rows,1903381.0
+rows linked to the previous quarter,1859282.0
+share linked,0.9768312282196786
+within-firm pairs,1862355.0
+pairs with quarter step == 1,1859814.0
+"pairs with day gap in [60, 130]",1859417.0
+day gap p01,89.0
+day gap median,92.0
+day gap p99,92.0
+rows with run_len >= 2,1859282.0
+rows with run_len >= 4,1773575.0

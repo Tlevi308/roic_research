@@ -1,6 +1,0 @@
-2026-09-13 10:45:35,159 | INFO    | roic.run_01 | Run 20260913_104535 | config C:\Users\User\roic_research\research_roic\config.yaml
-2026-09-13 10:45:35,278 | INFO    | roic.run_01 | Dictionary: 174 variables extracted (declared 174)
-2026-09-13 10:45:36,538 | INFO    | roic.data_io | Panel loaded: 23214 rows x 119 columns (119 in file)
-2026-09-13 10:45:36,935 | INFO    | roic.run_01 | Features and sample layers built
-2026-09-13 10:45:37,449 | INFO    | roic.validation | Cross-checking against GuruFocus_quarterly_data.xlsx (read-only)
-2026-09-13 10:46:14,907 | INFO    | roic.run_01 | Stage 1 finished in 39.8s. Report: C:\Users\User\roic_research\research_roic\outputs\reports\stage1_report.md

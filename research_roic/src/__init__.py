@@ -1,1 +1,1 @@
-"""ROIC research pipeline package."""
+"""ROIC panel from Compustat Fundamentals Quarterly."""

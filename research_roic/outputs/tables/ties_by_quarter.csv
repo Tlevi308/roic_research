@@ -1,6 +1,0 @@
-﻿column,quarters,median_obs_per_quarter,median_distinct_per_quarter,median_share_tied
-calc_roic_pretax_quarterly_ic_raw,38,343.0,36.0,0.8910614525139665
-roic_pretax_q,38,343.0,339.0,0.009708737864077666
-calc_roic_posttax_quarterly_ic_raw,38,336.0,34.0,0.8963828763828764
-roic_posttax_q,38,336.0,332.5,0.009709144610743958
-roic_trend_4q,35,329.0,326.0,0.00911854103343468

@@ -1,0 +1,23 @@
+﻿check,n_tested,n_passed,n_failed,share_passed,note
+calc_raw_tax_rate_quarterly = tax expense / pretax income,1532010,1532010,0,1.0,
+calc_nopat_quarterly = ebit * (1 - tax rate),1453102,1453102,0,1.0,
+calc_ic_raw = TCA - TCL + PPE + goodwill (PPE/GW missing = 0),1160598,1160598,0,1.0,
+calc_average_ic_raw_quarterly = (IC(t-1) + IC(t)) / 2,1087160,1087160,0,1.0,defined only across a consecutive pair
+calc_roic_pretax_quarterly_ic_raw = numerator / avg IC,1071134,1071134,0,1.0,
+calc_roic_pretax_annualized_ic_raw = (1+r)^4 - 1,1053970,1053970,0,1.0,NaN when 1+r <= 0
+calc_roic_pretax_annualized is NaN exactly when 1+r <= 0,1903381,1903381,0,1.0,
+calc_roic_posttax_quarterly_ic_raw = numerator / avg IC,1068334,1068334,0,1.0,
+calc_roic_posttax_annualized_ic_raw = (1+r)^4 - 1,1051118,1051118,0,1.0,NaN when 1+r <= 0
+calc_roic_posttax_annualized is NaN exactly when 1+r <= 0,1903381,1903381,0,1.0,
+NOPAT bridge: C_EBIT + C_TAX = change (Shapley efficiency),1361502,1361502,0,1.0,
+ROIC bridge: C_EBIT + C_TAX + C_IC = change (Shapley efficiency),1026266,1026266,0,1.0,
+calc_roic_total_absolute_contribution = sum of |C_i|,1026266,1026266,0,1.0,
+absolute shares sum to 1 where they are defined,1025421,1025421,0,1.0,
+positive + negative + neutral driver counts = 3,1026266,1026266,0,1.0,
+"calc_roic_offset_ratio is inside [0, 1]",1025421,1025421,0,1.0,triangle inequality |dROIC| <= sum |C_i|
+calc_debt_value_quarterly = short + long (missing leg = 0),1428057,1428057,0,1.0,
+calc_debt_value_quarterly is NaN exactly when both legs are,1903381,1903381,0,1.0,
+calc_debt_to_equity_quarterly = debt / equity,1388919,1388919,0,1.0,zero or missing equity -> NaN
+period_key = calendar quarter of (fiscal end - 2 months),1903381,1903381,0,1.0,
+KEY = period_key + '_' + symbol,1902998,1902998,0,1.0,rows with no ticker carry no KEY
+KEY is unique among rows that have a ticker,1902998,1902998,0,1.0,

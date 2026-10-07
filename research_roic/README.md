@@ -1,78 +1,125 @@
-# ROIC, ROIC trend and future stock returns
+# ROIC panel from Compustat Fundamentals Quarterly
 
-Reproducible research pipeline. **Research question:** does the 4-quarter trend in ROIC carry information
-about future returns beyond the ROIC level, and does that depend on the economic source of the change
-(Shapley contributions of EBIT, tax rate and invested capital)?
+**What this builds:** one analysis panel of 72 columns — ROIC levels, a Shapley
+decomposition of the change in NOPAT and in ROIC, nine families of labels,
+quality flags and an English explanation sentence — from `data/data.parquet`.
 
-Status: **Stage 0 + Stage 1 done** (data study, validation, research panel). Stage 2 onwards starts only after explicit approval.
+**Status:** built and validated. 118 pytest tests pass. 1,903,381 rows, 69 of
+the 72 columns computed; the three free-cash-flow columns are empty by decision
+(see *Not computed*).
 
 ## Run
 
-From VS Code terminal (any working directory — all paths come from `config.yaml` via `pathlib`):
-
 ```powershell
-C:\Users\User\anaconda3\python.exe research_roic\scripts\run_01_prepare_data.py      # ~40 s, all Stage 0-1 outputs
-C:\Users\User\anaconda3\python.exe research_roic\scripts\run_01_prepare_data.py --no-xlsx   # skip read-only xlsx cross-check (~5 s)
-cd research_roic; C:\Users\User\anaconda3\python.exe -m pytest                          # 39 tests
+C:\Users\User\anaconda3\python.exe research_roic\scripts\run_build_panel.py
+C:\Users\User\anaconda3\python.exe -m pytest research_roic\tests -q
 ```
 
-No package was installed; versions of the existing environment are recorded in `requirements.txt`.
+`--no-excel` skips the Excel slice, `--no-crosscheck` skips the GuruFocus
+comparison. A run takes about 100 seconds.
 
-## Structure
+## Layout
 
 ```
+data/                        input, read-only (SHA-256 checked before and after)
+  data.parquet
 research_roic/
-  config.yaml              every research parameter (paths, timing, relevance rule, windows, flags)
+  config.yaml                every parameter: field map, bands, paths, Excel year
   src/
-    data_io.py             config, explicit loading (tickers as exact strings, explicit date formats), SHA-256 of sources
-    dictionary.py          full Word dictionary reader incl. OMML equations -> variable catalogue
-    validation.py          structure, coverage, precision, dictionary formulas, return field, timing, xlsx cross-check, column mapping
-    eligibility.py         index-membership ranges joined to the panel
-    features.py            consecutiveness, full-precision ROIC, 4q OLS slopes, sums/means, raw IC change
-    sample.py              formation / return-window dates, return cleaning, sample layers
-    pipeline.py            one function that builds the panel (shared by script and tests)
-  scripts/run_01_prepare_data.py
-  tests/                   uniqueness, window continuity, no look-ahead, relevance join, NaN preservation, dictionary
-  outputs/{data,tables,figures,reports,logs}
+    data_io.py               config, logging, decimal128->float64, hashes, writers
+    registry.py              one declared CalcSpec per block of output columns
+    keys.py                  period_key, KEY, duplicate merging, the quarter grid
+    levels.py                tax, NOPAT, invested capital, ROIC, debt, equity
+    shapley.py               one coefficient matrix for both bridges
+    labels.py                bands, the single classifier, the ladders, the levels
+    explain.py               the closed explanation catalogue
+    schema.py                the 72-column contract: order, dtypes, levels
+    validation.py            describes the panel; never alters it
+    pipeline.py              build_panel(cfg, raw=None) -> (panel, report)
+  scripts/run_build_panel.py
+  tests/                     11 files, one invariant each
+output/                      everything the run produces (fixed names, overwritten)
+  panel.parquet              the panel, all rows
+  panel_from_2025.xlsx       the same columns from a configurable year
+  tables/                    21 validation tables
+  reports/report.md          the Hebrew build-and-validation report
+  logs/                      run.log, run_manifest.json, config_used.yaml
 ```
 
-Source files in `../data` are never written; the run stores their SHA-256 before and after and stops if anything changed.
+Every output has a **fixed name and is overwritten**, so a run with new data
+replaces the previous one in place. The timestamp and library versions live
+inside `run_manifest.json`, not in file names.
 
 ## Conventions (confirmed with the researcher)
 
 | Item | Definition |
 |---|---|
-| Signal quarter | `period_key` = calendar quarter of (fiscal period end − 2 months) (dictionary rule; holds for 100% of rows) |
-| Portfolio formation | month-end of (quarter end of `period_key` + 2 months). 2025Q4 → 2026-02-28 |
-| Forward return | `Future_Quarterly_Return` (undocumented in the dictionary; verified): formation → +3 month-ends. 2025Q4 → 2026-02-28 … 2026-05-31 |
-| Index relevance | member in q ⇔ `start_quarter ≤ period_key < end_quarter`; empty end = member through today |
-| Consecutive quarters | previous row has `period_key` − 1 and fiscal ends 60–130 days apart |
-| 4q trend | OLS slope on x = 0,1,2,3; only when the 4 values exist and the 4 rows are consecutive; else NaN |
+| Period | `period_key` = calendar quarter of (fiscal period end − 2 months). `2026-03-31 → 2026Q1`, `2025-09-30 → 2025Q3`, `2026-01-31 → 2025Q4`. Holds on 100% of rows. |
+| Key | `KEY = period_key + "_" + symbol`, e.g. `2016Q4_A`. Decided on `(gvkey, period_key)` because 383 rows carry no ticker. |
+| EBIT | `oiadpq` only. |
+| Invested capital | `TCA − TCL + net PPE + goodwill`. Working capital mandatory; PPE and goodwill missing count as zero. |
+| Equity | `atq − ltq` (assets − liabilities), which is total equity including minority interest. |
+| Tax | `calc_tax_expense_quarterly = txtq`. Compustat is already positive-for-expense, so no sign is flipped. The rate is **never** clipped to [0,1]. |
+| Duplicates | Same `gvkey` + date: first row stays, its gaps filled from the following rows. Same quarter, different dates: the first row decides and its values decide. Every removed row is written to `duplicates_audit.csv`. |
+| Consecutive | Quarter step of exactly 1 **and** a day gap inside 60–130. |
+| Annualisation | `(1+r)^4 − 1`, defined only when `1+r > 0`. |
 
-## Three sample layers
+## Rules that hold everywhere
 
-1. **Raw sample** – every CSV row (companies + SPY/QQQ benchmark rows).
-2. **Signal-construction sample (population)** – company rows that are index members in `period_key`.
-   Defined without any reference to returns (tested by randomising returns).
-3. **Evaluation sample** – population rows with a realised forward return. Only this layer depends on returns.
+1. A zero or missing denominator gives NaN — never 0, never `inf`.
+2. A window crossing a gap gives NaN for the whole window, never a partial sum.
+3. Nothing is clipped, winsorised, filtered or removed. Problems are flagged.
+4. A fully classified ROIC row needs three consecutive quarters, because the
+   average capital base at t−1 is itself empty right after a gap.
+5. EBIT and tax-rate movements are gated on the NOPAT status; only the invested
+   capital movement and the raw combination are gated on the ROIC status; the
+   sign regimes are gated on neither.
+6. `*_effect` reads the sign of the Shapley contribution, not the direction of
+   the raw move — when the retention rate is negative, rising EBIT lowers NOPAT.
 
-Signals may use a firm's history from before it joined the index (that information existed at formation).
+## How to extend it
 
-## Data issues found in Stage 1 (details in `outputs/reports/stage1_report.md`)
+* **A new input field** — add one entry under `input.field_map` in
+  `config.yaml`. A mapped field that is absent is reported in
+  `input_fields.csv` and every column that needs it is emitted as NaN with the
+  reason `MISSING_INPUT:<field>`; the moment the field appears the calculation
+  runs. That is exactly what happened when `atq`/`ltq` were added on 2026-10-05.
+* **A new calc column** — add one `CalcSpec` in `src/registry.py` and its name
+  to `schema.PANEL_COLUMNS`. The engine topologically sorts the specs by their
+  declared dependencies. No column list exists anywhere else.
+* **Switching a calculation off** — name its columns under `calcs.disabled`.
+  The columns stay in the schema and hold NaN, so the contract never moves.
+  `enabled: false` and a missing input are reported separately, so an empty
+  column always says *why* it is empty.
+* **The Excel slice** — change `output.excel_from_year`; the file name follows.
 
-* CSV rounds quarterly ROIC, tax rate and D/E to 0.01 → ~89% ties per quarter. ROIC is recomputed with the dictionary formulas
-  (`ebit / avg IC`, `NOPAT / avg IC`); verified against the full-precision xlsx.
-* Unrealised forward returns (2026Q2) are stored as 0.0 → set to NaN. `Momentum_3Q` exact zeros = missing history → NaN.
-  `market_cap` / month-end price = 0 (e.g. pre-IPO quarters) → `market_cap_clean` / `price_clean` = NaN. Originals kept.
-* `filing_date` is not the original filing date (median 399 days after period end) → not used for timing.
-* Fiscal quarters ending Feb/May/Aug/Nov map to a formation date equal to the period end (Jan/Apr/Jul/Oct: 1 month) → flagged `signal_lag_below_min`, not removed.
-* 102 index-member ranges overlapping the study window have no data (download failures, mostly delisted/acquired firms) → survivorship limitation.
-* No outliers or records were removed; no filters were applied.
+## Not computed
 
-## Outputs of Stage 1
+`free_cash_flow`, `calc_free_cash_flow_ttm` and `calc_ev_to_fcf_quarterly`.
+`oancfy` and `capxy` are fiscal-year-to-date, and the pull has no `fyearq` or
+`fqtr`, so the quarter that opens each firm's fiscal year cannot be identified
+from the data. The researcher chose to drop this rather than infer it. The three
+columns exist in the schema and are empty; adding the two fields to the pull
+turns them on through `config.yaml` alone.
 
-* `outputs/tables/column_mapping.csv` – research concept → dictionary name → actual column → found → notes
-* `outputs/tables/dictionary_variables.csv` – meaning, formula, unit, possible values, quality flag, invalid conditions
-* `outputs/tables/*` – coverage, duplicates, sequence breaks, precision, formula checks, return-field evidence, timing, relevance coverage, sample flow, feature summary
-* `outputs/data/panel_prepared.parquet` – full panel with derived columns and layer flags; `panel_research_view.csv` – research columns only
-* `outputs/logs/` – run log, byte copy of the config used, run manifest (versions, hashes, counts)
+Also out of scope: enterprise value, returns, momentum, WACC, sorts and
+terciles. `sector` is the raw `gsector` code, untranslated.
+
+## Validation
+
+* **22 identity checks** re-derive every formula from the emitted columns and
+  pass on 100% of the rows they apply to (`identity_checks.csv`).
+* **All 160 declared label levels occur** on the real panel — the 9/9, 27/27 and
+  3/3 exhaustiveness evidence (`label_family_census.csv`).
+* **Shapley efficiency** holds to machine precision: the 99.99th percentile of
+  the relative residual is below 1e-12 in both bridges.
+* **No `inf` anywhere**, and the decimal→float64 cast has 200,000× headroom on
+  every source field.
+* **Cross-check against GuruFocus** on 22,638 overlapping `(symbol, period_key)`
+  rows. `calc_tax_expense_quarterly`, `calc_ic_raw`,
+  `calc_average_ic_raw_quarterly`, `equity`, `pretax_income`, current assets and
+  liabilities, goodwill and `market_cap` all come back at a median ratio of
+  1.0000 — the sign, the capital formula and the equity definition are
+  confirmed against an independent vendor. The remaining gaps are definitional,
+  pre-registered in `config.yaml`, and dominated by the EBIT definition, which
+  alone caps input agreement at 17.7%. An unexplained breach stops the run.
