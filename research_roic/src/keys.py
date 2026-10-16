@@ -173,6 +173,21 @@ class Grid:
         out[~self.prev_ok] = np.nan
         return out
 
+    def lag_k(self, values: np.ndarray, k: int) -> np.ndarray:
+        """Value k quarters back, NaN unless k+1 consecutive rows end at t.
+
+        ``run_len`` already counts the consecutive tail, so reaching t-k needs
+        ``run_len >= k + 1`` and no repeated groupby-shift.
+        """
+        if k == 0:
+            return np.asarray(values, dtype="float64").copy()
+        v = np.asarray(values, dtype="float64")
+        out = np.full(self.n, np.nan, dtype="float64")
+        if k < self.n:
+            out[k:] = v[:-k]
+        out[self.run_len < k + 1] = np.nan
+        return out
+
     def window_ok(self, n_rows: int) -> np.ndarray:
         """True when rows t-n_rows+1 .. t of the same firm form a consecutive run."""
         return self.run_len >= n_rows

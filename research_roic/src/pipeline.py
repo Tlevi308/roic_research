@@ -89,6 +89,10 @@ def build_panel(cfg: dict[str, Any], raw: pd.DataFrame | None = None
         "duplicates_audit": duplicates_audit,
         "column_status": column_status,
         "explanation_catalogue": ctx.inter.get("explanation_catalogue"),
+        "fcf_terms": {"terms_used": ctx.inter.get("fcf_terms_used")},
+        "aux": {name: ctx.data[name] for name in
+                ("income_before_extraordinary_items", "cash_and_short_term_investments")
+                if name in ctx.data},
         "grid": grid,
         "panel_keys": df[["gvkey", "period_key", "period_year", "quarter_index"]],
     })

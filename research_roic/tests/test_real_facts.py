@@ -7,7 +7,8 @@ import pytest
 
 from src import schema, validation
 
-# measured on data/data.parquet as of 2026-10-05; tolerance from the config
+# measured on data/data.parquet as of 2026-10-10 (the pull that added ibq);
+# tolerance from the config
 COVERAGE = {
     "ebit": 0.767,
     "calc_raw_tax_rate_quarterly": 0.805,
@@ -20,9 +21,13 @@ COVERAGE = {
     "equity": 0.736,
     "calc_debt_to_equity_quarterly": 0.730,
     "market_cap": 0.247,
+    "free_cash_flow_quarterly": 0.824,
+    "calc_free_cash_flow_ttm": 0.756,
+    "calc_p_to_fcf_quarterly": 0.247,
+    "calc_p_to_fcf_ttm": 0.241,
 }
 CONSECUTIVE_SHARE = 0.977
-NEGATIVE_IC_ROWS = 87_637
+NEGATIVE_IC_ROWS = 87_662
 EXACT_CAST_LIMIT = 2.0 ** 53 / 1e4
 
 
@@ -119,11 +124,10 @@ def test_real_negative_invested_capital_is_flagged_not_removed(real_panel):
     assert (flagged["calc_roic_decomposition_status"] == "VALID").all()
 
 
-def test_real_no_column_is_entirely_empty_except_the_disabled_three(real_panel):
+def test_real_no_column_is_entirely_empty(real_panel):
     panel, _ = real_panel
     empty = [c for c in panel.columns if int(panel[c].notna().sum()) == 0]
-    assert sorted(empty) == sorted(["free_cash_flow", "calc_free_cash_flow_ttm",
-                                    "calc_ev_to_fcf_quarterly"])
+    assert empty == []
 
 
 def test_real_sector_is_the_raw_code(real_panel):

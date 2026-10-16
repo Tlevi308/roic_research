@@ -106,7 +106,7 @@ def sha256_file(path: Path, chunk: int = 1 << 20) -> str:
 def source_fingerprints(cfg: dict[str, Any]) -> pd.DataFrame:
     """Path / size / mtime / SHA-256 of every source file, for before-after proof."""
     rows = []
-    for name in ("input_parquet", "gurufocus_csv"):
+    for name in ("input_parquet",):
         p = cfg["_paths"].get(name)
         if p is None or not p.exists():
             rows.append({"file": name, "path": str(p), "exists": False})
@@ -174,15 +174,6 @@ def load_raw(cfg: dict[str, Any]) -> tuple[pd.DataFrame, pd.DataFrame]:
         LOGGER.warning("Mapped fields absent from the file (dependent calcs stay NaN): %s",
                        ", ".join(missing))
     return df, input_fields
-
-
-def load_gurufocus(cfg: dict[str, Any]) -> pd.DataFrame | None:
-    """Read the GuruFocus panel for the cross-check, or None when it is absent."""
-    path = cfg["_paths"].get("gurufocus_csv")
-    if path is None or not path.exists():
-        return None
-    return pd.read_csv(path, low_memory=False, float_precision="round_trip",
-                       encoding="utf-8-sig")
 
 
 # ---------------------------------------------------------------------------

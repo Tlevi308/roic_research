@@ -7,16 +7,16 @@ import pandas as pd
 from src import levels, validation
 from tests.conftest import build, make_source
 
-# measured on data/data.parquet as of 2026-10-05
-TAX_PRESENT = 1_540_896
-TAX_NEGATIVE = 208_851
-RATE_DEFINED = 1_532_010
-RATE_NEGATIVE = 149_251
-RATE_ABOVE_ONE = 21_892
-BENEFIT_ON_PROFIT = 45_861
-TAX_ON_LOSS = 103_390
+# measured on data/data.parquet as of 2026-10-10 (the pull that added ibq)
+TAX_PRESENT = 1_541_200
+TAX_NEGATIVE = 208_890
+RATE_DEFINED = 1_532_314
+RATE_NEGATIVE = 149_299
+RATE_ABOVE_ONE = 21_899
+BENEFIT_ON_PROFIT = 45_869
+TAX_ON_LOSS = 103_430
 EQUITY_ZERO = 854
-EQUITY_NEGATIVE = 121_389
+EQUITY_NEGATIVE = 121_417
 
 
 def test_tax_expense_is_txtq_with_no_sign_flip(cfg, seed):

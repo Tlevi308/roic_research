@@ -1,7 +1,7 @@
 ﻿measure,rows,denominator,share_of_denominator
-equity present,1401251,1903381,0.736190494703898
-equity == 0 (D/E is NaN by the denominator rule),854,1903381,0.000448675278359929
-equity < 0 (D/E negative and mechanical),121389,1903381,0.06377546061455903
-D/E present,1388919,1903381,0.7297114975929675
-D/E negative,111604,1388919,0.08035313794396938
-"calc_ic_raw < 0 (ratio mechanical, flagged)",87637,1160598,0.07551021111530436
+equity present,1401548,1903609,0.7362583387659966
+equity == 0 (D/E is NaN by the denominator rule),854,1903609,0.0004486215394022617
+equity < 0 (D/E negative and mechanical),121417,1903609,0.06378253097143373
+D/E present,1389220,1903609,0.7297822189325645
+D/E negative,111629,1389220,0.08035372367227653
+"calc_ic_raw < 0 (ratio mechanical, flagged)",87662,1160864,0.07551444441381591

@@ -107,6 +107,67 @@ def equity_from_balance_sheet(total_assets: np.ndarray,
     return np.asarray(total_assets, "float64") - np.asarray(total_liabilities, "float64")
 
 
+def available_change(values: np.ndarray, grid: Grid) -> tuple[np.ndarray, np.ndarray]:
+    """``x(t) - x(t-1)`` where both ends exist, else 0 - plus an availability mask.
+
+    A term that cannot be computed contributes **nothing**. It is never replaced
+    by the level: ``ppentq_t - 0`` would read as if the firm had bought its whole
+    fixed-asset base this quarter, which is a fabricated cash flow, not a
+    conservative one.
+    """
+    after = np.asarray(values, dtype="float64")
+    before = grid.lag(after)
+    usable = np.isfinite(before) & np.isfinite(after)
+    return np.where(usable, after - before, 0.0), usable
+
+
+def free_cash_flow_quarterly(income: np.ndarray, deltas: "list[tuple[np.ndarray, float]]",
+                             grid: Grid, require_at_least_one: bool = True
+                             ) -> tuple[np.ndarray, np.ndarray]:
+    """FCFE = ibq - dNWC - dPPENT, assembled term by term.
+
+    ``NWC = (actq - cheq) - (lctq - dlcq)``, so the flow expands into six terms:
+    income, and one signed difference per balance-sheet leg. Each is included
+    only when it can be computed (researcher 2026-10-11) - the row survives a
+    missing field instead of being dropped, and a genuine result of zero is kept.
+
+    Returns the flow and the per-row count of terms that contributed. With
+    ``require_at_least_one`` a row where nothing at all was computable stays
+    NaN: zero out of nothing is not a cash flow of zero.
+    """
+    total = np.zeros(grid.n, dtype="float64")
+    used = np.zeros(grid.n, dtype="int8")
+
+    inc = np.asarray(income, dtype="float64")
+    have_inc = np.isfinite(inc)
+    total += np.where(have_inc, inc, 0.0)
+    used += have_inc.astype("int8")
+
+    for values, sign in deltas:
+        change, usable = available_change(values, grid)
+        total += sign * change
+        used += usable.astype("int8")
+
+    if require_at_least_one:
+        total = np.where(used > 0, total, np.nan)
+    return total, used
+
+
+def trailing_sum(values: np.ndarray, grid: Grid, n_quarters: int = 4) -> np.ndarray:
+    """Sum over ``n_quarters`` ending at t, or NaN - never a partial sum.
+
+    This stays strict even though the quarterly flow does not: a three-quarter
+    total labelled as trailing-twelve-month is a different quantity, which is a
+    separate matter from a missing input field. Because each quarterly flow
+    already needs its own previous quarter, a four-quarter sum effectively needs
+    five consecutive rows.
+    """
+    total = np.zeros(grid.n, dtype="float64")
+    for k in range(n_quarters):
+        total = total + grid.lag_k(values, k)
+    return np.where(grid.window_ok(n_quarters), total, np.nan)
+
+
 def ratio(numerator: np.ndarray, denominator: np.ndarray) -> np.ndarray:
     """Public alias for the guarded division, used by the registry specs."""
     return safe_div(numerator, denominator)

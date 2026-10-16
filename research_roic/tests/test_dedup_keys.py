@@ -7,11 +7,11 @@ import pandas as pd
 from src import keys
 from tests.conftest import build, build_with_report, make_source
 
-# measured on data/data.parquet as of 2026-10-05
-EXPECTED_SOURCE_ROWS = 1_905_162
+# measured on data/data.parquet as of 2026-10-10 (the pull that added ibq)
+EXPECTED_SOURCE_ROWS = 1_905_390
 EXPECTED_STEP1_REMOVED = 1_108
 EXPECTED_STEP2_REMOVED = 673
-EXPECTED_PANEL_ROWS = 1_903_381
+EXPECTED_PANEL_ROWS = 1_903_609
 EXPECTED_ROWS_WITHOUT_TICKER = 383
 
 

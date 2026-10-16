@@ -377,14 +377,45 @@ def _equity(ctx: Ctx) -> None:
 
 
 def _free_cash_flow(ctx: Ctx) -> None:
-    """Quarterly FCF from the year-to-date items - disabled in this build.
+    """Free cash flow to equity, built from quarterly items only.
 
-    ``oancfy``/``capxy`` are fiscal-year-to-date and the pull carries no
-    ``fyearq``/``fqtr``, so the quarter that opens the fiscal year cannot be
-    identified from the data alone. Enabling this spec requires those fields.
+    ``NWC = (actq - cheq) - (lctq - dlcq)`` and
+    ``FCFE = ibq - dNWC - dPPENT``, which expands into six signed terms. Using
+    the change in net PPE as the proxy for capital expenditure net of
+    depreciation is what keeps the whole flow on quarterly fields: no
+    year-to-date series, so no need for ``fyearq``/``fqtr``.
+
+    Missing inputs do not drop the row (researcher 2026-10-11): each term is
+    included only when computable, and one that is not simply contributes
+    nothing. A row with no computable term at all stays NaN.
+
+    Both price ratios divide market capitalisation - not enterprise value - by
+    the flow, because FCFE already accrues to equity holders; pairing it with EV
+    would double-count the debt. The quarterly ratio uses the single quarter and
+    the TTM one the trailing four.
     """
-    for name in ("free_cash_flow", "calc_free_cash_flow_ttm", "calc_ev_to_fcf_quarterly"):
-        ctx.put_num(name, ctx.nan())
+    cfg = ctx.cfg.get("fcf", {})
+    # dNWC = (d_actq - d_cheq) - (d_lctq - d_dlcq); dPPENT enters with the same
+    # sign as dNWC in FCFE = ibq - dNWC - dPPENT
+    deltas = [
+        (ctx.num("total_current_assets"), -1.0),
+        (ctx.num("cash_and_short_term_investments"), +1.0),
+        (ctx.num("total_current_liabilities"), +1.0),
+        (ctx.num("short_term_debt"), -1.0),
+        (ctx.num("net_ppe"), -1.0),
+    ]
+    fcfe, terms_used = levels.free_cash_flow_quarterly(
+        ctx.num("income_before_extraordinary_items"), deltas, ctx.grid,
+        require_at_least_one=bool(cfg.get("require_at_least_one_term", True)))
+    ctx.put_num("free_cash_flow_quarterly", fcfe)
+    ctx.inter["fcf_terms_used"] = terms_used
+
+    ttm = levels.trailing_sum(fcfe, ctx.grid, n_quarters=int(cfg.get("ttm_quarters", 4)))
+    ctx.put_num("calc_free_cash_flow_ttm", ttm)
+
+    market_cap = ctx.num("market_cap")
+    ctx.put_num("calc_p_to_fcf_quarterly", safe_div(market_cap, fcfe))
+    ctx.put_num("calc_p_to_fcf_ttm", safe_div(market_cap, ttm))
 
 
 # ---------------------------------------------------------------------------
@@ -456,10 +487,13 @@ REGISTRY: tuple[CalcSpec, ...] = (
     CalcSpec("equity", ("equity", "calc_debt_to_equity_quarterly"),
              ("total_assets", "total_liabilities", "calc_debt_value_quarterly"), _equity,
              "equity = assets - liabilities (researcher 2026-10-05)"),
-    CalcSpec("free_cash_flow", ("free_cash_flow", "calc_free_cash_flow_ttm",
-                                "calc_ev_to_fcf_quarterly"),
-             ("oancfy", "capxy"), _free_cash_flow,
-             "needs fyearq/fqtr to split the year-to-date items"),
+    CalcSpec("free_cash_flow", ("free_cash_flow_quarterly", "calc_free_cash_flow_ttm",
+                                "calc_p_to_fcf_quarterly", "calc_p_to_fcf_ttm"),
+             ("total_current_assets", "cash_and_short_term_investments",
+              "total_current_liabilities", "short_term_debt", "net_ppe",
+              "income_before_extraordinary_items", "market_cap"),
+             _free_cash_flow,
+             "FCFE = ibq - dNWC - dPPENT, term by term; unavailable terms omitted"),
 )
 
 

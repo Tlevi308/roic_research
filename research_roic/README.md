@@ -1,12 +1,12 @@
 # ROIC panel from Compustat Fundamentals Quarterly
 
-**What this builds:** one analysis panel of 72 columns — ROIC levels, a Shapley
+**What this builds:** one analysis panel of 73 columns — ROIC levels, a Shapley
 decomposition of the change in NOPAT and in ROIC, nine families of labels,
 quality flags and an English explanation sentence — from `data/data.parquet`.
 
-**Status:** built and validated. 118 pytest tests pass. 1,903,381 rows, 69 of
-the 72 columns computed; the three free-cash-flow columns are empty by decision
-(see *Not computed*).
+**Status:** built and validated. 143 pytest tests pass. 1,903,609 rows, **all 73
+columns computed**. No external reference data is read: the panel validates
+itself.
 
 ## Run
 
@@ -15,8 +15,7 @@ C:\Users\User\anaconda3\python.exe research_roic\scripts\run_build_panel.py
 C:\Users\User\anaconda3\python.exe -m pytest research_roic\tests -q
 ```
 
-`--no-excel` skips the Excel slice, `--no-crosscheck` skips the GuruFocus
-comparison. A run takes about 100 seconds.
+`--no-excel` skips the Excel slice. A run takes about 80 seconds.
 
 ## Layout
 
@@ -33,15 +32,15 @@ research_roic/
     shapley.py               one coefficient matrix for both bridges
     labels.py                bands, the single classifier, the ladders, the levels
     explain.py               the closed explanation catalogue
-    schema.py                the 72-column contract: order, dtypes, levels
+    schema.py                the 73-column contract: order, dtypes, levels
     validation.py            describes the panel; never alters it
     pipeline.py              build_panel(cfg, raw=None) -> (panel, report)
   scripts/run_build_panel.py
-  tests/                     11 files, one invariant each
+  tests/                     12 files, one invariant each
 output/                      everything the run produces (fixed names, overwritten)
   panel.parquet              the panel, all rows
   panel_from_2025.xlsx       the same columns from a configurable year
-  tables/                    21 validation tables
+  tables/                    18 validation tables (stale ones are pruned each run)
   reports/report.md          the Hebrew build-and-validation report
   logs/                      run.log, run_manifest.json, config_used.yaml
 ```
@@ -63,6 +62,8 @@ inside `run_manifest.json`, not in file names.
 | Duplicates | Same `gvkey` + date: first row stays, its gaps filled from the following rows. Same quarter, different dates: the first row decides and its values decide. Every removed row is written to `duplicates_audit.csv`. |
 | Consecutive | Quarter step of exactly 1 **and** a day gap inside 60–130. |
 | Annualisation | `(1+r)^4 − 1`, defined only when `1+r > 0`. |
+| Free cash flow | FCFE, from quarterly items only: `NWC = (actq − cheq) − (lctq − dlcq)`, then `FCFE = ibq − ΔNWC − ΔPPENT`. Assembled term by term; an unavailable term is omitted rather than dropping the row. |
+| P/FCF | Two columns: `calc_p_to_fcf_quarterly = market_cap / free_cash_flow_quarterly` and `calc_p_to_fcf_ttm = market_cap / calc_free_cash_flow_ttm`. Equity value over a levered flow — pairing FCFE with enterprise value would double-count the debt. |
 
 ## Rules that hold everywhere
 
@@ -93,19 +94,60 @@ inside `run_manifest.json`, not in file names.
   column always says *why* it is empty.
 * **The Excel slice** — change `output.excel_from_year`; the file name follows.
 
+## Free cash flow
+
+Built as **FCFE from quarterly fields only**, which is what removes the need for
+`fyearq`/`fqtr`: the change in net PPE stands in for capital expenditure net of
+depreciation, so no year-to-date series is read at all.
+
+```
+NWC_t  = (actq_t − cheq_t) − (lctq_t − dlcq_t)
+FCFE_t = ibq_t − (NWC_t − NWC_t−1) − (ppentq_t − ppentq_t−1)
+
+free_cash_flow_quarterly  the single quarter
+calc_free_cash_flow_ttm   sum of 4 consecutive quarters, else NaN
+calc_p_to_fcf_quarterly   market_cap / free_cash_flow_quarterly
+calc_p_to_fcf_ttm         market_cap / calc_free_cash_flow_ttm
+```
+
+**Missing inputs do not drop the row.** The formula expands into six signed
+terms — income, and one difference per balance-sheet leg — and each is included
+only when it can be computed. A term that cannot simply contributes nothing, and
+a genuine result of zero is kept.
+
+Two deliberate limits on that:
+
+* A difference whose previous quarter is unavailable is **omitted**, never
+  replaced by the level. `ppentq_t − 0` would read as if the firm had bought its
+  whole fixed-asset base in one quarter: a fabricated cash flow, not a
+  conservative one.
+* A row where **no** term is computable stays NaN. Zero out of nothing is not a
+  cash flow of zero.
+
+⚠️ This means rows differ in how completely the formula was applied, so
+`fcf_census.csv` reports the distribution rather than a single coverage number.
+As measured: 54.6% of rows carry all six terms, 17.6% carry none (NaN), and
+27.8% are partial — including 10.9% where the flow is nothing but `ibq`. Treat a
+partial row as a weaker measurement than a complete one.
+
+⚠️ The trailing sum stays **strict** — four consecutive quarters or NaN. A
+three-quarter total labelled TTM is a different quantity, which is a separate
+matter from a missing field. In practice it needs five consecutive rows, because
+each quarterly flow already consumes its own predecessor.
+
+⚠️ `calc_p_to_fcf_quarterly` divides by a single quarter, so it runs roughly 4×
+a conventional annual P/FCF multiple (Apple 2026Q2: 147.5 quarterly vs 35.2
+trailing). The two are not interchangeable.
+
 ## Not computed
 
-`free_cash_flow`, `calc_free_cash_flow_ttm` and `calc_ev_to_fcf_quarterly`.
-`oancfy` and `capxy` are fiscal-year-to-date, and the pull has no `fyearq` or
-`fqtr`, so the quarter that opens each firm's fiscal year cannot be identified
-from the data. The researcher chose to drop this rather than infer it. The three
-columns exist in the schema and are empty; adding the two fields to the pull
-turns them on through `config.yaml` alone.
-
-Also out of scope: enterprise value, returns, momentum, WACC, sorts and
-terciles. `sector` is the raw `gsector` code, untranslated.
+Enterprise value, returns, momentum, WACC, sorts and terciles. `sector` is the
+raw `gsector` code, untranslated. `oancfy` and `capxy` stay unread.
 
 ## Validation
+
+No external reference is read any more (2026-10-11). The panel validates itself,
+so the run depends on nothing but `data/data.parquet`:
 
 * **22 identity checks** re-derive every formula from the emitted columns and
   pass on 100% of the rows they apply to (`identity_checks.csv`).
@@ -115,11 +157,9 @@ terciles. `sector` is the raw `gsector` code, untranslated.
   the relative residual is below 1e-12 in both bridges.
 * **No `inf` anywhere**, and the decimal→float64 cast has 200,000× headroom on
   every source field.
-* **Cross-check against GuruFocus** on 22,638 overlapping `(symbol, period_key)`
-  rows. `calc_tax_expense_quarterly`, `calc_ic_raw`,
-  `calc_average_ic_raw_quarterly`, `equity`, `pretax_income`, current assets and
-  liabilities, goodwill and `market_cap` all come back at a median ratio of
-  1.0000 — the sign, the capital formula and the equity definition are
-  confirmed against an independent vendor. The remaining gaps are definitional,
-  pre-registered in `config.yaml`, and dominated by the EBIT definition, which
-  alone caps input agreement at 17.7%. An unexplained breach stops the run.
+* **143 pytest tests** recompute the formulas independently of the pipeline —
+  including FCFE worked out by hand from the raw parquet, the sign of each of
+  its six terms probed one at a time, and Shapley compared against the mean over
+  all 3! orderings. Nine of them pin measured facts (row counts, the merge, the
+  tax and equity censuses, the term-completeness distribution, coverage), so a
+  changed input makes them fail and name what moved.

@@ -19,9 +19,9 @@ if str(ROOT) not in sys.path:
 
 from src import data_io, pipeline, schema  # noqa: E402
 
-SOURCE_COLUMNS = ("gvkey", "tic", "conm", "gsector", "datadate", "actq", "lctq",
-                  "ppentq", "gdwlq", "atq", "ltq", "oiadpq", "piq", "txtq",
-                  "dlcq", "dlttq", "mkvaltq")
+SOURCE_COLUMNS = ("gvkey", "tic", "conm", "gsector", "datadate", "actq", "cheq",
+                  "lctq", "ppentq", "gdwlq", "atq", "ltq", "oiadpq", "ibq", "piq",
+                  "txtq", "dlcq", "dlttq", "mkvaltq")
 
 
 @pytest.fixture(scope="session")
@@ -51,10 +51,12 @@ def make_source(seed: int, tickers: tuple[str, ...] = ("AAA", "BBB", "CCC"),
             rows.append({
                 "gvkey": f"{i + 1:06d}", "tic": tic, "conm": f"{tic} CORP",
                 "gsector": "45", "datadate": end.normalize(),
-                "actq": 500 + rng.normal(0, 40), "lctq": 300 + rng.normal(0, 30),
+                "actq": 500 + rng.normal(0, 40), "cheq": 120 + rng.normal(0, 15),
+                "lctq": 300 + rng.normal(0, 30),
                 "ppentq": 400 + rng.normal(0, 25), "gdwlq": 100 + rng.normal(0, 5),
                 "atq": 2000 + rng.normal(0, 90), "ltq": 1200 + rng.normal(0, 70),
                 "oiadpq": 60 + rng.normal(0, 8), "piq": 55 + rng.normal(0, 8),
+                "ibq": 42 + rng.normal(0, 7),
                 "txtq": 13 + rng.normal(0, 2),
                 "dlcq": 50 + rng.normal(0, 5), "dlttq": 400 + rng.normal(0, 20),
                 "mkvaltq": 5000 + rng.normal(0, 400),

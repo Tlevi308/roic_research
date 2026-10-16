@@ -68,6 +68,7 @@
 67,equity,float64,,calc,equity,COMPUTED,,equity = assets - liabilities (researcher 2026-10-05)
 68,calc_debt_to_equity_quarterly,float64,,calc,equity,COMPUTED,,equity = assets - liabilities (researcher 2026-10-05)
 69,market_cap,float64,,input field,,,,
-70,free_cash_flow,float64,,calc,free_cash_flow,SKIPPED,DISABLED; MISSING_INPUT:oancfy; MISSING_INPUT:capxy,needs fyearq/fqtr to split the year-to-date items
-71,calc_free_cash_flow_ttm,float64,,calc,free_cash_flow,SKIPPED,DISABLED; MISSING_INPUT:oancfy; MISSING_INPUT:capxy,needs fyearq/fqtr to split the year-to-date items
-72,calc_ev_to_fcf_quarterly,float64,,calc,free_cash_flow,SKIPPED,DISABLED; MISSING_INPUT:oancfy; MISSING_INPUT:capxy,needs fyearq/fqtr to split the year-to-date items
+70,free_cash_flow_quarterly,float64,,calc,free_cash_flow,COMPUTED,,"FCFE = ibq - dNWC - dPPENT, term by term; unavailable terms omitted"
+71,calc_free_cash_flow_ttm,float64,,calc,free_cash_flow,COMPUTED,,"FCFE = ibq - dNWC - dPPENT, term by term; unavailable terms omitted"
+72,calc_p_to_fcf_quarterly,float64,,calc,free_cash_flow,COMPUTED,,"FCFE = ibq - dNWC - dPPENT, term by term; unavailable terms omitted"
+73,calc_p_to_fcf_ttm,float64,,calc,free_cash_flow,COMPUTED,,"FCFE = ibq - dNWC - dPPENT, term by term; unavailable terms omitted"

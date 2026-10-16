@@ -85,9 +85,8 @@ def test_real_no_derived_column_has_inf(real_panel):
     assert offenders == []
 
 
-def test_real_disabled_columns_are_entirely_empty(real_panel):
-    """The three FCF columns exist in the schema and hold nothing at all."""
+def test_real_every_column_holds_something(real_panel):
+    """Since ibq arrived there is no column left that is empty by decision."""
     panel, _ = real_panel
-    for col in ("free_cash_flow", "calc_free_cash_flow_ttm", "calc_ev_to_fcf_quarterly"):
-        assert col in panel.columns
-        assert int(panel[col].notna().sum()) == 0, col
+    empty = [c for c in panel.columns if int(panel[c].notna().sum()) == 0]
+    assert empty == []

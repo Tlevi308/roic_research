@@ -57,7 +57,9 @@ def coverage_by_quarter(panel: pd.DataFrame, panel_keys: pd.DataFrame) -> pd.Dat
     headline = ["ebit", "calc_raw_tax_rate_quarterly", "calc_nopat_quarterly",
                 "calc_ic_raw", "calc_average_ic_raw_quarterly",
                 "calc_roic_posttax_quarterly_ic_raw", "calc_debt_value_quarterly",
-                "equity", "calc_debt_to_equity_quarterly", "market_cap"]
+                "equity", "calc_debt_to_equity_quarterly", "market_cap",
+                "free_cash_flow_quarterly", "calc_free_cash_flow_ttm",
+                "calc_p_to_fcf_quarterly", "calc_p_to_fcf_ttm"]
     d = pd.DataFrame({"period_key": panel_keys["period_key"].to_numpy(),
                       "gvkey": panel_keys["gvkey"].to_numpy()})
     for col in headline:
@@ -362,6 +364,57 @@ def equity_sign_census(panel: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
+def fcf_census(panel: pd.DataFrame, aux: dict[str, np.ndarray],
+               terms: dict[str, np.ndarray], grid: Grid) -> pd.DataFrame:
+    """Where the flow comes from, how complete each row's formula was, and its sign.
+
+    ``terms`` carries the per-row count of formula terms that could be computed
+    (out of six: ibq and the five differences). A row built from two terms is
+    not the same measurement as one built from six, so the distribution is
+    reported rather than hidden behind a single coverage number.
+    """
+    n = len(panel)
+    fcf = panel["free_cash_flow_quarterly"].to_numpy()
+    ttm = panel["calc_free_cash_flow_ttm"].to_numpy()
+    pq = panel["calc_p_to_fcf_quarterly"].to_numpy()
+    pt = panel["calc_p_to_fcf_ttm"].to_numpy()
+
+    def count(arr) -> int:
+        return int(np.isfinite(arr).sum()) if arr is not None else -1
+
+    rows = [
+        {"measure": "ibq present", "rows": count(aux.get("income_before_extraordinary_items")),
+         "denominator": n},
+        {"measure": "cheq present", "rows": count(aux.get("cash_and_short_term_investments")),
+         "denominator": n},
+        {"measure": "free_cash_flow_quarterly present", "rows": count(fcf), "denominator": n},
+        {"measure": "free_cash_flow_quarterly == 0 exactly", "rows": int((fcf == 0).sum()),
+         "denominator": count(fcf)},
+        {"measure": "free_cash_flow_quarterly < 0", "rows": int((fcf < 0).sum()),
+         "denominator": count(fcf)},
+        {"measure": "calc_free_cash_flow_ttm present (4 consecutive quarters)",
+         "rows": count(ttm), "denominator": n},
+        {"measure": "calc_free_cash_flow_ttm < 0", "rows": int((ttm < 0).sum()),
+         "denominator": count(ttm)},
+        {"measure": "calc_p_to_fcf_quarterly present", "rows": count(pq), "denominator": n},
+        {"measure": "calc_p_to_fcf_quarterly < 0", "rows": int((pq < 0).sum()),
+         "denominator": count(pq)},
+        {"measure": "calc_p_to_fcf_ttm present", "rows": count(pt), "denominator": n},
+        {"measure": "calc_p_to_fcf_ttm < 0", "rows": int((pt < 0).sum()),
+         "denominator": count(pt)},
+        {"measure": "rows on a run of 5+ consecutive quarters (what TTM needs)",
+         "rows": int(grid.window_ok(5).sum()), "denominator": n},
+    ]
+    used = terms.get("terms_used")
+    if used is not None:
+        for k in range(7):
+            rows.append({"measure": f"rows whose flow was built from {k} of 6 terms",
+                         "rows": int((used == k).sum()), "denominator": n})
+    out = pd.DataFrame(rows)
+    out["share_of_denominator"] = out["rows"] / out["denominator"].replace(0, np.nan)
+    return out
+
+
 def consecutiveness_summary(grid: Grid, panel: pd.DataFrame,
                             panel_keys: pd.DataFrame) -> pd.DataFrame:
     """Quarter-step and day-gap distribution behind the consecutiveness rule."""
@@ -400,166 +453,3 @@ def duplicates_summary(report: dict[str, Any]) -> pd.DataFrame:
          "value": d["removed_step2_same_period"]},
         {"measure": "rows in panel", "value": d["rows_out"]},
     ])
-
-
-# ---------------------------------------------------------------------------
-# external cross-check
-# ---------------------------------------------------------------------------
-NUMERIC_CROSSCHECK = (
-    "pretax_income", "ebit", "total_current_assets", "total_current_liabilities",
-    "goodwill", "net_ppe", "short_term_debt", "long_term_debt", "market_cap",
-    "equity", "calc_tax_expense_quarterly", "calc_raw_tax_rate_quarterly",
-    "calc_nopat_quarterly", "calc_ic_raw", "calc_average_ic_raw_quarterly",
-    "calc_roic_pretax_quarterly_ic_raw", "calc_roic_posttax_quarterly_ic_raw",
-    "calc_debt_value_quarterly", "calc_debt_to_equity_quarterly",
-    "calc_nopat_change_quarterly", "calc_roic_posttax_change_quarterly",
-    "calc_roic_ebit_contribution", "calc_roic_tax_contribution",
-    "calc_roic_ic_contribution",
-)
-LABEL_CROSSCHECK = tuple(schema.LABEL_LEVELS)
-
-
-def crosscheck_gurufocus(panel: pd.DataFrame, gurufocus: pd.DataFrame | None,
-                         panel_keys: pd.DataFrame, cfg: dict[str, Any]
-                         ) -> dict[str, pd.DataFrame]:
-    """Compare the panel against GuruFocus on overlapping (symbol, period_key).
-
-    GuruFocus publishes its own ``calc_*`` columns, so the labels can be
-    compared as confusion matrices against a panel computed from a different
-    source - a far stronger check than any synthetic fixture.
-
-    Definitional gaps are pre-registered in the config and reported as notes,
-    not failures. An *unexpected* breach is raised by the caller.
-    """
-    empty = {"numeric": pd.DataFrame(), "labels": pd.DataFrame(),
-             "overlap": pd.DataFrame([{"measure": "gurufocus file", "value": "absent"}])}
-    if gurufocus is None or "symbol" not in gurufocus.columns:
-        return empty
-
-    mine = panel.copy()
-    mine["period_key"] = panel_keys["period_key"].to_numpy()
-    mine["symbol_plain"] = mine["symbol"].astype("string").str.split(".").str[0]
-    # a stripped symbol is not unique on our side (BF.A and BF.B both give BF);
-    # ambiguous rows are excluded so a many-to-one join cannot inflate agreement
-    dup = mine.duplicated(["symbol_plain", "period_key"], keep=False)
-    left = mine[~dup]
-    gf = gurufocus.copy()
-    gf["symbol"] = gf["symbol"].astype("string")
-    gf = gf[~gf.duplicated(["symbol", "period_key"], keep=False)]
-    joined = left.merge(gf, left_on=["symbol_plain", "period_key"],
-                        right_on=["symbol", "period_key"],
-                        suffixes=("", "_gf"), how="inner")
-    overlap = pd.DataFrame([
-        {"measure": "panel rows", "value": len(panel)},
-        {"measure": "panel rows with an ambiguous stripped symbol", "value": int(dup.sum())},
-        {"measure": "gurufocus rows", "value": len(gurufocus)},
-        {"measure": "matched rows", "value": len(joined)},
-    ])
-    if joined.empty:
-        return {**empty, "overlap": overlap}
-
-    expected = cfg["validation"].get("expected_gaps") or {}
-    lo, hi = cfg["validation"]["median_ratio_range"]
-    min_corr = float(cfg["validation"]["min_correlation"])
-
-    rows = []
-    for col in NUMERIC_CROSSCHECK:
-        gf_col = f"{col}_gf" if f"{col}_gf" in joined.columns else col
-        if gf_col not in joined.columns or gf_col == col:
-            continue
-        a = pd.to_numeric(joined[col], errors="coerce").to_numpy("float64")
-        b = pd.to_numeric(joined[gf_col], errors="coerce").to_numpy("float64")
-        both = np.isfinite(a) & np.isfinite(b)
-        rec: dict[str, Any] = {"column": col, "n_overlap": int(both.sum()),
-                               "nan_pattern_agreement": float(
-                                   (np.isfinite(a) == np.isfinite(b)).mean())}
-        if both.sum() >= 30:
-            ratio = a[both] / np.where(b[both] == 0, np.nan, b[both])
-            dev = np.abs(a[both] - b[both]) / np.maximum(1e-9, np.abs(b[both]))
-            rec.update({
-                "correlation": float(np.corrcoef(a[both], b[both])[0, 1]),
-                "median_ratio": float(np.nanmedian(ratio)),
-                "median_rel_deviation": float(np.nanmedian(dev)),
-                "share_within_1pct": float(np.nanmean(dev <= 0.01)),
-                "share_within_5pct": float(np.nanmean(dev <= 0.05)),
-                "max_abs_deviation": float(np.abs(a[both] - b[both]).max()),
-            })
-            corr_ok = rec["correlation"] >= min_corr
-            ratio_ok = lo <= rec["median_ratio"] <= hi
-            rec["within_thresholds"] = bool(corr_ok and ratio_ok)
-        else:
-            rec["within_thresholds"] = True
-        rec["expected_gap"] = col in expected
-        rec["note"] = expected.get(col, "")
-        rows.append(rec)
-    numeric = pd.DataFrame(rows)
-
-    # a label can only agree where the inputs behind it agree: this is the
-    # ceiling against which the label agreement below should be read
-    ceiling = _input_agreement(joined)
-
-    label_rows = []
-    for col in LABEL_CROSSCHECK:
-        gf_col = f"{col}_gf" if f"{col}_gf" in joined.columns else None
-        if gf_col is None:
-            continue
-        a = joined[col].astype("string")
-        b = joined[gf_col].astype("string")
-        both = a.notna() & b.notna()
-        if not both.any():
-            continue
-        agree = (a[both] == b[both])
-        confusion = (pd.crosstab(a[both], b[both]).stack()
-                     .rename("rows").reset_index())
-        confusion.columns = ["mine", "gurufocus", "rows"]
-        confusion = confusion[(confusion.rows > 0)
-                              & (confusion["mine"] != confusion["gurufocus"])]
-        label_rows.append({"column": col, "n_overlap": int(both.sum()),
-                           "exact_agreement": float(agree.mean()),
-                           "input_agreement_ceiling": ceiling["all_inputs"],
-                           "top_disagreements": "; ".join(
-                               f"{r.mine}->{r.gurufocus}:{r.rows}" for r in
-                               confusion.nlargest(5, "rows").itertuples(index=False)),
-                           "expected_gap": col in expected,
-                           "note": expected.get(col, "")})
-    return {"numeric": numeric, "labels": pd.DataFrame(label_rows),
-            "overlap": overlap, "input_agreement": ceiling["table"]}
-
-
-def _input_agreement(joined: pd.DataFrame) -> dict[str, Any]:
-    """How often the two vendors agree on the inputs a label is built from.
-
-    Labels are coarse (three buckets), so they agree far more often than the
-    numbers do - but the numbers are the ceiling on how much agreement is even
-    available, and without it a 65% label agreement cannot be read.
-    """
-    fields = ("ebit", "pretax_income", "calc_tax_expense_quarterly",
-              "total_current_assets", "total_current_liabilities", "net_ppe", "goodwill")
-    rows = []
-    masks = []
-    for col in fields:
-        gf_col = f"{col}_gf"
-        if gf_col not in joined.columns:
-            continue
-        a = pd.to_numeric(joined[col], errors="coerce").to_numpy("float64")
-        b = pd.to_numeric(joined[gf_col], errors="coerce").to_numpy("float64")
-        both = np.isfinite(a) & np.isfinite(b)
-        close = both & (np.abs(a - b) <= 0.01 * np.maximum(1e-9, np.abs(b)))
-        masks.append(close | ~both)
-        rows.append({"input": col, "n_comparable": int(both.sum()),
-                     "share_within_1pct": float(close.sum() / both.sum()) if both.sum() else np.nan,
-                     "n_only_mine": int((np.isfinite(a) & ~np.isfinite(b)).sum()),
-                     "n_only_gurufocus": int((~np.isfinite(a) & np.isfinite(b)).sum())})
-    all_inputs = float(np.all(masks, axis=0).mean()) if masks else np.nan
-    rows.append({"input": "ALL of the above within 1% (the label ceiling)",
-                 "n_comparable": len(joined), "share_within_1pct": all_inputs,
-                 "n_only_mine": "", "n_only_gurufocus": ""})
-    return {"table": pd.DataFrame(rows), "all_inputs": all_inputs}
-
-
-def unexpected_breaches(crosscheck: dict[str, pd.DataFrame]) -> pd.DataFrame:
-    """Rows that failed a threshold without a pre-registered explanation."""
-    numeric = crosscheck.get("numeric")
-    if numeric is None or numeric.empty or "within_thresholds" not in numeric.columns:
-        return pd.DataFrame()
-    return numeric[~numeric["within_thresholds"] & ~numeric["expected_gap"]]

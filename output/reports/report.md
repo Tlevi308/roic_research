@@ -1,20 +1,13 @@
 # פאנל ROIC מנתוני Compustat — דוח בנייה ואימות
 
-נתונים: `data.parquet` · 1,905,162 שורות מקור · נכונים ל־2026-09-30 · ריצה 2026-10-05 20:39:27 (97.3 שניות) · הגדרות: `output/logs/config_used.yaml` · קובצי המקור לא השתנו במהלך הריצה (SHA-256 לפני/אחרי): **True**
+נתונים: `data.parquet` · 1,905,390 שורות מקור · נכונים ל־2026-09-30 · ריצה 2026-10-16 18:14:42 (61.8 שניות) · הגדרות: `output/logs/config_used.yaml` · קובצי המקור לא השתנו במהלך הריצה (SHA-256 לפני/אחרי): **True**
 
 ## 0. תקציר
 
-- **72 עמודות** בדיוק לפי הרשימה שהוגדרה, באותו סדר, **1,903,381 שורות** — שורה אחת לכל (חברה, רבעון).
-- 69 עמודות חושבו; 3 ריקות במפורש, עם הסיבה לכל אחת (`schema_contract.csv`).
+- **73 עמודות** בדיוק לפי הרשימה שהוגדרה, באותו סדר, **1,903,609 שורות** — שורה אחת לכל (חברה, רבעון).
+- **כל העמודות חושבו** — אין עמודה ריקה בהחלטה (`schema_contract.csv`).
 - רציפות: 97.7% מהשורות מקושרות לרבעון שקדם להן.
-- ⚠️ מה שאינו במשיכה: `fyearq`, `fqtr`, `rdq`, `fyr`, `ivstq`. בלי `fqtr` אי אפשר לזהות איזה רבעון פותח את השנה הפיסקלית, ולכן FCF לא מחושב בבנייה הזאת.
-
-| column | spec | reason |
-|---|---|---|
-| free_cash_flow | free_cash_flow | DISABLED; MISSING_INPUT:oancfy; MISSING_INPUT:capxy |
-| calc_free_cash_flow_ttm | free_cash_flow | DISABLED; MISSING_INPUT:oancfy; MISSING_INPUT:capxy |
-| calc_ev_to_fcf_quarterly | free_cash_flow | DISABLED; MISSING_INPUT:oancfy; MISSING_INPUT:capxy |
-
+- `ibq` נוסף לקובץ ב-10/10, ולכן ה-FCFE נבנה כולו משדות רבעוניים (§10א). `fyearq`, `fqtr`, `rdq`, `fyr`, `ivstq` עדיין אינם במשיכה — ואף חישוב בפאנל הזה אינו תלוי בהם.
 ## 1. המקור, הטיפוסים והשדות
 
 - `decimal128(18,4)` מומר ל-float64 **בתוך Arrow** לפני pandas. אחרת מתקבלים מיליוני אובייקטי `Decimal`, וחלוקה באפס זורקת חריגה במקום להחזיר NaN.
@@ -22,46 +15,47 @@
 
 | logical_field | source_candidates | source_found | status | n_non_null |
 |---|---|---|---|---|
-| gvkey | gvkey | gvkey | MAPPED | 1905162 |
-| symbol | tic | tic | MAPPED | 1904779 |
-| company | conm | conm | MAPPED | 1905162 |
-| sector | gsector | gsector | MAPPED | 1597706 |
-| fiscal_period_end_date | datadate | datadate | MAPPED | 1905162 |
-| total_current_assets | actq | actq | MAPPED | 1164241 |
-| total_current_liabilities | lctq | lctq | MAPPED | 1172990 |
-| net_ppe | ppentq | ppentq | MAPPED | 1373790 |
-| goodwill | gdwlq | gdwlq | MAPPED | 671525 |
-| total_assets | atq | atq | MAPPED | 1410009 |
-| total_liabilities | ltq | ltq | MAPPED | 1402438 |
-| ebit | oiadpq | oiadpq | MAPPED | 1460964 |
-| pretax_income | piq | piq | MAPPED | 1537980 |
-| tax_provision_raw | txtq | txtq | MAPPED | 1542163 |
-| short_term_debt | dlcq | dlcq | MAPPED | 1346689 |
-| long_term_debt | dlttq | dlttq | MAPPED | 1423899 |
-| market_cap | mkvaltq | mkvaltq | MAPPED | 469926 |
-|  |  | capxy | UNMAPPED_SOURCE_COLUMN | 1155326 |
-|  |  | cheq | UNMAPPED_SOURCE_COLUMN | 1394772 |
-|  |  | consol | UNMAPPED_SOURCE_COLUMN | 1905162 |
-|  |  | costat | UNMAPPED_SOURCE_COLUMN | 1905162 |
-|  |  | curcdq | UNMAPPED_SOURCE_COLUMN | 1905162 |
-|  |  | datafmt | UNMAPPED_SOURCE_COLUMN | 1905162 |
-|  |  | exchg | UNMAPPED_SOURCE_COLUMN | 1904767 |
-|  |  | indfmt | UNMAPPED_SOURCE_COLUMN | 1905162 |
-|  |  | oancfy | UNMAPPED_SOURCE_COLUMN | 1054842 |
-|  |  | seqq | UNMAPPED_SOURCE_COLUMN | 1441132 |
-|  |  | teqq | UNMAPPED_SOURCE_COLUMN | 523822 |
-|  |  | xintq | UNMAPPED_SOURCE_COLUMN | 1205551 |
+| gvkey | gvkey | gvkey | MAPPED | 1905390 |
+| symbol | tic | tic | MAPPED | 1905007 |
+| company | conm | conm | MAPPED | 1905390 |
+| sector | gsector | gsector | MAPPED | 1597993 |
+| fiscal_period_end_date | datadate | datadate | MAPPED | 1905390 |
+| total_current_assets | actq | actq | MAPPED | 1164507 |
+| total_current_liabilities | lctq | lctq | MAPPED | 1173256 |
+| cash_and_short_term_investments | cheq | cheq | MAPPED | 1395069 |
+| income_before_extraordinary_items | ibq | ibq | MAPPED | 1565125 |
+| net_ppe | ppentq | ppentq | MAPPED | 1374075 |
+| goodwill | gdwlq | gdwlq | MAPPED | 671819 |
+| total_assets | atq | atq | MAPPED | 1410305 |
+| total_liabilities | ltq | ltq | MAPPED | 1402734 |
+| ebit | oiadpq | oiadpq | MAPPED | 1461258 |
+| pretax_income | piq | piq | MAPPED | 1538282 |
+| tax_provision_raw | txtq | txtq | MAPPED | 1542466 |
+| short_term_debt | dlcq | dlcq | MAPPED | 1346981 |
+| long_term_debt | dlttq | dlttq | MAPPED | 1424201 |
+| market_cap | mkvaltq | mkvaltq | MAPPED | 470196 |
+|  |  | capxy | UNMAPPED_SOURCE_COLUMN | 1155622 |
+|  |  | consol | UNMAPPED_SOURCE_COLUMN | 1905390 |
+|  |  | costat | UNMAPPED_SOURCE_COLUMN | 1905390 |
+|  |  | curcdq | UNMAPPED_SOURCE_COLUMN | 1905390 |
+|  |  | datafmt | UNMAPPED_SOURCE_COLUMN | 1905390 |
+|  |  | exchg | UNMAPPED_SOURCE_COLUMN | 1904995 |
+|  |  | indfmt | UNMAPPED_SOURCE_COLUMN | 1905390 |
+|  |  | oancfy | UNMAPPED_SOURCE_COLUMN | 1055139 |
+|  |  | seqq | UNMAPPED_SOURCE_COLUMN | 1441428 |
+|  |  | teqq | UNMAPPED_SOURCE_COLUMN | 524118 |
+|  |  | xintq | UNMAPPED_SOURCE_COLUMN | 1205810 |
 
 - דיוק ההמרה: הערך המוחלט הגדול ביותר בשדות המקור הוא 4,921,519, מול גבול ההמרה המדויקת 900,719,925,474 — פי 183,017 מרווח. ההמרה מ-decimal ל-float64 אינה מאבדת ספרה (`precision_audit.csv`).
 - ⚠️ ערכי ROIC ו-D/E נגזרים יכולים לצאת עצומים כשבסיס ההון קרוב לאפס (אך אינו אפס בדיוק, שאז הכלל מחזיר NaN). לפי כלליך לא נעשתה שום קטימה ולא הוסרה שום שורה — הסדרי הגודל מדווחים במקום:
 
 | measure | rows | share_of_defined | median_abs_avg_ic_on_those_rows |
 |---|---|---|---|
-| \|quarterly ROIC\| > 1 | 32328 | 0.03026 | 0.428 |
-| \|quarterly ROIC\| > 10 | 4127 | 0.003863 | 0.0495 |
-| \|quarterly ROIC\| > 100 | 519 | 0.0004858 | 0.007 |
+| \|quarterly ROIC\| > 1 | 32336 | 0.03026 | 0.4283 |
+| \|quarterly ROIC\| > 10 | 4127 | 0.003862 | 0.0495 |
+| \|quarterly ROIC\| > 100 | 519 | 0.0004857 | 0.007 |
 | \|quarterly ROIC\| > 1e+06 | 18 | 1.685e-05 | 2.776e-17 |
-| \|D/E\| > 100 | 3386 | 0.002438 |  |
+| \|D/E\| > 100 | 3387 | 0.002438 |  |
 
 ## 2. המפתח והרבעון
 
@@ -76,11 +70,11 @@
 
 | measure | value |
 |---|---|
-| rows in source | 1905162 |
+| rows in source | 1905390 |
 | removed in step 1 (same gvkey and date, values merged) | 1108 |
-| rows after step 1 | 1904054 |
+| rows after step 1 | 1904282 |
 | removed in step 2 (same period, different date, first row wins) | 673 |
-| rows in panel | 1903381 |
+| rows in panel | 1903609 |
 
 ## 4. רציפות
 
@@ -88,17 +82,17 @@
 
 | measure | value |
 |---|---|
-| rows | 1,903,381 |
-| rows linked to the previous quarter | 1,859,282 |
-| share linked | 0.9768 |
-| within-firm pairs | 1,862,355 |
-| pairs with quarter step == 1 | 1,859,814 |
-| pairs with day gap in [60, 130] | 1,859,417 |
+| rows | 1,903,609 |
+| rows linked to the previous quarter | 1,859,613 |
+| share linked | 0.9769 |
+| within-firm pairs | 1,862,684 |
+| pairs with quarter step == 1 | 1,860,143 |
+| pairs with day gap in [60, 130] | 1,859,748 |
 | day gap p01 | 89 |
 | day gap median | 92 |
 | day gap p99 | 92 |
-| rows with run_len >= 2 | 1,859,282 |
-| rows with run_len >= 4 | 1,773,575 |
+| rows with run_len >= 2 | 1,859,613 |
+| rows with run_len >= 4 | 1,773,899 |
 
 ## 5. שרשרת הרמות
 
@@ -115,16 +109,16 @@
 
 | measure | rows | denominator | share_of_denominator |
 |---|---|---|---|
-| tax expense present | 1540896 | 1903381 | 0.8096 |
-| tax expense < 0 (benefit) | 208851 | 1540896 | 0.1355 |
-| tax expense == 0 | 369516 | 1540896 | 0.2398 |
-| tax expense > 0 | 962529 | 1540896 | 0.6247 |
-| tax rate defined | 1532010 | 1903381 | 0.8049 |
-| tax rate < 0 | 149251 | 1532010 | 0.09742 |
-| tax rate in [0, 1] | 1360867 | 1532010 | 0.8883 |
-| tax rate > 1 (above 100%) | 21892 | 1532010 | 0.01429 |
-| negative rate: benefit on a profit (tax<0, pretax>0) | 45861 | 149251 | 0.3073 |
-| negative rate: tax on a pretax loss (tax>0, pretax<0) | 103390 | 149251 | 0.6927 |
+| tax expense present | 1541200 | 1903609 | 0.8096 |
+| tax expense < 0 (benefit) | 208890 | 1541200 | 0.1355 |
+| tax expense == 0 | 369596 | 1541200 | 0.2398 |
+| tax expense > 0 | 962714 | 1541200 | 0.6247 |
+| tax rate defined | 1532314 | 1903609 | 0.805 |
+| tax rate < 0 | 149299 | 1532314 | 0.09743 |
+| tax rate in [0, 1] | 1361116 | 1532314 | 0.8883 |
+| tax rate > 1 (above 100%) | 21899 | 1532314 | 0.01429 |
+| negative rate: benefit on a profit (tax<0, pretax>0) | 45869 | 149299 | 0.3072 |
+| negative rate: tax on a pretax loss (tax>0, pretax<0) | 103430 | 149299 | 0.6928 |
 
 ## 7. הפירוקים
 
@@ -134,28 +128,28 @@
 
 | check | n_tested | n_passed | n_failed | share_passed | note |
 |---|---|---|---|---|---|
-| calc_raw_tax_rate_quarterly = tax expense / pretax income | 1532010 | 1532010 | 0 | 1 |  |
-| calc_nopat_quarterly = ebit * (1 - tax rate) | 1453102 | 1453102 | 0 | 1 |  |
-| calc_ic_raw = TCA - TCL + PPE + goodwill (PPE/GW missing = 0) | 1160598 | 1160598 | 0 | 1 |  |
-| calc_average_ic_raw_quarterly = (IC(t-1) + IC(t)) / 2 | 1087160 | 1087160 | 0 | 1 | defined only across a consecutive pair |
-| calc_roic_pretax_quarterly_ic_raw = numerator / avg IC | 1071134 | 1071134 | 0 | 1 |  |
-| calc_roic_pretax_annualized_ic_raw = (1+r)^4 - 1 | 1053970 | 1053970 | 0 | 1 | NaN when 1+r <= 0 |
-| calc_roic_pretax_annualized is NaN exactly when 1+r <= 0 | 1903381 | 1903381 | 0 | 1 |  |
-| calc_roic_posttax_quarterly_ic_raw = numerator / avg IC | 1068334 | 1068334 | 0 | 1 |  |
-| calc_roic_posttax_annualized_ic_raw = (1+r)^4 - 1 | 1051118 | 1051118 | 0 | 1 | NaN when 1+r <= 0 |
-| calc_roic_posttax_annualized is NaN exactly when 1+r <= 0 | 1903381 | 1903381 | 0 | 1 |  |
-| NOPAT bridge: C_EBIT + C_TAX = change (Shapley efficiency) | 1361502 | 1361502 | 0 | 1 |  |
-| ROIC bridge: C_EBIT + C_TAX + C_IC = change (Shapley efficiency) | 1026266 | 1026266 | 0 | 1 |  |
-| calc_roic_total_absolute_contribution = sum of \|C_i\| | 1026266 | 1026266 | 0 | 1 |  |
-| absolute shares sum to 1 where they are defined | 1025421 | 1025421 | 0 | 1 |  |
-| positive + negative + neutral driver counts = 3 | 1026266 | 1026266 | 0 | 1 |  |
-| calc_roic_offset_ratio is inside [0, 1] | 1025421 | 1025421 | 0 | 1 | triangle inequality \|dROIC\| <= sum \|C_i\| |
-| calc_debt_value_quarterly = short + long (missing leg = 0) | 1428057 | 1428057 | 0 | 1 |  |
-| calc_debt_value_quarterly is NaN exactly when both legs are | 1903381 | 1903381 | 0 | 1 |  |
-| calc_debt_to_equity_quarterly = debt / equity | 1388919 | 1388919 | 0 | 1 | zero or missing equity -> NaN |
-| period_key = calendar quarter of (fiscal end - 2 months) | 1903381 | 1903381 | 0 | 1 |  |
-| KEY = period_key + '_' + symbol | 1902998 | 1902998 | 0 | 1 | rows with no ticker carry no KEY |
-| KEY is unique among rows that have a ticker | 1902998 | 1902998 | 0 | 1 |  |
+| calc_raw_tax_rate_quarterly = tax expense / pretax income | 1532314 | 1532314 | 0 | 1 |  |
+| calc_nopat_quarterly = ebit * (1 - tax rate) | 1453398 | 1453398 | 0 | 1 |  |
+| calc_ic_raw = TCA - TCL + PPE + goodwill (PPE/GW missing = 0) | 1160864 | 1160864 | 0 | 1 |  |
+| calc_average_ic_raw_quarterly = (IC(t-1) + IC(t)) / 2 | 1087389 | 1087389 | 0 | 1 | defined only across a consecutive pair |
+| calc_roic_pretax_quarterly_ic_raw = numerator / avg IC | 1071359 | 1071359 | 0 | 1 |  |
+| calc_roic_pretax_annualized_ic_raw = (1+r)^4 - 1 | 1054190 | 1054190 | 0 | 1 | NaN when 1+r <= 0 |
+| calc_roic_pretax_annualized is NaN exactly when 1+r <= 0 | 1903609 | 1903609 | 0 | 1 |  |
+| calc_roic_posttax_quarterly_ic_raw = numerator / avg IC | 1068559 | 1068559 | 0 | 1 |  |
+| calc_roic_posttax_annualized_ic_raw = (1+r)^4 - 1 | 1051337 | 1051337 | 0 | 1 | NaN when 1+r <= 0 |
+| calc_roic_posttax_annualized is NaN exactly when 1+r <= 0 | 1903609 | 1903609 | 0 | 1 |  |
+| NOPAT bridge: C_EBIT + C_TAX = change (Shapley efficiency) | 1361755 | 1361755 | 0 | 1 |  |
+| ROIC bridge: C_EBIT + C_TAX + C_IC = change (Shapley efficiency) | 1026478 | 1026478 | 0 | 1 |  |
+| calc_roic_total_absolute_contribution = sum of \|C_i\| | 1026478 | 1026478 | 0 | 1 |  |
+| absolute shares sum to 1 where they are defined | 1025633 | 1025633 | 0 | 1 |  |
+| positive + negative + neutral driver counts = 3 | 1026478 | 1026478 | 0 | 1 |  |
+| calc_roic_offset_ratio is inside [0, 1] | 1025633 | 1025633 | 0 | 1 | triangle inequality \|dROIC\| <= sum \|C_i\| |
+| calc_debt_value_quarterly = short + long (missing leg = 0) | 1428359 | 1428359 | 0 | 1 |  |
+| calc_debt_value_quarterly is NaN exactly when both legs are | 1903609 | 1903609 | 0 | 1 |  |
+| calc_debt_to_equity_quarterly = debt / equity | 1389220 | 1389220 | 0 | 1 | zero or missing equity -> NaN |
+| period_key = calendar quarter of (fiscal end - 2 months) | 1903609 | 1903609 | 0 | 1 |  |
+| KEY = period_key + '_' + symbol | 1903226 | 1903226 | 0 | 1 | rows with no ticker carry no KEY |
+| KEY is unique among rows that have a ticker | 1903226 | 1903226 | 0 | 1 |  |
 
 ## 8. התוויות
 
@@ -165,39 +159,39 @@
 
 | column | level | rows | share |
 |---|---|---|---|
-| calc_nopat_decomposition_status | VALID | 1361502 | 0.7153 |
-| calc_nopat_decomposition_status | UNCLASSIFIED_MISSING_DATA | 497780 | 0.2615 |
-| calc_nopat_decomposition_status | UNCLASSIFIED_NONCONSECUTIVE | 44099 | 0.02317 |
-| calc_roic_decomposition_status | VALID | 1026266 | 0.5392 |
-| calc_roic_decomposition_status | UNCLASSIFIED_MISSING_DATA | 832798 | 0.4375 |
-| calc_roic_decomposition_status | UNCLASSIFIED_NONCONSECUTIVE | 44099 | 0.02317 |
+| calc_nopat_decomposition_status | VALID | 1361755 | 0.7154 |
+| calc_nopat_decomposition_status | UNCLASSIFIED_MISSING_DATA | 497858 | 0.2615 |
+| calc_nopat_decomposition_status | UNCLASSIFIED_NONCONSECUTIVE | 43996 | 0.02311 |
+| calc_roic_decomposition_status | VALID | 1026478 | 0.5392 |
+| calc_roic_decomposition_status | UNCLASSIFIED_MISSING_DATA | 832917 | 0.4375 |
+| calc_roic_decomposition_status | UNCLASSIFIED_NONCONSECUTIVE | 43996 | 0.02311 |
 | calc_roic_decomposition_status | UNCLASSIFIED_ZERO_IC | 218 | 0.0001145 |
-| calc_tax_rate_quality_flag | VALID | 1360867 | 0.715 |
-| calc_tax_rate_quality_flag | MISSING | 371371 | 0.1951 |
-| calc_tax_rate_quality_flag | NEGATIVE_TAX_RATE | 149251 | 0.07841 |
-| calc_tax_rate_quality_flag | ABOVE_100_PERCENT | 21892 | 0.0115 |
-| calc_roic_quality_flag | UNCLASSIFIED | 877115 | 0.4608 |
-| calc_roic_quality_flag | VALID | 763586 | 0.4012 |
-| calc_roic_quality_flag | TAX_RATE_OUT_OF_RANGE | 187084 | 0.09829 |
-| calc_roic_quality_flag | NEGATIVE_IC_MECHANICAL_ONLY | 75596 | 0.03972 |
-| calc_roic_effect_structure | UNCLASSIFIED | 877115 | 0.4608 |
-| calc_roic_effect_structure | MIXED_NET_INCREASE | 377453 | 0.1983 |
-| calc_roic_effect_structure | MIXED_NET_DECREASE | 294382 | 0.1547 |
-| calc_roic_effect_structure | ALL_NEGATIVE | 209770 | 0.1102 |
-| calc_roic_effect_structure | ALL_POSITIVE | 104771 | 0.05504 |
-| calc_roic_effect_structure | SINGLE_POSITIVE_DRIVER | 17234 | 0.009054 |
-| calc_roic_effect_structure | SINGLE_NEGATIVE_DRIVER | 16679 | 0.008763 |
+| calc_tax_rate_quality_flag | VALID | 1361116 | 0.715 |
+| calc_tax_rate_quality_flag | MISSING | 371295 | 0.195 |
+| calc_tax_rate_quality_flag | NEGATIVE_TAX_RATE | 149299 | 0.07843 |
+| calc_tax_rate_quality_flag | ABOVE_100_PERCENT | 21899 | 0.0115 |
+| calc_roic_quality_flag | UNCLASSIFIED | 877131 | 0.4608 |
+| calc_roic_quality_flag | VALID | 763725 | 0.4012 |
+| calc_roic_quality_flag | TAX_RATE_OUT_OF_RANGE | 187138 | 0.09831 |
+| calc_roic_quality_flag | NEGATIVE_IC_MECHANICAL_ONLY | 75615 | 0.03972 |
+| calc_roic_effect_structure | UNCLASSIFIED | 877131 | 0.4608 |
+| calc_roic_effect_structure | MIXED_NET_INCREASE | 377519 | 0.1983 |
+| calc_roic_effect_structure | MIXED_NET_DECREASE | 294454 | 0.1547 |
+| calc_roic_effect_structure | ALL_NEGATIVE | 209815 | 0.1102 |
+| calc_roic_effect_structure | ALL_POSITIVE | 104793 | 0.05505 |
+| calc_roic_effect_structure | SINGLE_POSITIVE_DRIVER | 17239 | 0.009056 |
+| calc_roic_effect_structure | SINGLE_NEGATIVE_DRIVER | 16681 | 0.008763 |
 | calc_roic_effect_structure | MIXED_FULL_OFFSET | 5132 | 0.002696 |
 | calc_roic_effect_structure | NO_MATERIAL_CHANGE | 845 | 0.0004439 |
-| calc_roic_dominant_driver | UNCLASSIFIED | 877115 | 0.4608 |
-| calc_roic_dominant_driver | EBIT | 714278 | 0.3753 |
-| calc_roic_dominant_driver | IC | 138758 | 0.0729 |
-| calc_roic_dominant_driver | TAX | 129809 | 0.0682 |
-| calc_roic_dominant_driver | BALANCED | 42576 | 0.02237 |
+| calc_roic_dominant_driver | UNCLASSIFIED | 877131 | 0.4608 |
+| calc_roic_dominant_driver | EBIT | 714407 | 0.3753 |
+| calc_roic_dominant_driver | IC | 138794 | 0.07291 |
+| calc_roic_dominant_driver | TAX | 129848 | 0.06821 |
+| calc_roic_dominant_driver | BALANCED | 42584 | 0.02237 |
 | calc_roic_dominant_driver | NONE | 845 | 0.0004439 |
-| calc_roic_dominant_driver_effect | UNCLASSIFIED | 919691 | 0.4832 |
-| calc_roic_dominant_driver_effect | NEGATIVE | 495760 | 0.2605 |
-| calc_roic_dominant_driver_effect | POSITIVE | 487085 | 0.2559 |
+| calc_roic_dominant_driver_effect | UNCLASSIFIED | 919715 | 0.4831 |
+| calc_roic_dominant_driver_effect | NEGATIVE | 495874 | 0.2605 |
+| calc_roic_dominant_driver_effect | POSITIVE | 487175 | 0.2559 |
 | calc_roic_dominant_driver_effect | NEUTRAL | 845 | 0.0004439 |
 
 - מפקד הרמות המוצהרות: 160 מתוך 160 נוצרו בפועל; השאר מפורטות ב-`label_family_census.csv` כרמות שלא נצפו.
@@ -215,100 +209,73 @@
 
 | measure | rows | denominator | share_of_denominator |
 |---|---|---|---|
-| equity present | 1401251 | 1903381 | 0.7362 |
-| equity == 0 (D/E is NaN by the denominator rule) | 854 | 1903381 | 0.0004487 |
-| equity < 0 (D/E negative and mechanical) | 121389 | 1903381 | 0.06378 |
-| D/E present | 1388919 | 1903381 | 0.7297 |
-| D/E negative | 111604 | 1388919 | 0.08035 |
-| calc_ic_raw < 0 (ratio mechanical, flagged) | 87637 | 1160598 | 0.07551 |
+| equity present | 1401548 | 1903609 | 0.7363 |
+| equity == 0 (D/E is NaN by the denominator rule) | 854 | 1903609 | 0.0004486 |
+| equity < 0 (D/E negative and mechanical) | 121417 | 1903609 | 0.06378 |
+| D/E present | 1389220 | 1903609 | 0.7298 |
+| D/E negative | 111629 | 1389220 | 0.08035 |
+| calc_ic_raw < 0 (ratio mechanical, flagged) | 87662 | 1160864 | 0.07551 |
 
-## 11. הצלבה מול GuruFocus
+## 10א. תזרים מזומנים חופשי לבעלי המניות (FCFE)
 
-GuruFocus מפרסם בעצמו את עמודות ה-`calc_*`, ולכן ההצלבה אינה רק על מספרים אלא גם **הסכמה בין תוויות** מול פאנל שחושב ממקור אחר לגמרי.
+התזרים נבנה **כולו משדות רבעוניים** ובלי סדרות YTD — כלומר בלי להזדקק ל-`fyearq`/`fqtr` שאינם במשיכה:
 
-| measure | value |
-|---|---|
-| panel rows | 1903381 |
-| panel rows with an ambiguous stripped symbol | 62927 |
-| gurufocus rows | 23214 |
-| matched rows | 22638 |
+```
+NWC_t  = (actq_t − cheq_t) − (lctq_t − dlcq_t)
+FCFE_t = ibq_t − (NWC_t − NWC_t−1) − (ppentq_t − ppentq_t−1)
 
-מה שמאושר בבירור: `calc_tax_expense_quarterly` (מתאם 0.996, יחס חציוני 1.0000) — כלומר **הכרעת הסימן נכונה**, ו-92.4% מהשורות מקיימות `calc_tax_expense_quarterly == −tax_provision` בדיוק · `calc_ic_raw` ו-`calc_average_ic_raw_quarterly` (יחס 1.0000) — **נוסחת ההון המושקע נכונה** · `equity` (יחס 1.0000) · `pretax_income`, הנכסים וההתחייבויות השוטפים, מוניטין, `market_cap` — כולם ביחס חציוני 1.0000.
+free_cash_flow_quarterly  = FCFE של הרבעון הבודד
+calc_free_cash_flow_ttm   = סכום 4 רבעונים עוקבים (אחרת NaN, לא סכום חלקי)
+calc_p_to_fcf_quarterly   = market_cap / free_cash_flow_quarterly
+calc_p_to_fcf_ttm         = market_cap / calc_free_cash_flow_ttm
+```
 
-| column | n_overlap | nan_pattern_agreement | correlation | median_ratio | median_rel_deviation | share_within_1pct | share_within_5pct | max_abs_deviation | within_thresholds | expected_gap | note |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| pretax_income | 21475 | 0.9583 | 0.998 | 1 | 0 | 0.9073 | 0.9482 | 1.065e+04 | True | False |  |
-| ebit | 21357 | 0.9558 | 0.9184 | 1 | 0.07277 | 0.1811 | 0.422 | 9.776e+04 | False | True | GuruFocus EBIT measured as piq+xintq; here oiadpq per the dictionary |
-| total_current_assets | 18489 | 0.987 | 0.9987 | 1 | 0 | 0.9951 | 0.9978 | 110,771 | True | False |  |
-| total_current_liabilities | 18405 | 0.9845 | 0.9996 | 1 | 0 | 0.9944 | 0.9978 | 4.86e+04 | True | False |  |
-| goodwill | 17832 | 0.8499 | 0.9993 | 1 | 0 | 0.9942 | 0.9952 | 4.048e+04 | True | False |  |
-| net_ppe | 20322 | 0.9435 | 0.9676 | 1 | 1.317e-16 | 0.7703 | 0.8065 | 135,236 | True | False |  |
-| short_term_debt | 14755 | 0.7377 | 0.9364 | 1.061 | 0.07445 | 0.3981 | 0.4632 | 2.766e+04 | False | True | dlcq includes the current portion of long-term debt |
-| market_cap | 22197 | 0.9898 | 0.9997 | 1 | 1.276e-07 | 0.9343 | 0.9571 | 132,874 | True | False |  |
-| equity | 22234 | 0.9956 | 0.9966 | 1 | 1.434e-16 | 0.8923 | 0.9426 | 104,138 | True | True | equity = atq - ltq (total equity incl. minority interest); GuruFocus used seqq |
-| calc_tax_expense_quarterly | 21637 | 0.9663 | 0.9957 | 1 | 0 | 0.952 | 0.9726 | 4961 | True | False |  |
-| calc_raw_tax_rate_quarterly | 21306 | 0.9518 | 1 | 0.9995 | 0.01292 | 0.4022 | 0.8768 | 121.3 | True | True | never clipped to [0,1] here; GuruFocus rounds to 2dp |
-| calc_nopat_quarterly | 20263 | 0.9088 | 0.4563 | 1 | 0.07221 | 0.1792 | 0.4226 | 8,652,006 | False | True | downstream of the ebit definition |
-| calc_ic_raw | 15752 | 0.8693 | 0.9823 | 1 | 1.344e-16 | 0.8028 | 0.9335 | 135,236 | True | False |  |
-| calc_average_ic_raw_quarterly | 15181 | 0.8469 | 0.9831 | 1 | 1.162e-07 | 0.7798 | 0.9333 | 133,754 | True | False |  |
-| calc_roic_pretax_quarterly_ic_raw | 15165 | 0.8463 | 0.515 | 0.994 | 0.108 | 0.06495 | 0.295 | 23.47 | False | True | downstream of ebit; GuruFocus rounds to 2 decimals |
-| calc_roic_posttax_quarterly_ic_raw | 14839 | 0.8329 | 0.9078 | 0.9912 | 0.1148 | 0.05998 | 0.2713 | 276.6 | False | True | downstream of ebit; GuruFocus rounds to 2 decimals |
-| calc_debt_value_quarterly | 22217 | 0.9907 | 0.9178 | 1 | 1.135e-07 | 0.7686 | 0.8787 | 725,918 | False | True | downstream of short_term_debt (median ratio 1.0000) |
-| calc_debt_to_equity_quarterly | 20427 | 0.916 | 0.1163 | 0.9987 | 0.01377 | 0.4461 | 0.7117 | 1.192e+04 | False | True | denominator differs with equity; Pearson is dominated by near-zero-equity outliers while the median relative deviation is 1.4% |
-| calc_nopat_change_quarterly | 19338 | 0.8702 | 0.4574 | 0.918 | 0.3425 | 0.09774 | 0.2036 | 8,652,962 | False | True | downstream of ebit; first differences amplify the gap |
-| calc_roic_posttax_change_quarterly | 14182 | 0.8069 | 0.9089 | 0.8842 | 0.3886 | 0.0696 | 0.1678 | 276.6 | False | True | downstream of ebit; first differences amplify |
-| calc_roic_ebit_contribution | 14182 | 0.8069 | 0.9985 | 0.7997 | 0.4439 | 0.06995 | 0.1622 | 143.5 | False | True | downstream of ebit (correlation 0.999, level ratio 0.80) |
-| calc_roic_tax_contribution | 14182 | 0.8069 | 0.931 | 0.9994 | 0.09092 | 0.1302 | 0.3719 | 417 | False | True | downstream of ebit |
-| calc_roic_ic_contribution | 14182 | 0.8069 | 0.5844 | 0.9997 | 0.1162 | 0.1209 | 0.332 | 29.35 | False | True | downstream of ebit |
+- השינוי ב-PPE נטו הוא הפרוקסי ל-CapEx בניכוי פחת — זה מה שמאפשר לבנות את כל התזרים מנתונים רבעוניים.
+- שני יחסי המחיר מחלקים ב**שווי שוק ולא ב-EV**, כי FCFE הוא תזרים ממונף שמגיע לבעלי המניות; צימוד ל-EV היה סופר את החוב פעמיים.
+- **ערך חסר אינו מפיל את החישוב** (החלטת החוקר 11/10). הנוסחה נפרסת לשישה איברים חתומים — הרווח וחמישה הפרשי מאזן — וכל איבר נכנס רק אם אפשר לחשב אותו; איבר שאי אפשר פשוט אינו תורם. תוצאה של 0 נשמרת כתוצאה.
+- ⚠️ איבר הפרש שחסר לו הרבעון הקודם **מושמט** ואינו מוחלף ברמה עצמה: `ppentq_t − 0` היה נקרא כאילו החברה קנתה את כל בסיס הרכוש הקבוע ברבעון אחד — תזרים מומצא, לא שמרני.
+- ⚠️ שורה שאין בה אף איבר שאפשר לחשב נשארת NaN. אפס מתוך כלום אינו תזרים של אפס.
+- ⚠️ **שורה שנבנתה משני איברים אינה אותה מדידה כמו שורה שנבנתה משישה.** לכן ההתפלגות מדווחת, ולא רק מספר כיסוי אחד:
 
+| measure | rows | denominator | share_of_denominator |
+|---|---|---|---|
+| ibq present | 1563816 | 1903609 | 0.8215 |
+| cheq present | 1393963 | 1903609 | 0.7323 |
+| free_cash_flow_quarterly present | 1569447 | 1903609 | 0.8245 |
+| free_cash_flow_quarterly == 0 exactly | 2294 | 1569447 | 0.001462 |
+| free_cash_flow_quarterly < 0 | 801375 | 1569447 | 0.5106 |
+| calc_free_cash_flow_ttm present (4 consecutive quarters) | 1439614 | 1903609 | 0.7563 |
+| calc_free_cash_flow_ttm < 0 | 728065 | 1439614 | 0.5057 |
+| calc_p_to_fcf_quarterly present | 469274 | 1903609 | 0.2465 |
+| calc_p_to_fcf_quarterly < 0 | 259009 | 469274 | 0.5519 |
+| calc_p_to_fcf_ttm present | 458280 | 1903609 | 0.2407 |
+| calc_p_to_fcf_ttm < 0 | 244554 | 458280 | 0.5336 |
+| rows on a run of 5+ consecutive quarters (what TTM needs) | 1732319 | 1903609 | 0.91 |
+| rows whose flow was built from 0 of 6 terms | 334162 | 1903609 | 0.1755 |
+| rows whose flow was built from 1 of 6 terms | 206680 | 1903609 | 0.1086 |
+| rows whose flow was built from 2 of 6 terms | 65342 | 1903609 | 0.03433 |
+| rows whose flow was built from 3 of 6 terms | 63212 | 1903609 | 0.03321 |
+| rows whose flow was built from 4 of 6 terms | 142590 | 1903609 | 0.07491 |
+| rows whose flow was built from 5 of 6 terms | 52250 | 1903609 | 0.02745 |
+| rows whose flow was built from 6 of 6 terms | 1039373 | 1903609 | 0.546 |
 
-⚠️ **איך לקרוא את הסכמת התוויות למטה:** תווית יכולה להסכים רק במקום שבו הקלט מסכים. זהו הגבול העליון, והוא נמדד:
+- ⚠️ ה-TTM נשאר **קפדני**: 4 רבעונים עוקבים או NaN. סכום של שלושה רבעונים שמסומן כנגרר-שנה הוא כמות אחרת, וזה עניין נפרד משדה חסר. בפועל הוא דורש **חמישה** רבעונים עוקבים, כי כל FCFE רבעוני בודד זקוק לרבעון שלפניו.
 
-| input | n_comparable | share_within_1pct | n_only_mine | n_only_gurufocus |
-|---|---|---|---|---|
-| ebit | 21357 | 0.1811 | 958 | 42 |
-| pretax_income | 21475 | 0.9073 | 928 | 17 |
-| calc_tax_expense_quarterly | 21637 | 0.952 | 746 | 17 |
-| total_current_assets | 18489 | 0.9951 | 174 | 121 |
-| total_current_liabilities | 18405 | 0.9944 | 258 | 93 |
-| net_ppe | 20322 | 0.7703 | 795 | 485 |
-| goodwill | 17832 | 0.9942 | 3346 | 53 |
-| ALL of the above within 1% (the label ceiling) | 22638 | 0.1774 |  |  |
+## 11. איך הפאנל מאמת את עצמו
 
-כלומר הסכמה של 62%–94% בתוויות היא **מעל** תקרת הקלט, כי התוויות גסות (שלוש מגירות) ומסכימות גם כשהמספרים נבדלים. שלושת הגורמים: הגדרת `ebit`, העובדה ש-GuruFocus מפרסם את היחסים מעוגלים לשתי ספרות, ושורות שבהן לצד אחד יש נתון ולשני אין.
+אין יותר הצלבה מול מקור חיצוני (החלטת החוקר 11/10) — האימות עומד על בדיקות שנגזרות מהפאנל עצמו, ולכן אינו תלוי בשום קובץ נוסף:
 
-| column | n_overlap | exact_agreement | input_agreement_ceiling | top_disagreements | expected_gap | note |
-|---|---|---|---|---|---|---|
-| calc_nopat_decomposition_status | 22427 | 0.868 | 0.1774 | VALID->UNCLASSIFIED_MISSING_DATA:2241; VALID->UNCLASSIFIED_NONCONSECUTIVE:647; UNCLASSIFIED_MISSING_DATA->VALID:49; UNCLASSIFIED_MISSING_DATA->UNCLASSIFIED_NONCONSECUTIVE:16; UNCLASSIFIED_NONCONSECUTIVE->UNCLASSIFIED_MISSING_DATA:6 | True | coverage differs; 1,303 of 1,465 flag gaps are one-sided NaN |
-| calc_nopat_change_direction | 22427 | 0.7146 | 0.1774 | INCREASE->UNCLASSIFIED:1537; INCREASE->DECREASE:1515; DECREASE->INCREASE:1420; DECREASE->UNCLASSIFIED:1300; INCREASE->STABLE:152 | True | downstream of ebit; near-band rows flip |
-| calc_nopat_ebit_effect | 22427 | 0.6979 | 0.1774 | POSITIVE->NEGATIVE:1698; NEGATIVE->POSITIVE:1476; POSITIVE->UNCLASSIFIED:1465; NEGATIVE->UNCLASSIFIED:1348; POSITIVE->NEUTRAL:176 | True | downstream of ebit |
-| calc_nopat_tax_effect | 22427 | 0.8116 | 0.1774 | POSITIVE->UNCLASSIFIED:1127; NEGATIVE->UNCLASSIFIED:1060; NEUTRAL->UNCLASSIFIED:701; NEGATIVE->POSITIVE:451; POSITIVE->NEGATIVE:428 | True | downstream of ebit via the contribution weights |
-| calc_nopat_effect_combination | 22427 | 0.6639 | 0.1774 | EBIT_POS__TAX_NEG->EBIT_NEG__TAX_NEG:688; EBIT_POS__TAX_POS->EBIT_NEG__TAX_POS:683; EBIT_POS__TAX_NEG->UNCLASSIFIED:597; EBIT_NEG__TAX_POS->EBIT_POS__TAX_POS:595; EBIT_NEG__TAX_POS->UNCLASSIFIED:587 | True | cross-product of the two effects above |
-| calc_roic_decomposition_status | 22427 | 0.7978 | 0.1774 | VALID->UNCLASSIFIED_MISSING_DATA:3788; VALID->UNCLASSIFIED_NONCONSECUTIVE:508; UNCLASSIFIED_MISSING_DATA->UNCLASSIFIED_NONCONSECUTIVE:155; UNCLASSIFIED_MISSING_DATA->VALID:76; UNCLASSIFIED_NONCONSECUTIVE->UNCLASSIFIED_MISSING_DATA:8 | True | coverage differs on invested capital |
-| calc_roic_posttax_change_direction | 22427 | 0.6929 | 0.1774 | INCREASE->UNCLASSIFIED:2197; DECREASE->UNCLASSIFIED:2063; INCREASE->DECREASE:1177; DECREASE->INCREASE:1170; INCREASE->STABLE:48 | True | downstream of ebit; near-band rows flip |
-| calc_roic_ebit_effect | 22427 | 0.6785 | 0.1774 | POSITIVE->UNCLASSIFIED:2291; NEGATIVE->UNCLASSIFIED:1966; POSITIVE->NEGATIVE:1380; NEGATIVE->POSITIVE:1198; NEUTRAL->POSITIVE:92 | True | downstream of ebit |
-| calc_roic_tax_effect | 22427 | 0.7626 | 0.1774 | POSITIVE->UNCLASSIFIED:1991; NEGATIVE->UNCLASSIFIED:1916; NEUTRAL->UNCLASSIFIED:389; NEGATIVE->POSITIVE:362; POSITIVE->NEGATIVE:329 | True | downstream of ebit |
-| calc_roic_ic_effect | 22427 | 0.7388 | 0.1774 | NEGATIVE->UNCLASSIFIED:2502; POSITIVE->UNCLASSIFIED:1204; NEUTRAL->UNCLASSIFIED:590; POSITIVE->NEGATIVE:429; NEGATIVE->POSITIVE:256 | True | downstream of ebit |
-| calc_roic_effect_combination | 22427 | 0.6221 | 0.1774 | EBIT_POS__TAX_NEG__IC_NEG->UNCLASSIFIED:673; EBIT_NEG__TAX_POS__IC_NEG->UNCLASSIFIED:579; EBIT_POS__TAX_POS__IC_NEG->UNCLASSIFIED:570; EBIT_NEG__TAX_NEG__IC_NEG->UNCLASSIFIED:452; EBIT_POS__TAX_POS__IC_NEG->EBIT_NEG__TAX_POS__IC_NEG:311 | True | cross-product of the three effects above |
-| calc_ebit_movement | 22427 | 0.7003 | 0.1774 | UP->DOWN:1708; DOWN->UP:1480; UP->UNCLASSIFIED:1473; DOWN->UNCLASSIFIED:1349; UP->FLAT:162 | True | downstream of ebit |
-| calc_tax_rate_movement | 22427 | 0.8552 | 0.1774 | DOWN->UNCLASSIFIED:1244; UP->UNCLASSIFIED:1231; FLAT->UNCLASSIFIED:413; UP->DOWN:141; DOWN->UP:135 | True | GuruFocus rates are rounded to 2dp; vendor inputs differ |
-| calc_ic_movement | 22427 | 0.7753 | 0.1774 | UP->UNCLASSIFIED:2455; DOWN->UNCLASSIFIED:1342; FLAT->UNCLASSIFIED:499; FLAT->DOWN:129; FLAT->UP:128 | True | coverage and vintage differences in the capital base |
-| calc_raw_movement_combination | 22427 | 0.6469 | 0.1774 | EBIT_UP__TAX_UP__IC_UP->UNCLASSIFIED:689; EBIT_UP__TAX_DOWN__IC_UP->UNCLASSIFIED:596; EBIT_DOWN__TAX_DOWN__IC_UP->UNCLASSIFIED:577; EBIT_DOWN__TAX_UP__IC_UP->UNCLASSIFIED:481; EBIT_UP__TAX_UP__IC_DOWN->UNCLASSIFIED:366 | True | cross-product of the three movements above |
-| calc_roic_effect_structure | 22427 | 0.637 | 0.1774 | MIXED_NET_INCREASE->UNCLASSIFIED:1716; MIXED_NET_DECREASE->UNCLASSIFIED:1374; MIXED_NET_DECREASE->MIXED_NET_INCREASE:797; MIXED_NET_INCREASE->MIXED_NET_DECREASE:746; ALL_NEGATIVE->UNCLASSIFIED:652 | True | downstream of the three effects |
-| calc_roic_dominant_driver | 22427 | 0.6559 | 0.1774 | EBIT->UNCLASSIFIED:2776; TAX->EBIT:1348; TAX->UNCLASSIFIED:1004; BALANCED->EBIT:409; EBIT->TAX:362 | True | downstream of the three contributions |
-| calc_roic_dominant_driver_effect | 22427 | 0.6759 | 0.1774 | POSITIVE->UNCLASSIFIED:2393; NEGATIVE->UNCLASSIFIED:2195; POSITIVE->NEGATIVE:1015; NEGATIVE->POSITIVE:995; UNCLASSIFIED->POSITIVE:342 | True | downstream of the dominant driver |
-| calc_ebit_sign_regime | 22427 | 0.7979 | 0.1774 | PROFIT_TO_PROFIT->UNCLASSIFIED:2485; PROFIT_TO_PROFIT->PROFIT_TO_LOSS:504; PROFIT_TO_PROFIT->LOSS_TO_PROFIT:482; LOSS_TO_LOSS->UNCLASSIFIED:270; PROFIT_TO_PROFIT->LOSS_TO_LOSS:118 | True | downstream of ebit |
-| calc_nopat_sign_regime | 22427 | 0.7968 | 0.1774 | PROFIT_TO_PROFIT->UNCLASSIFIED:2382; PROFIT_TO_PROFIT->PROFIT_TO_LOSS:476; PROFIT_TO_PROFIT->LOSS_TO_PROFIT:450; LOSS_TO_LOSS->UNCLASSIFIED:263; LOSS_TO_PROFIT->UNCLASSIFIED:125 | True | downstream of ebit |
-| calc_tax_rate_quality_flag | 22427 | 0.9441 | 0.1774 | VALID->MISSING:902; NEGATIVE_TAX_RATE->MISSING:147; VALID->NEGATIVE_TAX_RATE:73; NEGATIVE_TAX_RATE->VALID:50; ABOVE_100_PERCENT->MISSING:26 | True | 6.5% disagreement, 89% of it one-sided NaN coverage |
-| calc_roic_quality_flag | 22427 | 0.7975 | 0.1774 | VALID->UNCLASSIFIED:3129; TAX_RATE_OUT_OF_RANGE->UNCLASSIFIED:1142; VALID->TAX_RATE_OUT_OF_RANGE:89; TAX_RATE_OUT_OF_RANGE->VALID:61; UNCLASSIFIED->VALID:57 | True | downstream of the ROIC status |
-
-פערים הגדרתיים נרשמו **מראש** בקונפיג ומסומנים `expected_gap` — הם תיעוד, לא כשל. הפרה בלי הסבר מוקדם עוצרת את הריצה.
-✅ אין הפרת סף בלי הסבר מוקדם.
+- **22 בדיקות זהות** מחזירות כל נוסחה מהעמודות שנכתבו ומשוות לעמודה המפורסמת. כשלים: **0**.
+- **מפקד הרמות**: 160 מתוך 160 הרמות המוצהרות נוצרו בפועל — זו העדות ל-9/9 ול-27/27 בכל משפחת תוויות.
+- **שאריות ה-Shapley** נבדקות על כל השורות: הזהות מדויקת מהבנייה, ולכן שארית שאינה אפס היתה מעידה על חיווט שבור.
+- **`no_inf_check.csv`**: אין `inf` באף עמודה — כל מכנה אפס או חסר הפך ל-NaN.
+- **`precision_audit.csv`**: ההמרה מ-decimal ל-float64 בשדות המקור, עם מרווח מדוד מול גבול הדיוק.
+- **מערך המבחנים** (`pytest`) מחשב את הנוסחאות מחדש באופן עצמאי, כולל חישוב ידני של FCFE מול הקובץ הגולמי, ונועל את המספרים שנמדדו כאן.
 
 ## 12. מה לא נבנה, ולמה
 
-- FCF, CAPEX והמרת YTD — דורשים `fyearq`/`fqtr`. שלוש העמודות קיימות בסכמה וריקות, והדלקתן בעתיד היא שינוי קונפיג ולא שינוי קוד.
-- `calc_enterprise_value_quarterly` אינו ברשימת העמודות ואין לו צורך בלי FCF.
+- המרת `oancfy`/`capxy` מ-YTD — לא נדרשה: מסלול ה-FCFE (§10א) בונה את התזרים משדות רבעוניים בלבד, ולכן `fyearq`/`fqtr` אינם חסרים לשום חישוב.
+- `calc_enterprise_value_quarterly` אינו ברשימת העמודות; שני יחסי המחיר משתמשים בשווי שוק, שהוא המכנה הנכון ל-FCFE.
 - תשואות, מומנטום, WACC, מיונים וטרסילים — מחוץ להיקף הבנייה הזאת.
 - `sector` הוא קוד `gsector` כפי שהוא, בלי תרגום לשמות GICS.
 
@@ -317,7 +284,6 @@ GuruFocus מפרסם בעצמו את עמודות ה-`calc_*`, ולכן ההצל
 
 | file | path | exists | bytes | modified | sha256 | unchanged_during_run |
 |---|---|---|---|---|---|---|
-| input_parquet | C:\Users\User\roic_research\data\data.parquet | True | 73220252 | 2026-10-05T05:25:42.828347921 | 903de7cf6b52802c87f6d0d6f0dd2c7d3c5960df6b7764f22688fd6b20b2a2e8 | True |
-| gurufocus_csv | C:\Users\User\roic_research\data\GuruFocus_quarterly_data.csv | True | 24363937 | 2026-09-13T05:13:38.846275806 | 689674efc336d7914b632f6e466e5bd285cc0d5d589317bce413d8e4ae8abeb7 | True |
+| input_parquet | C:\Users\User\roic_research\data\data.parquet | True | 77905989 | 2026-10-10T17:16:54.939969540 | 5efd0835bf73a057d8431d1e9ff33408ff747ebacd07ace4f3f9662ce15c0974 | True |
 
 - `output/logs/run_manifest.json` — גרסאות הספריות, ספירות שורות שלב-אחר-שלב, ו-hashes. `output/logs/config_used.yaml` — עותק בייט של ההגדרות.

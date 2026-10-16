@@ -18,7 +18,6 @@ project:
 
 paths:
   input_parquet: ../data/data.parquet
-  gurufocus_csv: ../data/GuruFocus_quarterly_data.csv   # read-only, cross-check only
   output_dir: ../output
 
 # ---------------------------------------------------------------------
@@ -37,6 +36,8 @@ input:
   field_map:
     total_current_assets: actq
     total_current_liabilities: lctq
+    cash_and_short_term_investments: cheq
+    income_before_extraordinary_items: ibq   # ibq: the FCFE base
     net_ppe: ppentq
     goodwill: gdwlq
     total_assets: atq
@@ -48,9 +49,9 @@ input:
     long_term_debt: dlttq
     market_cap: mkvaltq
     # present in the file but not used by any enabled calc:
-    #   cheq, seqq, teqq, xintq, capxy, oancfy, exchg, costat
-    # absent from this pull (their calcs stay NaN until they appear):
-    #   fyearq, fqtr, rdq, fyr, ivstq
+    #   seqq, teqq, xintq, capxy, oancfy, exchg, costat
+    # (capxy/oancfy are fiscal-year-to-date and need fyearq/fqtr to split;
+    #  the FCFE route below avoids them entirely)
 
 # ---------------------------------------------------------------------
 # timing: period_key = calendar quarter of (fiscal period end - 2 months)
@@ -103,12 +104,10 @@ decomposition:
   annualize_periods: 4    # (1+r)^4 - 1, defined only when 1+r > 0
 
 calcs:
-  # explicit decision not to compute (researcher 2026-10-04): no fiscal
-  # quarter inference, no CAPEX, no FCF. Columns stay in the schema as NaN.
-  disabled:
-    - free_cash_flow
-    - calc_free_cash_flow_ttm
-    - calc_ev_to_fcf_quarterly
+  # nothing is switched off. Naming a column here emits it as NaN while
+  # keeping it in the schema, which is how the FCF columns were held before
+  # ibq arrived on 2026-10-10.
+  disabled: []
 
 output:
   panel_file: panel.parquet
@@ -119,64 +118,24 @@ output:
   excel_max_rows: 1048575         # Excel's own limit, minus the header
 
 validation:
-  gurufocus_crosscheck: true
-  min_correlation: 0.95
-  median_ratio_range: [0.99, 1.01]
   coverage_tolerance_pp: 0.3
-  # an UNEXPECTED threshold breach stops the run and reports; the gaps below
-  # are definitional, were pre-registered, and are documented instead
-  stop_on_unexpected_breach: true
-  # each entry names the cause; a breach WITHOUT an entry stops the run
-  expected_gaps:
-    # root cause 1: the EBIT definition. GuruFocus measures EBIT as piq+xintq
-    # (measured 2026-09-30: 71% within 1%, vs 18% for oiadpq); the dictionary
-    # and the researcher both say oiadpq, so oiadpq it is. Everything below
-    # inherits that difference.
-    ebit: "GuruFocus EBIT measured as piq+xintq; here oiadpq per the dictionary"
-    calc_nopat_quarterly: "downstream of the ebit definition"
-    calc_nopat_change_quarterly: "downstream of ebit; first differences amplify the gap"
-    calc_roic_pretax_quarterly_ic_raw: "downstream of ebit; GuruFocus rounds to 2 decimals"
-    calc_roic_posttax_quarterly_ic_raw: "downstream of ebit; GuruFocus rounds to 2 decimals"
-    calc_roic_posttax_change_quarterly: "downstream of ebit; first differences amplify"
-    calc_roic_ebit_contribution: "downstream of ebit (correlation 0.999, level ratio 0.80)"
-    calc_roic_tax_contribution: "downstream of ebit"
-    calc_roic_ic_contribution: "downstream of ebit"
-    # root cause 2: the short-term debt field
-    short_term_debt: "dlcq includes the current portion of long-term debt"
-    long_term_debt: "dlttq includes capitalised leases, not ASC 842 operating leases"
-    calc_debt_value_quarterly: "downstream of short_term_debt (median ratio 1.0000)"
-    # root cause 3: definitions set by the researcher
-    equity: "equity = atq - ltq (total equity incl. minority interest); GuruFocus used seqq"
-    calc_debt_to_equity_quarterly: >-
-      denominator differs with equity; Pearson is dominated by near-zero-equity
-      outliers while the median relative deviation is 1.4%
-    calc_raw_tax_rate_quarterly: "never clipped to [0,1] here; GuruFocus rounds to 2dp"
-    free_cash_flow: "not computed in this build (no fyearq/fqtr)"
-    calc_free_cash_flow_ttm: "not computed in this build"
-    calc_ev_to_fcf_quarterly: "not computed in this build"
-    # label families: agreement is bounded by how often the two vendors agree on
-    # the inputs (crosscheck_input_agreement.csv). Measured drivers: the ebit
-    # definition, GuruFocus publishing its ratios rounded to 2 decimals, and
-    # ~6.5% of rows where one side simply has data the other does not.
-    calc_nopat_decomposition_status: "coverage differs; 1,303 of 1,465 flag gaps are one-sided NaN"
-    calc_nopat_change_direction: "downstream of ebit; near-band rows flip"
-    calc_nopat_ebit_effect: "downstream of ebit"
-    calc_nopat_tax_effect: "downstream of ebit via the contribution weights"
-    calc_nopat_effect_combination: "cross-product of the two effects above"
-    calc_roic_decomposition_status: "coverage differs on invested capital"
-    calc_roic_posttax_change_direction: "downstream of ebit; near-band rows flip"
-    calc_roic_ebit_effect: "downstream of ebit"
-    calc_roic_tax_effect: "downstream of ebit"
-    calc_roic_ic_effect: "downstream of ebit"
-    calc_roic_effect_combination: "cross-product of the three effects above"
-    calc_ebit_movement: "downstream of ebit"
-    calc_tax_rate_movement: "GuruFocus rates are rounded to 2dp; vendor inputs differ"
-    calc_ic_movement: "coverage and vintage differences in the capital base"
-    calc_raw_movement_combination: "cross-product of the three movements above"
-    calc_roic_effect_structure: "downstream of the three effects"
-    calc_roic_dominant_driver: "downstream of the three contributions"
-    calc_roic_dominant_driver_effect: "downstream of the dominant driver"
-    calc_ebit_sign_regime: "downstream of ebit"
-    calc_nopat_sign_regime: "downstream of ebit"
-    calc_tax_rate_quality_flag: "6.5% disagreement, 89% of it one-sided NaN coverage"
-    calc_roic_quality_flag: "downstream of the ROIC status"
+  # The panel validates itself: 22 identity checks re-derive every formula from
+  # the emitted columns, the label census proves each declared level is reached,
+  # and the pytest suite recomputes the formulas independently. There is no
+  # external reference any more (researcher 2026-10-11), so nothing here depends
+  # on a vendor file being present.
+
+fcf:
+  # Missing inputs do NOT drop the flow (researcher 2026-10-11). Each term of
+  # the formula is included only when it can be computed, and a term that
+  # cannot is omitted - contributing nothing rather than a fabricated balance.
+  # A difference whose previous quarter is unavailable is omitted for that leg
+  # alone, never replaced by the level: ppentq_t - 0 would read as if the firm
+  # had bought its whole fixed-asset base this quarter.
+  omit_unavailable_terms: true
+  # ...but a row with no usable term at all stays NaN. Zero out of nothing is
+  # not a cash flow of zero.
+  require_at_least_one_term: true
+  # the trailing sum stays strict: a three-quarter total labelled TTM is a
+  # different quantity, not a missing field
+  ttm_quarters: 4

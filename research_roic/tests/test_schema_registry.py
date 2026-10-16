@@ -35,8 +35,8 @@ REQUESTED = (
     "calc_roic_dominant_driver_effect calc_roic_offset_ratio calc_ebit_sign_regime "
     "calc_nopat_sign_regime calc_tax_rate_quality_flag calc_roic_quality_flag "
     "calc_roic_explanation short_term_debt long_term_debt calc_debt_value_quarterly "
-    "equity calc_debt_to_equity_quarterly market_cap free_cash_flow "
-    "calc_free_cash_flow_ttm calc_ev_to_fcf_quarterly"
+    "equity calc_debt_to_equity_quarterly market_cap free_cash_flow_quarterly "
+    "calc_free_cash_flow_ttm calc_p_to_fcf_quarterly calc_p_to_fcf_ttm"
 ).split()
 
 

@@ -1,0 +1,20 @@
+﻿measure,rows,denominator,share_of_denominator
+ibq present,1563816,1903609,0.8215006337961209
+cheq present,1393963,1903609,0.732273802025521
+free_cash_flow_quarterly present,1569447,1903609,0.824458699239182
+free_cash_flow_quarterly == 0 exactly,2294,1569447,0.001461661336763841
+free_cash_flow_quarterly < 0,801375,1569447,0.5106097880336194
+calc_free_cash_flow_ttm present (4 consecutive quarters),1439614,1903609,0.7562550923009925
+calc_free_cash_flow_ttm < 0,728065,1439614,0.5057362598585454
+calc_p_to_fcf_quarterly present,469274,1903609,0.24651806121950465
+calc_p_to_fcf_quarterly < 0,259009,469274,0.5519355429876789
+calc_p_to_fcf_ttm present,458280,1903609,0.2407427155471528
+calc_p_to_fcf_ttm < 0,244554,458280,0.5336344592825347
+rows on a run of 5+ consecutive quarters (what TTM needs),1732319,1903609,0.9100182863182513
+rows whose flow was built from 0 of 6 terms,334162,1903609,0.175541300760818
+rows whose flow was built from 1 of 6 terms,206680,1903609,0.10857271635088929
+rows whose flow was built from 2 of 6 terms,65342,1903609,0.03432532626185315
+rows whose flow was built from 3 of 6 terms,63212,1903609,0.03320639900315663
+rows whose flow was built from 4 of 6 terms,142590,1903609,0.07490508817724648
+rows whose flow was built from 5 of 6 terms,52250,1903609,0.027447863505583342
+rows whose flow was built from 6 of 6 terms,1039373,1903609,0.5460013059404532

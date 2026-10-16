@@ -5,7 +5,7 @@ replaces the previous one in place. The timestamp and the library versions live
 inside the manifest and the report, not in the file names.
 
     python research_roic/scripts/run_build_panel.py
-    python research_roic/scripts/run_build_panel.py --no-excel --no-crosscheck
+    python research_roic/scripts/run_build_panel.py --no-excel
 """
 from __future__ import annotations
 
@@ -82,12 +82,16 @@ def build_report(**k: Any) -> str:
     A(f"- **{len(schema.PANEL_COLUMNS)} עמודות** בדיוק לפי הרשימה שהוגדרה, באותו סדר, "
       f"**{k['rows_panel']:,} שורות** — שורה אחת לכל (חברה, רבעון).")
     n_skipped = int((k['column_status'].status == 'SKIPPED').sum())
-    A(f"- {len(schema.PANEL_COLUMNS) - n_skipped} עמודות חושבו; {n_skipped} ריקות במפורש, "
-      f"עם הסיבה לכל אחת (`schema_contract.csv`).")
+    if n_skipped:
+        A(f"- {len(schema.PANEL_COLUMNS) - n_skipped} עמודות חושבו; {n_skipped} ריקות "
+          f"במפורש, עם הסיבה לכל אחת (`schema_contract.csv`).")
+        A(k["skipped_table"])
+    else:
+        A("- **כל העמודות חושבו** — אין עמודה ריקה בהחלטה (`schema_contract.csv`).")
     A(f"- רציפות: {pct(k['consecutive_share'])} מהשורות מקושרות לרבעון שקדם להן.")
-    A("- ⚠️ מה שאינו במשיכה: `fyearq`, `fqtr`, `rdq`, `fyr`, `ivstq`. בלי `fqtr` אי אפשר "
-      "לזהות איזה רבעון פותח את השנה הפיסקלית, ולכן FCF לא מחושב בבנייה הזאת.")
-    A(k["skipped_table"])
+    A("- `ibq` נוסף לקובץ ב-10/10, ולכן ה-FCFE נבנה כולו משדות רבעוניים (§10א). "
+      "`fyearq`, `fqtr`, `rdq`, `fyr`, `ivstq` עדיין אינם במשיכה — ואף חישוב "
+      "בפאנל הזה אינו תלוי בהם.")
 
     A("## 1. המקור, הטיפוסים והשדות")
     A("")
@@ -193,36 +197,65 @@ def build_report(**k: Any) -> str:
       "ומכני. אף שורה לא הוסרה ואף ערך לא נקטם:")
     A(md_table(k["equity_sign"]))
 
-    A("## 11. הצלבה מול GuruFocus")
+    A("## 10א. תזרים מזומנים חופשי לבעלי המניות (FCFE)")
     A("")
-    A("GuruFocus מפרסם בעצמו את עמודות ה-`calc_*`, ולכן ההצלבה אינה רק על מספרים אלא "
-      "גם **הסכמה בין תוויות** מול פאנל שחושב ממקור אחר לגמרי.")
-    A(md_table(k["crosscheck_overlap"]))
-    A("מה שמאושר בבירור: `calc_tax_expense_quarterly` (מתאם 0.996, יחס חציוני 1.0000) — "
-      "כלומר **הכרעת הסימן נכונה**, ו-92.4% מהשורות מקיימות "
-      "`calc_tax_expense_quarterly == −tax_provision` בדיוק · `calc_ic_raw` ו-"
-      "`calc_average_ic_raw_quarterly` (יחס 1.0000) — **נוסחת ההון המושקע נכונה** · "
-      "`equity` (יחס 1.0000) · `pretax_income`, הנכסים וההתחייבויות השוטפים, מוניטין, "
-      "`market_cap` — כולם ביחס חציוני 1.0000.")
-    A(md_table(k["crosscheck_numeric"], max_rows=40))
+    A("התזרים נבנה **כולו משדות רבעוניים** ובלי סדרות YTD — כלומר בלי להזדקק "
+      "ל-`fyearq`/`fqtr` שאינם במשיכה:")
     A("")
-    A("⚠️ **איך לקרוא את הסכמת התוויות למטה:** תווית יכולה להסכים רק במקום שבו "
-      "הקלט מסכים. זהו הגבול העליון, והוא נמדד:")
-    A(md_table(k["crosscheck_inputs"]))
-    A("כלומר הסכמה של 62%–94% בתוויות היא **מעל** תקרת הקלט, כי התוויות גסות "
-      "(שלוש מגירות) ומסכימות גם כשהמספרים נבדלים. שלושת הגורמים: הגדרת "
-      "`ebit`, העובדה ש-GuruFocus מפרסם את היחסים מעוגלים לשתי ספרות, "
-      "ושורות שבהן לצד אחד יש נתון ולשני אין.")
-    A(md_table(k["crosscheck_labels"], max_rows=30))
-    A("פערים הגדרתיים נרשמו **מראש** בקונפיג ומסומנים `expected_gap` — הם תיעוד, "
-      "לא כשל. הפרה בלי הסבר מוקדם עוצרת את הריצה.")
-    A(k["breach_note"])
+    A("```")
+    A("NWC_t  = (actq_t − cheq_t) − (lctq_t − dlcq_t)")
+    A("FCFE_t = ibq_t − (NWC_t − NWC_t−1) − (ppentq_t − ppentq_t−1)")
+    A("")
+    A("free_cash_flow_quarterly  = FCFE של הרבעון הבודד")
+    A("calc_free_cash_flow_ttm   = סכום 4 רבעונים עוקבים (אחרת NaN, לא סכום חלקי)")
+    A("calc_p_to_fcf_quarterly   = market_cap / free_cash_flow_quarterly")
+    A("calc_p_to_fcf_ttm         = market_cap / calc_free_cash_flow_ttm")
+    A("```")
+    A("")
+    A("- השינוי ב-PPE נטו הוא הפרוקסי ל-CapEx בניכוי פחת — זה מה שמאפשר לבנות "
+      "את כל התזרים מנתונים רבעוניים.")
+    A("- שני יחסי המחיר מחלקים ב**שווי שוק ולא ב-EV**, כי FCFE הוא תזרים ממונף "
+      "שמגיע לבעלי המניות; צימוד ל-EV היה סופר את החוב פעמיים.")
+    A("- **ערך חסר אינו מפיל את החישוב** (החלטת החוקר 11/10). הנוסחה נפרסת "
+      "לשישה איברים חתומים — הרווח וחמישה הפרשי מאזן — וכל איבר נכנס רק אם "
+      "אפשר לחשב אותו; איבר שאי אפשר פשוט אינו תורם. תוצאה של 0 נשמרת כתוצאה.")
+    A("- ⚠️ איבר הפרש שחסר לו הרבעון הקודם **מושמט** ואינו מוחלף ברמה עצמה: "
+      "`ppentq_t − 0` היה נקרא כאילו החברה קנתה את כל בסיס הרכוש הקבוע ברבעון "
+      "אחד — תזרים מומצא, לא שמרני.")
+    A("- ⚠️ שורה שאין בה אף איבר שאפשר לחשב נשארת NaN. אפס מתוך כלום אינו תזרים "
+      "של אפס.")
+    A("- ⚠️ **שורה שנבנתה משני איברים אינה אותה מדידה כמו שורה שנבנתה משישה.** "
+      "לכן ההתפלגות מדווחת, ולא רק מספר כיסוי אחד:")
+    A(md_table(k["fcf_census"], max_rows=30))
+    A("- ⚠️ ה-TTM נשאר **קפדני**: 4 רבעונים עוקבים או NaN. סכום של שלושה רבעונים "
+      "שמסומן כנגרר-שנה הוא כמות אחרת, וזה עניין נפרד משדה חסר. בפועל הוא דורש "
+      "**חמישה** רבעונים עוקבים, כי כל FCFE רבעוני בודד זקוק לרבעון שלפניו.")
+    A("")
+
+    A("## 11. איך הפאנל מאמת את עצמו")
+    A("")
+    A("אין יותר הצלבה מול מקור חיצוני (החלטת החוקר 11/10) — האימות עומד על "
+      "בדיקות שנגזרות מהפאנל עצמו, ולכן אינו תלוי בשום קובץ נוסף:")
+    A("")
+    A(f"- **{k['n_identity_checks']} בדיקות זהות** מחזירות כל נוסחה מהעמודות שנכתבו "
+      f"ומשוות לעמודה המפורסמת. כשלים: **{k['n_identity_failures']}**.")
+    A(f"- **מפקד הרמות**: {k['levels_reached']} מתוך {k['levels_declared']} הרמות "
+      "המוצהרות נוצרו בפועל — זו העדות ל-9/9 ול-27/27 בכל משפחת תוויות.")
+    A("- **שאריות ה-Shapley** נבדקות על כל השורות: הזהות מדויקת מהבנייה, ולכן "
+      "שארית שאינה אפס היתה מעידה על חיווט שבור.")
+    A("- **`no_inf_check.csv`**: אין `inf` באף עמודה — כל מכנה אפס או חסר הפך ל-NaN.")
+    A("- **`precision_audit.csv`**: ההמרה מ-decimal ל-float64 בשדות המקור, עם "
+      "מרווח מדוד מול גבול הדיוק.")
+    A("- **מערך המבחנים** (`pytest`) מחשב את הנוסחאות מחדש באופן עצמאי, כולל "
+      "חישוב ידני של FCFE מול הקובץ הגולמי, ונועל את המספרים שנמדדו כאן.")
+    A("")
 
     A("## 12. מה לא נבנה, ולמה")
     A("")
-    A("- FCF, CAPEX והמרת YTD — דורשים `fyearq`/`fqtr`. שלוש העמודות קיימות בסכמה "
-      "וריקות, והדלקתן בעתיד היא שינוי קונפיג ולא שינוי קוד.")
-    A("- `calc_enterprise_value_quarterly` אינו ברשימת העמודות ואין לו צורך בלי FCF.")
+    A("- המרת `oancfy`/`capxy` מ-YTD — לא נדרשה: מסלול ה-FCFE (§10א) בונה את "
+      "התזרים משדות רבעוניים בלבד, ולכן `fyearq`/`fqtr` אינם חסרים לשום חישוב.")
+    A("- `calc_enterprise_value_quarterly` אינו ברשימת העמודות; שני יחסי המחיר "
+      "משתמשים בשווי שוק, שהוא המכנה הנכון ל-FCFE.")
     A("- תשואות, מומנטום, WACC, מיונים וטרסילים — מחוץ להיקף הבנייה הזאת.")
     A("- `sector` הוא קוד `gsector` כפי שהוא, בלי תרגום לשמות GICS.")
     A("")
@@ -241,8 +274,6 @@ def main() -> int:
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--config", default=str(ROOT / "config.yaml"))
     parser.add_argument("--no-excel", action="store_true", help="skip the Excel slice")
-    parser.add_argument("--no-crosscheck", action="store_true",
-                        help="skip the read-only GuruFocus cross-check")
     args = parser.parse_args()
     try:
         sys.stdout.reconfigure(encoding="utf-8")
@@ -266,14 +297,6 @@ def main() -> int:
 
     # --- validation tables
     coverage = validation.coverage_by_column(panel)
-    crosscheck = ({"numeric": pd.DataFrame(), "labels": pd.DataFrame(),
-                   "overlap": pd.DataFrame([{"measure": "cross-check", "value": "skipped"}])}
-                  if args.no_crosscheck or not cfg["validation"]["gurufocus_crosscheck"]
-                  else validation.crosscheck_gurufocus(
-                      panel, data_io.load_gurufocus(cfg), panel_keys, cfg))
-    if not args.no_crosscheck:
-        LOGGER.info("Cross-checked against GuruFocus (read-only)")
-
     census = validation.label_family_census(panel)
     catalogue = report.get("explanation_catalogue")
     explanation_census = validation.explanation_census(panel, catalogue)
@@ -284,6 +307,8 @@ def main() -> int:
         "label_family_census.csv": census,
         "tax_sign_census.csv": validation.tax_sign_census(panel),
         "equity_sign_census.csv": validation.equity_sign_census(panel),
+        "fcf_census.csv": validation.fcf_census(
+            panel, report.get("aux", {}), report.get("fcf_terms", {}), grid),
         "identity_checks.csv": validation.identity_checks(panel, grid, panel_keys),
         "no_inf_check.csv": validation.no_inf_check(panel),
         "precision_audit.csv": validation.precision_audit(panel),
@@ -296,14 +321,15 @@ def main() -> int:
         "schema_contract.csv": schema.schema_contract(report["column_status"]),
         "explanation_catalogue.csv": catalogue if catalogue is not None else pd.DataFrame(),
         "explanation_census.csv": explanation_census,
-        "crosscheck_vs_gurufocus.csv": crosscheck["numeric"],
-        "crosscheck_label_agreement.csv": crosscheck["labels"],
-        "crosscheck_overlap.csv": crosscheck["overlap"],
-        "crosscheck_input_agreement.csv": crosscheck.get(
-            "input_agreement", pd.DataFrame()),
     }
     for name, table in tables.items():
         data_io.save_table(table, dirs["tables"] / name)
+    # a re-run must replace the previous output, not sit beside it: a table this
+    # build no longer produces would otherwise linger and read as current
+    for stale in sorted(dirs["tables"].glob("*.csv")):
+        if stale.name not in tables:
+            stale.unlink()
+            LOGGER.warning("Removed a stale table from an earlier build: %s", stale.name)
 
     # --- the panel, at fixed paths
     panel_path = data_io.save_panel_parquet(
@@ -329,9 +355,6 @@ def main() -> int:
     # --- report
     status = report["column_status"]
     skipped = status[status.status == "SKIPPED"][["column", "spec", "reason"]]
-    breaches = validation.unexpected_breaches(crosscheck)
-    breach_note = ("✅ אין הפרת סף בלי הסבר מוקדם.\n" if breaches.empty
-                   else "⚠️ **הפרות סף בלי הסבר מוקדם:**\n" + md_table(breaches))
     text = build_report(
         source_name=Path(cfg["_paths"]["input_parquet"]).name,
         rows_source=report["rows_in_source"], rows_panel=report["rows_in_panel"],
@@ -344,7 +367,10 @@ def main() -> int:
         consecutiveness=tables["consecutiveness_summary.csv"],
         tax_sign=tables["tax_sign_census.csv"],
         equity_sign=tables["equity_sign_census.csv"],
+        fcf_census=tables["fcf_census.csv"],
         identities=tables["identity_checks.csv"],
+        n_identity_checks=int(len(tables["identity_checks.csv"])),
+        n_identity_failures=int(tables["identity_checks.csv"]["n_failed"].sum()),
         status_distributions=tables["status_distributions.csv"],
         input_fields=report["input_fields"],
         extreme_ratios=tables["extreme_ratio_census.csv"],
@@ -356,9 +382,6 @@ def main() -> int:
         catalogue_size=int(len(catalogue)) if catalogue is not None else 0,
         catalogue_used=int(explanation_census["reached"].sum())
         if len(explanation_census) else 0,
-        crosscheck_overlap=crosscheck["overlap"], crosscheck_numeric=crosscheck["numeric"],
-        crosscheck_labels=crosscheck["labels"], breach_note=breach_note,
-        crosscheck_inputs=tables["crosscheck_input_agreement.csv"],
         fingerprints=fp_after,
     )
     report_path = dirs["reports"] / "report.md"
@@ -383,8 +406,6 @@ def main() -> int:
         "excel": excel_info,
         "sources_unchanged": bool(unchanged),
         "sources": fp_after.to_dict("records"),
-        "unexpected_crosscheck_breaches": breaches["column"].tolist()
-        if not breaches.empty else [],
     }
     (dirs["logs"] / "run_manifest.json").write_text(
         json.dumps(manifest, indent=2, default=str, ensure_ascii=False), encoding="utf-8")
@@ -392,9 +413,6 @@ def main() -> int:
     LOGGER.info("Finished in %.1fs. Report: %s", time.time() - t0, report_path)
     if not unchanged:
         raise RuntimeError("A source file changed during the run")
-    if not breaches.empty and cfg["validation"].get("stop_on_unexpected_breach"):
-        raise RuntimeError("Unexpected cross-check breach: "
-                           + ", ".join(breaches["column"].tolist()))
     return 0
 
 
