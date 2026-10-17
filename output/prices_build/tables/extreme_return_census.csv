@@ -1,0 +1,23 @@
+﻿column,measure,value
+Quaterly_return,values,1827699
+Quaterly_return,min,-0.999998181983456
+Quaterly_return,p0.1,-0.9802984449648712
+Quaterly_return,median,0.0
+Quaterly_return,p99.9,32.30410385260224
+Quaterly_return,max,493329.6666666666
+Quaterly_return,at or below -0.9,7977
+Quaterly_return,above 1,41467
+Quaterly_return,above 10,3892
+Quaterly_return,above 100,717
+MomentomQ3,values,1747876
+MomentomQ3,min,-0.9999999997849788
+MomentomQ3,p0.1,-0.9975830752023358
+MomentomQ3,median,0.0
+MomentomQ3,p99.9,72.10890560886206
+MomentomQ3,max,459996.51351351343
+MomentomQ3,at or below -0.9,28843
+MomentomQ3,above 1,95555
+MomentomQ3,above 10,7167
+MomentomQ3,above 100,1205
+"trt1m (percent, matched monthly rows)",max,520999900.0
+"trt1m (percent, matched monthly rows)",above 1000,9622

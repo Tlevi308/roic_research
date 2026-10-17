@@ -1,0 +1,181 @@
+# =====================================================================
+# ROIC panel from Compustat Fundamentals Quarterly - configuration
+#
+# Every research parameter lives here. Paths are relative to THIS file.
+# Source files under ../data are read-only: the pipeline never writes
+# there and verifies their SHA-256 hashes before and after each run.
+#
+# To add an INPUT field       -> add one entry under `field_map`.
+# To add a CALC column        -> add one CalcSpec in src/registry.py and
+#                                one name under `schema.column_order`.
+# Nothing else in the code holds a column list.
+# =====================================================================
+
+project:
+  name: roic_panel_compustat
+  stage: wrds_panel
+  seed: 20261005          # fixed seed for every random operation (tests)
+
+paths:
+  input_parquet: ../data/data.parquet
+  prices_input: ../data/prices.gz      # Compustat Security Monthly, gzip CSV (price panel)
+  output_dir: ../output
+
+# ---------------------------------------------------------------------
+# input: logical field name -> source column (a list means "first
+# non-null wins", in order). A mapped field that is absent from the file
+# is reported in input_fields.csv and every calc that needs it is
+# emitted as NaN with reason MISSING_INPUT - never an error, never a fill.
+# ---------------------------------------------------------------------
+input:
+  identifier_fields:
+    gvkey: gvkey            # stable Compustat firm id - always present
+    symbol: tic             # ticker exactly as in WRDS, suffix included
+    company: conm
+    sector: gsector         # raw GICS code, shown as it appears in the data
+    fiscal_period_end_date: datadate
+  field_map:
+    total_current_assets: actq
+    total_current_liabilities: lctq
+    cash_and_short_term_investments: cheq
+    income_before_extraordinary_items: ibq   # ibq: the FCFE base
+    net_ppe: ppentq
+    goodwill: gdwlq
+    total_assets: atq
+    total_liabilities: ltq
+    ebit: oiadpq            # Operating Income After Depreciation (researcher: oiadpq only)
+    pretax_income: piq
+    tax_provision_raw: txtq  # Compustat sign is already positive-for-expense
+    short_term_debt: dlcq
+    long_term_debt: dlttq
+    market_cap: mkvaltq
+    # present in the file but not used by any enabled calc:
+    #   seqq, teqq, xintq, capxy, oancfy, exchg, costat
+    # (capxy/oancfy are fiscal-year-to-date and need fyearq/fqtr to split;
+    #  the FCFE route below avoids them entirely)
+
+# ---------------------------------------------------------------------
+# timing: period_key = calendar quarter of (fiscal period end - 2 months)
+#   2026-03-31 -> 2026-01-31 -> 2026Q1
+#   2025-09-30 -> 2025-07-31 -> 2025Q3
+#   2025-08-31 -> 2025-06-30 -> 2025Q2
+#   2026-01-31 -> 2025-11-30 -> 2025Q4   (January rolls back a year)
+# KEY = period_key + "_" + symbol, e.g. 2016Q4_A
+# ---------------------------------------------------------------------
+timing:
+  quarter_shift_months: 2
+  key_separator: "_"
+
+panel:
+  # a row links to the previous quarter only when BOTH hold
+  consecutive:
+    key_gap_quarters: 1
+    min_days: 60
+    max_days: 130
+  # duplicate handling (researcher 2026-10-04):
+  #   step 1 - same (gvkey, datadate): first row stays, its missing values
+  #            are filled from the following rows of the same group
+  #   step 2 - same (gvkey, period_key) but different datadate: the first
+  #            row decides and its values decide; no value is merged
+  dedup:
+    collapse_same_datadate: true
+    keep_first_per_period: true
+
+# ---------------------------------------------------------------------
+# materiality bands. "money" has a unit floor so a tiny firm's noise is
+# not called a move; "ratio" deliberately has NO unit floor, because ROIC
+# lives around 0.05 and a floor of 1.0 would swamp the relative term.
+# ---------------------------------------------------------------------
+bands:
+  money:
+    rel: 0.005            # 0.5% of the larger quarter
+    abs_floor: 1.0e-9
+    unit_floor: 1.0
+  ratio:
+    rel: 0.001            # 10 basis points
+    abs_floor: 1.0e-4
+    unit_floor: 0.0
+  sign:
+    rel: 1.0e-9           # "the reported value is zero", not materiality
+    abs_floor: 1.0e-9
+    unit_floor: 1.0
+
+decomposition:
+  dominance_gap: 0.05     # top share - runner-up <= this -> BALANCED
+  annualize_periods: 4    # (1+r)^4 - 1, defined only when 1+r > 0
+
+calcs:
+  # nothing is switched off. Naming a column here emits it as NaN while
+  # keeping it in the schema, which is how the FCF columns were held before
+  # ibq arrived on 2026-10-10.
+  disabled: []
+
+output:
+  panel_file: panel.parquet
+  excel_from_year: 2025           # change this one number to move the Excel slice
+  excel_file_pattern: panel_from_{year}.xlsx
+  parquet_compression: zstd
+  parquet_row_group_size: 200000
+  excel_max_rows: 1048575         # Excel's own limit, minus the header
+
+validation:
+  coverage_tolerance_pp: 0.3
+  # The panel validates itself: 22 identity checks re-derive every formula from
+  # the emitted columns, the label census proves each declared level is reached,
+  # and the pytest suite recomputes the formulas independently. There is no
+  # external reference any more (researcher 2026-10-11), so nothing here depends
+  # on a vendor file being present.
+
+# ---------------------------------------------------------------------
+# prices: the price panel (output/prices.parquet), built by
+# scripts/run_build_prices.py from Compustat Security Monthly. Researcher
+# 2026-10-17:
+#   * one price per quarter - the month-end of Feb / May / Aug / Nov. The
+#     quarter comes from timing.quarter_shift_months, the base panel's rule:
+#     Feb -> Q4 of the previous year, May -> Q1, Aug -> Q2, Nov -> Q3
+#   * KEY = period_key + "_" + tic, e.g. 2013Q4_AAPL - the base panel's KEY
+#   * Close = prccm / ajexm (adjusted for splits). Returns are ratios of
+#     Close, so they EXCLUDE dividends; trt1m is read only to measure that gap
+#   * prccm = 0 is "no price": Close is NaN, and so is every ratio using it
+#   * only the endpoints matter: Quaterly_return needs Close at q and q+1,
+#     MomentomQ3 needs Close at q-3 and q
+#   * the security is the one whose (gvkey, tic) equals the base panel's;
+#     the file has no iid, and a firm with no exact match gets no rows and
+#     is listed - never matched by guesswork
+#   * ipodate / dldte pass through untouched, for the next stage
+# ---------------------------------------------------------------------
+prices:
+  months: [2, 5, 8, 11]
+  momentum_quarters: 3
+  field_map:                  # logical name -> column in prices.gz
+    gvkey: gvkey
+    symbol: tic
+    company: conm
+    exchange: exchg
+    month_end: datadate
+    price_close: prccm
+    adjustment_factor: ajexm
+    total_return_pct: trt1m   # read only for the dividend-gap census
+    ipo_date: ipodate
+    deletion_date: dldte
+  output_file: prices.parquet
+  excel_file_pattern: prices_from_{year}.xlsx   # same year as output.excel_from_year
+  excel_sheet: prices
+  build_dir: prices_build     # tables, logs and report, apart from the base run's
+  extreme_thresholds: [1.0, 10.0, 100.0]        # |return| above 100%, 1,000%, 10,000%
+  dividend_gap_tolerance: 1.0e-4                # a gap below -this is reported as anomalous
+
+fcf:
+  # Missing inputs do NOT drop the flow (researcher 2026-10-11). Each term of
+  # the formula is included only when it can be computed, and a term that
+  # cannot is omitted - contributing nothing rather than a fabricated balance.
+  # A difference whose previous quarter is unavailable is omitted for that leg
+  # alone, never replaced by the level: ppentq_t - 0 would read as if the firm
+  # had bought its whole fixed-asset base this quarter.
+  omit_unavailable_terms: true
+  # ...but a row with no usable term at all stays NaN. Zero out of nothing is
+  # not a cash flow of zero.
+  require_at_least_one_term: true
+  # the trailing sum stays strict: a three-quarter total labelled TTM is a
+  # different quantity, not a missing field
+  ttm_quarters: 4

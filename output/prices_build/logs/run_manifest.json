@@ -1,0 +1,59 @@
+{
+  "run_stamp": "2026-10-17 11:09:48",
+  "seconds": 38.2,
+  "config_path": "C:\\Users\\User\\roic_research\\research_roic\\config.yaml",
+  "config_copy": "C:\\Users\\User\\roic_research\\output\\prices_build\\logs\\config_used.yaml",
+  "log_path": "C:\\Users\\User\\roic_research\\output\\prices_build\\logs\\run.log",
+  "python": "3.12.3",
+  "pandas": "2.2.2",
+  "numpy": "1.26.4",
+  "rows_in_source": 8572102,
+  "rows_matched_monthly": 5783673,
+  "selection": {
+    "MATCHED": 38589,
+    "NO_TIC_MATCH": 169,
+    "NO_PRICE_ROWS": 2150,
+    "NO_SYMBOL_IN_BASE": 17,
+    "FILE_ONLY_NOT_IN_BASE": 15004,
+    "MATCHED_WITHOUT_QUARTER_MONTH": 137
+  },
+  "rows_in_panel": 1925749,
+  "columns": [
+    "KEY",
+    "Date",
+    "Ticker",
+    "Close",
+    "Quaterly_return",
+    "MomentomQ3",
+    "ipodate",
+    "dldte"
+  ],
+  "panel_file": "C:\\Users\\User\\roic_research\\output\\prices.parquet",
+  "excel": {
+    "path": "C:\\Users\\User\\roic_research\\output\\prices_from_2025.xlsx",
+    "rows_written": 74097,
+    "rows_available": 74097,
+    "truncated": false
+  },
+  "sources_unchanged": true,
+  "sources": [
+    {
+      "file": "input_parquet",
+      "path": "C:\\Users\\User\\roic_research\\data\\data.parquet",
+      "exists": true,
+      "bytes": 77905989,
+      "modified": "2026-10-10T17:16:54.939969540",
+      "sha256": "5efd0835bf73a057d8431d1e9ff33408ff747ebacd07ace4f3f9662ce15c0974",
+      "unchanged_during_run": true
+    },
+    {
+      "file": "prices_input",
+      "path": "C:\\Users\\User\\roic_research\\data\\prices.gz",
+      "exists": true,
+      "bytes": 87178427,
+      "modified": "2026-10-17T06:51:42.300364971",
+      "sha256": "58ea5780ec721f06b2da5bf92ccffbf8156dcc66ceda41d4f69c7de8040d3069",
+      "unchanged_during_run": true
+    }
+  ]
+}

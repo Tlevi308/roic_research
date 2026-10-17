@@ -1,0 +1,19 @@
+﻿measure,value,denominator,share
+matched firms,38589,38589,1.0
+firms with ipodate,13917,38589,0.36064681645028374
+firms with dldte,24881,38589,0.6447692347560185
+active (costat A) firms,13708,38589,0.35523076524398145
+active (costat A) firms with dldte,0,13708,0.0
+inactive (costat I) firms,24881,38589,0.6447692347560185
+inactive (costat I) firms with dldte,24881,24881,1.0
+monthly rows dated before ipodate,37530,5783673,0.00648895606649961
+... of which with a valid price,34752,5783673,0.006008638455182373
+monthly rows in a month after the dldte month,247309,5783673,0.04275985174127237
+... of which with a valid price,219845,5783673,0.0380113121886386
+panel rows with Date before ipodate,12484,1925749,0.006482672456275454
+panel rows in a month after the dldte month,82020,1925749,0.042591220351146486
+"days from dldte to the last valid price, p01 (firms)",-2642.8,24803,
+"days from dldte to the last valid price, p10 (firms)",-290.0,24803,
+"days from dldte to the last valid price, p50 (firms)",5.0,24803,
+"days from dldte to the last valid price, p90 (firms)",1565.8,24803,
+"days from dldte to the last valid price, p99 (firms)",7611.0,24803,

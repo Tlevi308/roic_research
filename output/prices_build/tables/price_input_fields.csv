@@ -1,0 +1,11 @@
+﻿logical_field,source_column,status,n_non_null
+gvkey,gvkey,MAPPED,8572102
+symbol,tic,MAPPED,8571696
+company,conm,MAPPED,8572102
+exchange,exchg,MAPPED,8567755
+month_end,datadate,MAPPED,8572102
+price_close,prccm,MAPPED,8343843
+adjustment_factor,ajexm,MAPPED,8516393
+total_return_pct,trt1m,MAPPED,8302620
+ipo_date,ipodate,MAPPED,2420234
+deletion_date,dldte,MAPPED,4820968

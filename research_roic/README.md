@@ -4,7 +4,7 @@
 decomposition of the change in NOPAT and in ROIC, nine families of labels,
 quality flags and an English explanation sentence — from `data/data.parquet`.
 
-**Status:** built and validated. 143 pytest tests pass. 1,903,609 rows, **all 73
+**Status:** built and validated. 163 pytest tests pass (143 for the base panel, 20 for the price panel). 1,903,609 rows, **all 73
 columns computed**. No external reference data is read: the panel validates
 itself.
 
@@ -12,16 +12,20 @@ itself.
 
 ```powershell
 C:\Users\User\anaconda3\python.exe research_roic\scripts\run_build_panel.py
+C:\Users\User\anaconda3\python.exe research_roic\scripts\run_build_prices.py
 C:\Users\User\anaconda3\python.exe -m pytest research_roic\tests -q
 ```
 
-`--no-excel` skips the Excel slice. A run takes about 80 seconds.
+`--no-excel` skips the Excel slice. A base run takes about 80 seconds, a price
+run about 40. The price run reads the base panel only for its join and timing
+tables, so run the base build first when both inputs change.
 
 ## Layout
 
 ```
 data/                        input, read-only (SHA-256 checked before and after)
   data.parquet
+  prices.gz                  Compustat Security Monthly, gzip CSV (price panel)
 research_roic/
   config.yaml                every parameter: field map, bands, paths, Excel year
   src/
@@ -32,17 +36,22 @@ research_roic/
     shapley.py               one coefficient matrix for both bridges
     labels.py                bands, the single classifier, the ladders, the levels
     explain.py               the closed explanation catalogue
-    schema.py                the 73-column contract: order, dtypes, levels
-    validation.py            describes the panel; never alters it
+    schema.py                the 73-column contract, and the 8-column price contract
+    validation.py            describes the panels; never alters them
     pipeline.py              build_panel(cfg, raw=None) -> (panel, report)
+    prices.py                build_prices(cfg, raw=None, tickers=None) -> (prices, report)
   scripts/run_build_panel.py
-  tests/                     12 files, one invariant each
-output/                      everything the run produces (fixed names, overwritten)
+  scripts/run_build_prices.py
+  tests/                     13 files, one invariant each
+output/                      everything the runs produce (fixed names, overwritten)
   panel.parquet              the panel, all rows
   panel_from_2025.xlsx       the same columns from a configurable year
   tables/                    18 validation tables (stale ones are pruned each run)
   reports/report.md          the Hebrew build-and-validation report
   logs/                      run.log, run_manifest.json, config_used.yaml
+  prices.parquet             the price panel, all rows
+  prices_from_2025.xlsx      the price panel from the same year
+  prices_build/              the price run's tables, logs and Hebrew report
 ```
 
 Every output has a **fixed name and is overwritten**, so a run with new data
@@ -139,10 +148,49 @@ each quarterly flow already consumes its own predecessor.
 a conventional annual P/FCF multiple (Apple 2026Q2: 147.5 quarterly vs 35.2
 trailing). The two are not interchangeable.
 
+## Price panel
+
+`scripts/run_build_prices.py` builds `output/prices.parquet` from
+`data/prices.gz` (Compustat Security Monthly): one row per firm and quarter,
+joinable to the base panel on `KEY`. Decided with the researcher on 2026-10-17.
+
+| Column | Definition |
+|---|---|
+| `KEY` | `period_key + "_" + tic`, from `keys.build_key` — the base panel's own function |
+| `Date` | `datadate`, the calendar month-end of Feb / May / Aug / Nov |
+| `Ticker` | `tic`, identical to the base panel's `symbol` |
+| `Close` | `prccm / ajexm`, adjusted for splits |
+| `Quaterly_return` | `Close(q+1) / Close(q) − 1` — the **next** quarter, without dividends |
+| `MomentomQ3` | `Close(q) / Close(q−3) − 1` — the last three quarters |
+| `ipodate`, `dldte` | passed through untouched for the next stage; nothing filters on them |
+
+* **Month to quarter** is the base panel's rule, `keys.add_period_columns`
+  applied to the price month-end: Feb → Q4 of the previous year, May → Q1,
+  Aug → Q2, Nov → Q3.
+* **Calendar lookups, endpoints only.** Returns and momentum are found by
+  `(gvkey, quarter_index ± k)`, never by row position. The return needs a
+  valid Close at q and q+1, momentum at q−3 and q; the quarters in between do
+  not matter (7,695 momentum values are computed across a missing one).
+* **No price.** A zero or missing `prccm`, or a missing `ajexm`, makes Close
+  NaN, and with it every ratio that uses it. Nothing is filled or clipped.
+* **The security** is the one whose `(gvkey, tic)` equals the base panel's —
+  the file has no `iid`. A firm without an exact match gets no rows and is
+  listed in `issue_selection_unmatched.csv`, never matched by guesswork.
+* ⚠️ `Quaterly_return` **reads the future**: it is the dependent variable.
+  `prices.forward_quarterly_return` is the only forward read in `src`, and a
+  test confines it there.
+* ⚠️ Returns exclude dividends (the researcher's choice). `dividend_gap_census.csv`
+  measures the gap against `trt1m`: about 38% of firm-quarters pay one, with a
+  median of 0.87% when they do.
+* ⚠️ `dldte` is not the last trading day — 4.3% of matched monthly rows sit in a
+  month after it. Use it only as "not deleted yet at `Date`"; excluding a firm
+  because it **will** be deleted is look-ahead.
+
 ## Not computed
 
-Enterprise value, returns, momentum, WACC, sorts and terciles. `sector` is the
-raw `gsector` code, untranslated. `oancfy` and `capxy` stay unread.
+Enterprise value, WACC, sorts and terciles. Returns and momentum live in the
+separate price panel above. `sector` is the raw `gsector` code, untranslated.
+`oancfy` and `capxy` stay unread.
 
 ## Validation
 
@@ -157,7 +205,7 @@ so the run depends on nothing but `data/data.parquet`:
   the relative residual is below 1e-12 in both bridges.
 * **No `inf` anywhere**, and the decimal→float64 cast has 200,000× headroom on
   every source field.
-* **143 pytest tests** recompute the formulas independently of the pipeline —
+* **143 pytest tests** (plus 20 for the price panel) recompute the formulas independently of the pipeline —
   including FCFE worked out by hand from the raw parquet, the sign of each of
   its six terms probed one at a time, and Shapley compared against the mean over
   all 3! orderings. Nine of them pin measured facts (row counts, the merge, the

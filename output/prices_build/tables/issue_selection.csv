@@ -1,0 +1,7 @@
+﻿category,firms,meaning
+MATCHED,38589,"the security whose (gvkey, tic) equals the base panel's"
+NO_TIC_MATCH,169,"gvkey is in the file only under other tickers - no rows, not guessed"
+NO_PRICE_ROWS,2150,gvkey is not in the price file at all
+NO_SYMBOL_IN_BASE,17,"the base panel has no ticker for this gvkey, so no KEY exists"
+FILE_ONLY_NOT_IN_BASE,15004,gvkeys in the price file with no fundamentals - not used
+MATCHED_WITHOUT_QUARTER_MONTH,137,"of MATCHED: no price row in Feb/May/Aug/Nov at all, so no panel rows"

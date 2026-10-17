@@ -10,6 +10,9 @@ Rules enforced here
 * Label columns are categoricals carrying their whole declared level set, so a
   level that never occurs is still a declared level and the census can report it
   as unreached.
+* The price panel (``output/prices.parquet``) has its own eight-column contract,
+  ``PRICE_COLUMNS``, kept here so both contracts live in one file. The column
+  names are the researcher's own, spelling included.
 """
 from __future__ import annotations
 
@@ -136,6 +139,43 @@ def finalize(data: dict[str, Any], n_rows: int) -> pd.DataFrame:
     if len(panel) != n_rows:
         raise ValueError(f"panel has {len(panel)} rows, expected {n_rows}")
     return panel
+
+
+# ---- the price contract --------------------------------------------------
+PRICE_COLUMNS: tuple[str, ...] = (
+    "KEY", "Date", "Ticker", "Close", "Quaterly_return", "MomentomQ3",
+    "ipodate", "dldte",
+)
+PRICE_STRING_COLUMNS: tuple[str, ...] = ("KEY", "Ticker")
+PRICE_DATE_COLUMNS: tuple[str, ...] = ("Date", "ipodate", "dldte")
+
+
+def price_declared_dtype(column: str) -> str:
+    if column in PRICE_STRING_COLUMNS:
+        return "string"
+    if column in PRICE_DATE_COLUMNS:
+        return "datetime64[ns]"
+    return "float64"
+
+
+def finalize_prices(data: dict[str, Any], n_rows: int) -> pd.DataFrame:
+    """Build the price panel in one construction, in contract order and dtype."""
+    missing = [c for c in PRICE_COLUMNS if c not in data]
+    if missing:
+        raise KeyError(f"price columns not produced: {missing}")
+    columns: dict[str, Any] = {}
+    for col in PRICE_COLUMNS:
+        dtype = price_declared_dtype(col)
+        if dtype == "float64":
+            columns[col] = np.asarray(data[col], dtype="float64")
+        elif dtype == "string":
+            columns[col] = pd.array(pd.Series(data[col]).astype("string"), dtype="string")
+        else:
+            columns[col] = pd.to_datetime(pd.Series(data[col])).to_numpy("datetime64[ns]")
+    prices = pd.DataFrame(columns, copy=False)
+    if len(prices) != n_rows:
+        raise ValueError(f"price panel has {len(prices)} rows, expected {n_rows}")
+    return prices
 
 
 def schema_contract(column_status: pd.DataFrame) -> pd.DataFrame:

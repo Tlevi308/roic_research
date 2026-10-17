@@ -453,3 +453,264 @@ def duplicates_summary(report: dict[str, Any]) -> pd.DataFrame:
          "value": d["removed_step2_same_period"]},
         {"measure": "rows in panel", "value": d["rows_out"]},
     ])
+
+
+# ---------------------------------------------------------------------------
+# the price panel (output/prices.parquet)
+# ---------------------------------------------------------------------------
+SELECTION_MEANING = {
+    "MATCHED": "the security whose (gvkey, tic) equals the base panel's",
+    "NO_TIC_MATCH": "gvkey is in the file only under other tickers - no rows, not guessed",
+    "NO_PRICE_ROWS": "gvkey is not in the price file at all",
+    "NO_SYMBOL_IN_BASE": "the base panel has no ticker for this gvkey, so no KEY exists",
+    "FILE_ONLY_NOT_IN_BASE": "gvkeys in the price file with no fundamentals - not used",
+    "MATCHED_WITHOUT_QUARTER_MONTH": ("of MATCHED: no price row in Feb/May/Aug/Nov at all, "
+                                      "so no panel rows"),
+}
+
+
+def issue_selection_summary(report: dict[str, Any]) -> pd.DataFrame:
+    """One row per category of the security match, with what it means."""
+    return pd.DataFrame([{"category": k, "firms": v, "meaning": SELECTION_MEANING.get(k, "")}
+                         for k, v in report["selection_counts"].items()])
+
+
+def price_coverage_by_quarter(prices: pd.DataFrame, report: dict[str, Any]) -> pd.DataFrame:
+    """Firms and availability of the three numbers per quarter."""
+    d = pd.DataFrame({"period_key": report["quarter_keys"]["period_key"].to_numpy(),
+                      "Close": prices["Close"].notna().to_numpy(),
+                      "Quaterly_return": prices["Quaterly_return"].notna().to_numpy(),
+                      "MomentomQ3": prices["MomentomQ3"].notna().to_numpy()})
+    return (d.groupby("period_key", sort=True)
+            .agg(firms=("Close", "size"), Close=("Close", "sum"),
+                 Quaterly_return=("Quaterly_return", "sum"), MomentomQ3=("MomentomQ3", "sum"))
+            .reset_index())
+
+
+def price_nan_reasons(prices: pd.DataFrame, report: dict[str, Any]) -> pd.DataFrame:
+    """Why each value is present or missing, from the codes the build assigned.
+
+    The last row is not a reason: it counts momentum values computed although a
+    quarter in between has no valid Close - allowed, since only the endpoints
+    count, but worth seeing.
+    """
+    from .prices import value_periods_back
+
+    n = len(prices)
+    rows = []
+    for column, reasons in (("Close", report["close_reason"]),
+                            ("Quaterly_return", report["return_reason"]),
+                            ("MomentomQ3", report["momentum_reason"])):
+        for reason, k in pd.Series(reasons).value_counts().items():
+            rows.append({"column": column, "reason": reason, "rows": int(k),
+                         "share": k / n if n else np.nan})
+    qk = report["quarter_keys"]
+    firm, qidx = qk["firm"].to_numpy(), qk["quarter_index"].to_numpy()
+    valid = prices["Close"].notna().to_numpy().astype("float64")
+    both_inside = ((value_periods_back(firm, qidx, valid, 1) == 1)
+                   & (value_periods_back(firm, qidx, valid, 2) == 1))
+    k = int((prices["MomentomQ3"].notna().to_numpy() & ~both_inside).sum())
+    rows.append({"column": "MomentomQ3",
+                 "reason": "INFO: computed although q-1 or q-2 has no valid Close",
+                 "rows": k, "share": k / n if n else np.nan})
+    return pd.DataFrame(rows)
+
+
+def dividend_gap_census(prices: pd.DataFrame, report: dict[str, Any],
+                        cfg: dict[str, Any]) -> pd.DataFrame:
+    """How much the dividend-free return leaves out, measured with trt1m.
+
+    Backward-looking on purpose: for each quarter q it compares the price return
+    realised from q-1 to q with the total return compounded from the three
+    monthly trt1m values ending at q, so nothing here reads a future row.
+    ``gap = (1 + total) / (1 + price) - 1`` is the dividend yield of the quarter;
+    a clearly negative gap is not a dividend and is counted as anomalous.
+    """
+    from .data_io import safe_div
+    from .prices import value_periods_back
+
+    tol = float(cfg["prices"]["dividend_gap_tolerance"])
+    m = report["monthly"]
+    firm_m = pd.factorize(m["gvkey"], sort=False)[0].astype(np.int64)
+    midx = (m["month_end"].dt.year * 12 + m["month_end"].dt.month - 1).to_numpy(np.int64)
+    g = 1.0 + m["total_return_pct"].to_numpy(dtype="float64") / 100.0
+    g3 = g * value_periods_back(firm_m, midx, g, 1) * value_periods_back(firm_m, midx, g, 2)
+
+    qk = report["quarter_keys"]
+    total = g3[qk["_monthly_row"].to_numpy()] - 1.0
+    close = prices["Close"].to_numpy()
+    price = safe_div(close, value_periods_back(qk["firm"].to_numpy(),
+                                               qk["quarter_index"].to_numpy(), close, 1)) - 1.0
+    gap = safe_div(1.0 + total, 1.0 + price) - 1.0
+    decade = (qk["period_year"].to_numpy() // 10) * 10
+
+    def summarise(label: str, mask: np.ndarray) -> dict[str, Any]:
+        v = gap[mask & np.isfinite(gap)]
+        out: dict[str, Any] = {"scope": label, "quarters_compared": int(v.size)}
+        if v.size:
+            qs = np.percentile(v, [1, 50, 99])
+            positive = v[v > tol]
+            out.update({"share_no_dividend": float((np.abs(v) <= tol).mean()),
+                        "share_positive_gap": float((v > tol).mean()),
+                        "share_anomalous_negative": float((v < -tol).mean()),
+                        "gap_p01": qs[0], "gap_median": qs[1], "gap_p99": qs[2],
+                        "gap_median_when_positive": (float(np.median(positive))
+                                                     if positive.size else np.nan)})
+        return out
+
+    rows = [summarise("all", np.ones(len(gap), dtype=bool))]
+    for d in sorted(set(decade.tolist())):
+        rows.append(summarise(f"{d}s", decade == d))
+    return pd.DataFrame(rows)
+
+
+def extreme_return_census(prices: pd.DataFrame, report: dict[str, Any],
+                          cfg: dict[str, Any]) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Sizes of the largest moves, counted - never clipped - plus the top rows."""
+    thresholds = [float(t) for t in cfg["prices"]["extreme_thresholds"]]
+    rows: list[dict[str, Any]] = []
+    for col in ("Quaterly_return", "MomentomQ3"):
+        v = prices[col].to_numpy()
+        f = v[np.isfinite(v)]
+        if not f.size:
+            continue
+        qs = np.percentile(f, [0.1, 50, 99.9])
+        rows += [{"column": col, "measure": "values", "value": int(f.size)},
+                 {"column": col, "measure": "min", "value": float(f.min())},
+                 {"column": col, "measure": "p0.1", "value": float(qs[0])},
+                 {"column": col, "measure": "median", "value": float(qs[1])},
+                 {"column": col, "measure": "p99.9", "value": float(qs[2])},
+                 {"column": col, "measure": "max", "value": float(f.max())},
+                 {"column": col, "measure": "at or below -0.9", "value": int((f <= -0.9).sum())}]
+        rows += [{"column": col, "measure": f"above {t:g}", "value": int((f > t).sum())}
+                 for t in thresholds]
+    t1m = report["monthly"]["total_return_pct"].to_numpy(dtype="float64")
+    t1m = t1m[np.isfinite(t1m)]
+    if t1m.size:
+        rows += [{"column": "trt1m (percent, matched monthly rows)", "measure": "max",
+                  "value": float(t1m.max())},
+                 {"column": "trt1m (percent, matched monthly rows)", "measure": "above 1000",
+                  "value": int((t1m > 1000).sum())}]
+    top = pd.concat([prices.nlargest(20, col)[["KEY", "Date", "Close", col]]
+                     .rename(columns={col: "value"}).assign(column=col)
+                     for col in ("Quaterly_return", "MomentomQ3")], ignore_index=True)
+    # object column: counts stay integers next to the float statistics
+    census = pd.DataFrame(rows)
+    census["value"] = pd.Series([r["value"] for r in rows], dtype=object)
+    return census, top[["column", "KEY", "Date", "Close", "value"]]
+
+
+def join_coverage(prices: pd.DataFrame, base_keys: pd.Series) -> pd.DataFrame:
+    """Share of the base panel's KEYs that find a price row and each number."""
+    b = pd.DataFrame({"KEY": base_keys.dropna().astype("string").to_numpy()})
+    b["period_year"] = b["KEY"].str[:4].astype(int)
+    m = b.merge(prices[["KEY", "Close", "Quaterly_return", "MomentomQ3"]], on="KEY",
+                how="left", indicator=True)
+    m["with_price_row"] = m["_merge"] == "both"
+
+    def agg(frame: pd.DataFrame) -> dict[str, Any]:
+        n = len(frame)
+        out = {"base_keys": n, "with_price_row": int(frame["with_price_row"].sum())}
+        for col in ("Close", "Quaterly_return", "MomentomQ3"):
+            out[f"with_{col}"] = int(frame[col].notna().sum())
+        for col in ("with_price_row", "with_Close", "with_Quaterly_return", "with_MomentomQ3"):
+            out[f"share_{col}"] = out[col] / n if n else np.nan
+        return out
+
+    rows = [{"period_year": "all", **agg(m)},
+            {"period_year": ">= 2000", **agg(m[m["period_year"] >= 2000])}]
+    rows += [{"period_year": str(y), **agg(g)} for y, g in m.groupby("period_year", sort=True)]
+    return pd.DataFrame(rows)
+
+
+def timing_lag_census(prices: pd.DataFrame, base: pd.DataFrame) -> pd.DataFrame:
+    """Months from the fiscal quarter's end to the price date, through the KEY.
+
+    0 or 1 month means the price is observed before the quarter's report is
+    likely to be public. Described here; what to do about it belongs to the join.
+    """
+    b = base.dropna(subset=["KEY"])[["KEY", "fiscal_period_end_date"]]
+    m = (b.assign(KEY=b["KEY"].astype("string"))
+         .merge(prices[["KEY", "Date"]], on="KEY", how="inner"))
+    end = pd.to_datetime(m["fiscal_period_end_date"])
+    lag = (m["Date"].dt.year * 12 + m["Date"].dt.month) - (end.dt.year * 12 + end.dt.month)
+    year = m["KEY"].str[:4].astype(int)
+    rows = []
+    for scope, mask in (("all", np.ones(len(m), dtype=bool)),
+                        ("period_year >= 2000", (year >= 2000).to_numpy())):
+        counts = lag[mask].value_counts().sort_index()
+        total = int(mask.sum())
+        rows += [{"scope": scope, "lag_months": int(k), "rows": int(v),
+                  "share": v / total if total else np.nan} for k, v in counts.items()]
+    return pd.DataFrame(rows)
+
+
+def listing_dates_census(prices: pd.DataFrame, report: dict[str, Any],
+                         status: pd.Series | None) -> pd.DataFrame:
+    """Coverage of ipodate / dldte and how they sit against the price series.
+
+    Nothing is filtered on these dates; this only shows what the next stage
+    will be working with.
+    """
+    m = report["monthly"]
+    priced = ((m["price_close"] > 0) & (m["adjustment_factor"] > 0)).to_numpy()
+    firms = m.drop_duplicates("gvkey")[["gvkey", "ipo_date", "deletion_date"]]
+    rows: list[dict[str, Any]] = []
+
+    def add(measure: str, value: float, denominator: int, is_count: bool = True) -> None:
+        rows.append({"measure": measure, "value": value, "denominator": int(denominator),
+                     "share": (value / denominator if is_count and denominator else np.nan)})
+
+    nf = len(firms)
+    add("matched firms", nf, nf)
+    add("firms with ipodate", int(firms["ipo_date"].notna().sum()), nf)
+    add("firms with dldte", int(firms["deletion_date"].notna().sum()), nf)
+    if status is not None:
+        st = firms["gvkey"].astype("string").map(status)
+        for code, label in (("A", "active (costat A)"), ("I", "inactive (costat I)")):
+            sel = (st == code).fillna(False).to_numpy(dtype=bool)
+            add(f"{label} firms", int(sel.sum()), nf)
+            add(f"{label} firms with dldte",
+                int(firms.loc[sel, "deletion_date"].notna().sum()), int(sel.sum()))
+    before_ipo = (m["month_end"] < m["ipo_date"]).to_numpy()
+    after_del = (m["month_end"] > m["deletion_date"] + pd.offsets.MonthEnd(0)).to_numpy()
+    nm = len(m)
+    add("monthly rows dated before ipodate", int(before_ipo.sum()), nm)
+    add("... of which with a valid price", int((before_ipo & priced).sum()), nm)
+    add("monthly rows in a month after the dldte month", int(after_del.sum()), nm)
+    add("... of which with a valid price", int((after_del & priced).sum()), nm)
+    n_panel = len(prices)
+    add("panel rows with Date before ipodate",
+        int((prices["Date"] < prices["ipodate"]).sum()), n_panel)
+    add("panel rows in a month after the dldte month",
+        int((prices["Date"] > prices["dldte"] + pd.offsets.MonthEnd(0)).sum()), n_panel)
+    last = m.loc[priced].groupby("gvkey")["month_end"].max()
+    deleted = firms.set_index("gvkey")["deletion_date"]
+    days = (last - deleted.reindex(last.index)).dt.days.dropna().to_numpy(dtype="float64")
+    if days.size:
+        for p in (1, 10, 50, 90, 99):
+            add(f"days from dldte to the last valid price, p{p:02d} (firms)",
+                round(float(np.percentile(days, p)), 1), days.size, is_count=False)
+    census = pd.DataFrame(rows)
+    census["value"] = pd.Series([r["value"] for r in rows], dtype=object)
+    return census
+
+
+def example_side_by_side(prices: pd.DataFrame,
+                         example: tuple[tuple[str, str, float, float, float], ...]
+                         ) -> pd.DataFrame:
+    """The researcher's AAPL example next to the panel's numbers.
+
+    The example uses Yahoo closes adjusted for dividends too, so the price-only
+    returns here run lower by the dividend; the table is an illustration only.
+    """
+    ex = pd.DataFrame(list(example), columns=["period_key", "your_Date", "your_Close",
+                                              "your_Quaterly_return", "your_MomentomQ3"])
+    ex["KEY"] = (ex["period_key"] + "_AAPL").astype("string")
+    m = ex.merge(prices[["KEY", "Date", "Close", "Quaterly_return", "MomentomQ3"]],
+                 on="KEY", how="left")
+    m["Quaterly_return_minus_yours"] = m["Quaterly_return"] - m["your_Quaterly_return"]
+    m["MomentomQ3_minus_yours"] = m["MomentomQ3"] - m["your_MomentomQ3"]
+    return m[["KEY", "your_Date", "Date", "your_Close", "Close", "your_Quaterly_return",
+              "Quaterly_return", "Quaterly_return_minus_yours", "your_MomentomQ3",
+              "MomentomQ3", "MomentomQ3_minus_yours"]]

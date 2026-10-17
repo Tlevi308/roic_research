@@ -1,0 +1,7 @@
+2026-10-17 11:09:48,292 | INFO    | roic.run_prices | Run 2026-10-17 11:09:48 | config C:\Users\User\roic_research\research_roic\config.yaml
+2026-10-17 11:09:50,741 | INFO    | roic.prices | Prices loaded: 8572102 rows x 10 columns from prices.gz
+2026-10-17 11:09:57,006 | INFO    | roic.prices | Securities: {'MATCHED': 38589, 'NO_TIC_MATCH': 169, 'NO_PRICE_ROWS': 2150, 'NO_SYMBOL_IN_BASE': 17, 'FILE_ONLY_NOT_IN_BASE': 15004}
+2026-10-17 11:10:04,339 | INFO    | roic.prices | Price panel built: 1925749 rows, 38452 firms
+2026-10-17 11:10:18,676 | INFO    | roic.run_prices | Price panel written: C:\Users\User\roic_research\output\prices.parquet
+2026-10-17 11:10:26,224 | INFO    | roic.run_prices | Excel written: prices_from_2025.xlsx (74097 rows from 2025)
+2026-10-17 11:10:26,490 | INFO    | roic.run_prices | Finished in 38.2s. Report: C:\Users\User\roic_research\output\prices_build\report.md

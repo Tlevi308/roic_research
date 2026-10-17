@@ -1,6 +1,7 @@
 """The contract, and the two ways the pipeline is meant to be extended."""
 from __future__ import annotations
 
+import ast
 import copy
 import re
 from pathlib import Path
@@ -152,13 +153,51 @@ def test_excel_writer_handles_nullable_and_categorical(cfg, synthetic, tmp_path)
 
 
 def test_no_lookahead_anywhere_in_the_source():
-    """No module may read a future row."""
+    """No module may read a future row by shifting.
+
+    The one sanctioned forward read - ``Quaterly_return``, the dependent
+    variable - goes through a calendar lookup, and the next test confines it.
+    """
     offenders = []
     pattern = re.compile(r"shift\(\s*-|\.shift\(-1\)|iloc\[\s*\w+\s*\+\s*1\s*\]")
     for path in sorted((ROOT / "src").glob("*.py")):
         for i, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
             if pattern.search(line):
                 offenders.append(f"{path.name}:{i}")
+    assert offenders == []
+
+
+def _calls_by_function(path: Path) -> list[tuple[str, str | None]]:
+    """(enclosing function, called name) for every call in a module."""
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    out = []
+    for fn in ast.walk(tree):
+        if isinstance(fn, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            for node in ast.walk(fn):
+                if isinstance(node, ast.Call):
+                    f = node.func
+                    out.append((fn.name, f.attr if isinstance(f, ast.Attribute)
+                                else getattr(f, "id", None)))
+    return out
+
+
+def test_the_only_future_read_is_the_forward_return():
+    """``Quaterly_return`` must read the next quarter: it is what is predicted.
+
+    That read lives in ``prices.forward_quarterly_return`` and nowhere else.
+    Every other calendar lookup goes through ``value_periods_back``, which
+    refuses k < 1, and only the price build calls the forward function.
+    """
+    lookup_callers = {("prices.py", "value_periods_back"),
+                      ("prices.py", "forward_quarterly_return")}
+    offenders = []
+    for path in sorted((ROOT / "src").glob("*.py")):
+        for fn, name in _calls_by_function(path):
+            if name == "_value_at_offset" and (path.name, fn) not in lookup_callers:
+                offenders.append(f"{path.name}:{fn} calls _value_at_offset")
+            if name == "forward_quarterly_return" and (path.name, fn) != ("prices.py",
+                                                                           "build_prices"):
+                offenders.append(f"{path.name}:{fn} calls forward_quarterly_return")
     assert offenders == []
 
 

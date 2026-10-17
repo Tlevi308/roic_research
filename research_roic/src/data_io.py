@@ -103,10 +103,15 @@ def sha256_file(path: Path, chunk: int = 1 << 20) -> str:
     return h.hexdigest()
 
 
-def source_fingerprints(cfg: dict[str, Any]) -> pd.DataFrame:
-    """Path / size / mtime / SHA-256 of every source file, for before-after proof."""
+def source_fingerprints(cfg: dict[str, Any],
+                        names: tuple[str, ...] = ("input_parquet",)) -> pd.DataFrame:
+    """Path / size / mtime / SHA-256 of every source file, for before-after proof.
+
+    ``names`` are keys of ``paths`` in config.yaml; the price build passes both
+    files it reads.
+    """
     rows = []
-    for name in ("input_parquet",):
+    for name in names:
         p = cfg["_paths"].get(name)
         if p is None or not p.exists():
             rows.append({"file": name, "path": str(p), "exists": False})
@@ -195,7 +200,8 @@ def save_panel_parquet(panel: pd.DataFrame, path: Path, cfg: dict[str, Any]) -> 
     return path
 
 
-def save_panel_excel(panel: pd.DataFrame, path: Path, cfg: dict[str, Any]) -> dict[str, Any]:
+def save_panel_excel(panel: pd.DataFrame, path: Path, cfg: dict[str, Any],
+                     sheet: str = "panel") -> dict[str, Any]:
     """Write the panel slice with openpyxl in write-only mode.
 
     Streaming row by row keeps memory flat; nothing is installed for this.
@@ -209,7 +215,7 @@ def save_panel_excel(panel: pd.DataFrame, path: Path, cfg: dict[str, Any]) -> di
     body = panel.iloc[:limit] if truncated else panel
 
     wb = Workbook(write_only=True)
-    ws = wb.create_sheet("panel")
+    ws = wb.create_sheet(sheet)
     ws.append(list(body.columns))
     for row in body.astype(object).where(body.notna(), None).itertuples(index=False, name=None):
         ws.append(list(row))

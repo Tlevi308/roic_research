@@ -28,14 +28,19 @@ LOGGER = logging.getLogger("roic.keys")
 # ---------------------------------------------------------------------------
 # period derivation
 # ---------------------------------------------------------------------------
-def add_period_columns(df: pd.DataFrame, cfg: dict[str, Any]) -> pd.DataFrame:
+def add_period_columns(df: pd.DataFrame, cfg: dict[str, Any],
+                       date_col: str = "fiscal_period_end_date") -> pd.DataFrame:
     """Add ``period_year``, ``period_quarter``, ``period_key`` and ``quarter_index``.
 
     2026-03-31 -> 2026-01-31 -> 2026Q1 · 2025-09-30 -> 2025-07-31 -> 2025Q3
     2025-08-31 -> 2025-06-30 -> 2025Q2 · 2026-01-31 -> 2025-11-30 -> 2025Q4
+
+    ``date_col`` lets the price panel apply the very same rule to a price
+    month-end (Feb -> Q4 of the previous year, May -> Q1, Aug -> Q2, Nov -> Q3),
+    so both panels derive the quarter of a KEY in one place.
     """
     out = df.copy()
-    end = pd.to_datetime(out["fiscal_period_end_date"])
+    end = pd.to_datetime(out[date_col])
     shifted = end - pd.DateOffset(months=int(cfg["timing"]["quarter_shift_months"]))
     out["period_year"] = shifted.dt.year.astype("int32")
     out["period_quarter"] = shifted.dt.quarter.astype("int8")
