@@ -1,0 +1,6 @@
+2026-11-07 20:14:56,241 | INFO    | roic.run_index | Run 2026-11-07 20:14:56 | index qqq100 | config C:\Users\User\roic_research\research_roic\config.yaml
+2026-11-07 20:14:56,867 | INFO    | roic.index_panel | Index records -> stays: 524 -> 514 (10 records merged into a stay)
+2026-11-07 20:14:59,774 | INFO    | roic.index_panel | Index panel qqq100: 46152 rows, 436 firms, 40485 with price, 12489 in the index
+2026-11-07 20:15:00,687 | INFO    | roic.run_index | Index panel written: C:\Users\User\roic_research\output\index_panels\qqq100\qqq100_panel.parquet
+2026-11-07 20:15:04,487 | INFO    | roic.run_index | Excel written: qqq100_panel_from_2025.xlsx (1340 rows from 2025)
+2026-11-07 20:15:05,301 | INFO    | roic.run_index | Finished qqq100 in 9.1s. Report: C:\Users\User\roic_research\output\index_panels\qqq100\report.md

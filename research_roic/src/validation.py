@@ -714,3 +714,79 @@ def example_side_by_side(prices: pd.DataFrame,
     return m[["KEY", "your_Date", "Date", "your_Close", "Close", "your_Quaterly_return",
               "Quaterly_return", "Quaterly_return_minus_yours", "your_MomentomQ3",
               "MomentomQ3", "MomentomQ3_minus_yours"]]
+
+
+# ---------------------------------------------------------------------------
+# the index panel
+# ---------------------------------------------------------------------------
+INDEX_ROIC_COLUMN = "calc_roic_posttax_quarterly_ic_raw"
+
+
+def index_by_quarter(table: pd.DataFrame, report: dict[str, Any]) -> pd.DataFrame:
+    """Per quarter: the index firms' rows, how many are investable, and how many
+    of those carry a price, a return and a ROIC - the stage-2 starting count."""
+    inside = table["in_index"].to_numpy() == 1
+    d = pd.DataFrame({
+        "period_key": report["period_key"],
+        "rows": 1,
+        "in_index": inside,
+        "in_index_with_price_row": inside & table["Date"].notna().to_numpy(),
+        "in_index_with_close": inside & table["Close"].notna().to_numpy(),
+        "in_index_with_return": inside & table["Quaterly_return"].notna().to_numpy(),
+        "in_index_with_roic": inside & table[INDEX_ROIC_COLUMN].notna().to_numpy(),
+    })
+    out = d.groupby("period_key", sort=True).sum().reset_index()
+    missing = report["investable_without_row"].groupby("period_key").size()
+    out["investable_without_report_row"] = out["period_key"].map(missing).fillna(0).astype(int)
+    return out
+
+
+def index_timing_gap_census(table: pd.DataFrame, report: dict[str, Any]) -> pd.DataFrame:
+    """Months from the fiscal quarter end to the investment date, investable rows only.
+
+    2 is the calendar case (December -> end of February). 1 and 0 are fiscal
+    quarters ending one month, or the same month, before the investment date -
+    the report is probably not out yet on that day. Counted, never changed.
+    """
+    inside = table["in_index"].to_numpy() == 1
+    d = pd.DataFrame({"period_year": pd.Series(report["period_key"]).str[:4].to_numpy()[inside],
+                      "months": table["months_fiscal_end_to_formation"].to_numpy()[inside],
+                      "symbol": table["symbol"].to_numpy()[inside]})
+    by_year = (d.groupby(["period_year", "months"], dropna=False).size()
+               .rename("rows").reset_index())
+    total = (d.groupby("months", dropna=False).size().rename("rows").reset_index()
+             .assign(period_year="all"))
+    out = pd.concat([total, by_year], ignore_index=True)
+    out["share_of_year"] = out["rows"] / out.groupby("period_year")["rows"].transform("sum")
+    last = d[d["period_year"] == d["period_year"].max()]
+    examples = (last.groupby("months")["symbol"]
+                .agg(lambda s: ", ".join(sorted(map(str, s.unique()))[:12])))
+    out["examples_latest_year"] = np.where(out["period_year"] == "all",
+                                           out["months"].map(examples), "")
+    return out[["period_year", "months", "rows", "share_of_year", "examples_latest_year"]]
+
+
+def index_not_included(report: dict[str, Any]) -> pd.DataFrame:
+    """What the index panel cannot show, one reason per line.
+
+    INVESTABLE_QUARTER_WITHOUT_REPORT_ROW - the rule says investable, but the
+    fundamentals have no row for that firm and quarter. FIRM_WITHOUT_ANY_PRICE -
+    the firm's rows are all in, with empty price columns. FIRM_WITHOUT_ANY_REPORT_ROW
+    - an index gvkey with no fundamentals at all.
+    """
+    cols = ["reason", "gvkey", "company", "period_key", "symbol", "rows_in_panel", "rows_in_index"]
+    rows: list[dict[str, Any]] = []
+    for r in report["investable_without_row"].itertuples(index=False):
+        rows.append({"reason": "INVESTABLE_QUARTER_WITHOUT_REPORT_ROW", "gvkey": r.gvkey,
+                     "company": r.company, "period_key": r.period_key})
+    for r in report["firms_without_prices"].itertuples(index=False):
+        rows.append({"reason": "FIRM_WITHOUT_ANY_PRICE", "gvkey": r.gvkey, "company": r.company,
+                     "symbol": r.symbol, "rows_in_panel": int(r.rows),
+                     "rows_in_index": int(r.rows_in_index)})
+    for g in report["firms_without_rows"]:
+        rows.append({"reason": "FIRM_WITHOUT_ANY_REPORT_ROW", "gvkey": g,
+                     "rows_in_panel": 0, "rows_in_index": 0})
+    out = pd.DataFrame(rows, columns=cols)
+    for c in ("rows_in_panel", "rows_in_index"):
+        out[c] = out[c].astype("Int64")
+    return out

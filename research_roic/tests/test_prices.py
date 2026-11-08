@@ -73,6 +73,14 @@ def test_contract_columns_and_dtypes(cfg, seed):
         assert not np.isinf(out[col].to_numpy()).any(), col
 
 
+def test_gvkey_is_kept_next_to_the_key(cfg, seed):
+    out, rep = build(cfg, *three_firms(seed))
+    assert list(out.columns[:2]) == ["KEY", "gvkey"]
+    expected = {"AAA": "000001", "BBB": "000002", "CCC": "000003"}
+    assert (out["gvkey"] == out["Ticker"].map(expected)).all()
+    assert (out["gvkey"].to_numpy() == rep["quarter_keys"]["gvkey"].to_numpy()).all()
+
+
 def test_months_map_to_quarters_and_key_matches_the_base_rule(cfg, seed):
     price = random_price(seed, start="2014-01-31", n=12)
     out, _ = build(cfg, firm_rows("000001", "AAA", price), tickers(("000001", "AAA")))
@@ -308,6 +316,15 @@ def test_real_coverage_matches_the_measurement(real_prices, cfg):
     tol = float(cfg["validation"]["coverage_tolerance_pp"]) / 100.0
     for col, expected in COVERAGE.items():
         assert abs(float(out[col].notna().mean()) - expected) <= tol, col
+
+
+def test_real_gvkey(real_prices):
+    """Six-digit strings on every row, one ticker per gvkey and one gvkey per ticker."""
+    out, _ = real_prices
+    assert out["gvkey"].notna().all() and out["gvkey"].str.fullmatch(r"\d{6}").all()
+    assert set(out.loc[out["Ticker"] == "AAPL", "gvkey"]) == {"001690"}
+    pairs = out[["gvkey", "Ticker"]].drop_duplicates()
+    assert pairs["gvkey"].is_unique and pairs["Ticker"].is_unique
 
 
 def test_real_aapl(real_prices):

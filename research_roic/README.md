@@ -1,10 +1,10 @@
 # ROIC panel from Compustat Fundamentals Quarterly
 
-**What this builds:** one analysis panel of 73 columns — ROIC levels, a Shapley
+**What this builds:** one analysis panel of 74 columns — ROIC levels, a Shapley
 decomposition of the change in NOPAT and in ROIC, nine families of labels,
 quality flags and an English explanation sentence — from `data/data.parquet`.
 
-**Status:** built and validated. 163 pytest tests pass (143 for the base panel, 20 for the price panel). 1,903,609 rows, **all 73
+**Status:** built and validated. 198 pytest tests pass (145 for the base panel, 22 for the price panel, 31 for the index panel). 1,903,609 rows, **all 74
 columns computed**. No external reference data is read: the panel validates
 itself.
 
@@ -13,12 +13,15 @@ itself.
 ```powershell
 C:\Users\User\anaconda3\python.exe research_roic\scripts\run_build_panel.py
 C:\Users\User\anaconda3\python.exe research_roic\scripts\run_build_prices.py
+C:\Users\User\anaconda3\python.exe research_roic\scripts\run_build_index_panel.py   # --index qqq100
 C:\Users\User\anaconda3\python.exe -m pytest research_roic\tests -q
 ```
 
 `--no-excel` skips the Excel slice. A base run takes about 80 seconds, a price
 run about 40. The price run reads the base panel only for its join and timing
-tables, so run the base build first when both inputs change.
+tables, so run the base build first when both inputs change. The index build
+reads only the two finished panels and an index file, so it runs last (about 6
+seconds).
 
 ## Layout
 
@@ -26,6 +29,7 @@ tables, so run the base build first when both inputs change.
 data/                        input, read-only (SHA-256 checked before and after)
   data.parquet
   prices.gz                  Compustat Security Monthly, gzip CSV (price panel)
+  qqq100hist.csv             Nasdaq 100 history, Compustat idxcst_his (index panel)
 research_roic/
   config.yaml                every parameter: field map, bands, paths, Excel year
   src/
@@ -36,13 +40,15 @@ research_roic/
     shapley.py               one coefficient matrix for both bridges
     labels.py                bands, the single classifier, the ladders, the levels
     explain.py               the closed explanation catalogue
-    schema.py                the 73-column contract, and the 8-column price contract
+    schema.py                the 74-column contract, and the 9-column price contract
     validation.py            describes the panels; never alters them
     pipeline.py              build_panel(cfg, raw=None) -> (panel, report)
     prices.py                build_prices(cfg, raw=None, tickers=None) -> (prices, report)
+    index_panel.py           build_index_panel(cfg, name, ...) -> (panel, report), any index
   scripts/run_build_panel.py
   scripts/run_build_prices.py
-  tests/                     13 files, one invariant each
+  scripts/run_build_index_panel.py
+  tests/                     14 files, one invariant each
 output/                      everything the runs produce (fixed names, overwritten)
   panel.parquet              the panel, all rows
   panel_from_2025.xlsx       the same columns from a configurable year
@@ -52,6 +58,8 @@ output/                      everything the runs produce (fixed names, overwritt
   prices.parquet             the price panel, all rows
   prices_from_2025.xlsx      the price panel from the same year
   prices_build/              the price run's tables, logs and Hebrew report
+  index_panels/<name>/       one folder per index: <name>_panel.parquet, the Excel
+                             slice <name>_panel_from_2025.xlsx, tables/, logs/, report.md
 ```
 
 Every output has a **fixed name and is overwritten**, so a run with new data
@@ -63,7 +71,7 @@ inside `run_manifest.json`, not in file names.
 | Item | Definition |
 |---|---|
 | Period | `period_key` = calendar quarter of (fiscal period end − 2 months). `2026-03-31 → 2026Q1`, `2025-09-30 → 2025Q3`, `2026-01-31 → 2025Q4`. Holds on 100% of rows. |
-| Key | `KEY = period_key + "_" + symbol`, e.g. `2016Q4_A`. Decided on `(gvkey, period_key)` because 383 rows carry no ticker. |
+| Key | `KEY = period_key + "_" + symbol`, e.g. `2016Q4_A`. Decided on `(gvkey, period_key)` because 383 rows carry no ticker. `gvkey` is kept as its own column right after `KEY` (2026-10-27), a six-digit string, so those 383 rows stay identifiable. |
 | EBIT | `oiadpq` only. |
 | Invested capital | `TCA − TCL + net PPE + goodwill`. Working capital mandatory; PPE and goodwill missing count as zero. |
 | Equity | `atq − ltq` (assets − liabilities), which is total equity including minority interest. |
@@ -157,6 +165,7 @@ joinable to the base panel on `KEY`. Decided with the researcher on 2026-10-17.
 | Column | Definition |
 |---|---|
 | `KEY` | `period_key + "_" + tic`, from `keys.build_key` — the base panel's own function |
+| `gvkey` | the Compustat firm id, a six-digit string with its leading zeros — the same column the base panel carries |
 | `Date` | `datadate`, the calendar month-end of Feb / May / Aug / Nov |
 | `Ticker` | `tic`, identical to the base panel's `symbol` |
 | `Close` | `prccm / ajexm`, adjusted for splits |
@@ -186,6 +195,43 @@ joinable to the base panel on `KEY`. Decided with the researcher on 2026-10-17.
   month after it. Use it only as "not deleted yet at `Date`"; excluding a firm
   because it **will** be deleted is look-ahead.
 
+## Index panels
+
+`scripts/run_build_index_panel.py --index qqq100` builds
+`output/index_panels/qqq100/qqq100_panel.parquet` (decided with the researcher
+on 2026-11-07): **every base-panel row of the 436 firms that were ever in the
+Nasdaq 100**, over their whole history, with every price column joined on
+`(gvkey, KEY)`, and a 0/1 column saying whether the firm was investable in that
+quarter. 46,152 rows × 85 columns; 12,489 rows carry `in_index = 1`, about 99
+firms a quarter.
+
+| Column | Definition |
+|---|---|
+| 74 base columns, then `Date, Ticker, Close, Quaterly_return, MomentomQ3, ipodate, dldte` | copied untouched from `panel.parquet` and `prices.parquet` |
+| `quarter_end` | the end of the KEY's quarter: `2025Q1_AAPL → 2025-03-31` |
+| `formation_date` | its month-end two months later, `2025-05-31` — the price `Date` |
+| `in_index` | **1** when one stay of the same gvkey holds both dates: `from ≤ quarter_end` and `formation_date ≤ thru`, an empty `thru` being open; **0** otherwise |
+| `months_fiscal_end_to_formation` | 0 / 1 / 2 months from the fiscal quarter end to `formation_date`, flagged for stage 2 |
+
+* **Leaving and rejoining.** A firm can have several records (361 firms one,
+  63 two, 11 three, one four). Real exits stay separate stays. Records that
+  overlap, or where the next starts at most `contiguous_gap_days` (1) after the
+  previous `thru`, are one continuous stay and are merged first — two share
+  classes, a ticker change, Comcast's 2002-11-18 / 2002-11-19 renewal. Without
+  that, `2002Q3_CMCSA` would read 0. 524 records → 514 stays, every merge in
+  `tables/spells_merged.csv`.
+* **Self-checked.** The investable quarters are also enumerated from the stays
+  alone, without the panel, and must equal the rows flagged 1, or the run stops.
+* ⚠️ The file starts on 1995-01-01, so all of 1994Q4 reads 0.
+* ⚠️ `thru` — the day the firm will leave — never enters the panel.
+* Five former members have no prices at all (Biomet, Delhaize America, SunGard,
+  QVC, Quintiles): their fundamentals ticker is a Compustat placeholder
+  (`5938B` vs `BMET`), so the price panel chose no security for them. Their rows
+  are in, with empty price columns, and listed in `tables/not_included.csv`.
+* **A new index** is one entry under `indices` in `config.yaml` (file, `gvkeyx`,
+  column names, date format) and `--index <name>`. Nothing else in the code
+  names an index.
+
 ## Not computed
 
 Enterprise value, WACC, sorts and terciles. Returns and momentum live in the
@@ -205,7 +251,7 @@ so the run depends on nothing but `data/data.parquet`:
   the relative residual is below 1e-12 in both bridges.
 * **No `inf` anywhere**, and the decimal→float64 cast has 200,000× headroom on
   every source field.
-* **143 pytest tests** (plus 20 for the price panel) recompute the formulas independently of the pipeline —
+* **145 pytest tests** (plus 22 for the price panel) recompute the formulas independently of the pipeline —
   including FCFE worked out by hand from the raw parquet, the sign of each of
   its six terms probed one at a time, and Shapley compared against the mean over
   all 3! orderings. Nine of them pin measured facts (row counts, the merge, the

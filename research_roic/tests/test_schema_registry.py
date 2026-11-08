@@ -14,7 +14,7 @@ from src import data_io, pipeline, registry, schema
 from tests.conftest import ROOT, build, build_with_report, make_source
 
 REQUESTED = (
-    "KEY symbol company sector fiscal_period_end_date run_date "
+    "KEY gvkey symbol company sector fiscal_period_end_date run_date "
     "calc_tax_expense_quarterly pretax_income calc_raw_tax_rate_quarterly ebit "
     "calc_nopat_quarterly calc_nopat_decomposition_status calc_nopat_change_quarterly "
     "calc_nopat_change_direction calc_nopat_ebit_contribution calc_nopat_tax_contribution "

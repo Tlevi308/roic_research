@@ -1,0 +1,4 @@
+﻿file,path,exists,bytes,modified,sha256,unchanged_during_run
+panel_parquet,C:\Users\User\roic_research\output\panel.parquet,True,342853093,2026-10-27T15:43:05.354883194,73f1dda0e3ee4985f90cd924d7142e63e4e464759287b37768fce669f2c5f3a8,True
+prices_parquet,C:\Users\User\roic_research\output\prices.parquet,True,34353349,2026-10-27T15:45:09.557599783,9ebc7f2aa27be0c0d8332dd1ff0fb3ca0e62dec1814475b21a6303e2a0092ee0,True
+qqq100_constituents,C:\Users\User\roic_research\data\qqq100hist.csv,True,39724,2026-10-17T17:47:46.629358768,95730d321fc97b2f714f7d46e6219b3bd7174fbf658b1f994b1d748e509ca6fe,True

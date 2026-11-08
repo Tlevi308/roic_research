@@ -104,15 +104,18 @@ def sha256_file(path: Path, chunk: int = 1 << 20) -> str:
 
 
 def source_fingerprints(cfg: dict[str, Any],
-                        names: tuple[str, ...] = ("input_parquet",)) -> pd.DataFrame:
+                        names: tuple[str, ...] = ("input_parquet",),
+                        extra: dict[str, Path] | None = None) -> pd.DataFrame:
     """Path / size / mtime / SHA-256 of every source file, for before-after proof.
 
     ``names`` are keys of ``paths`` in config.yaml; the price build passes both
-    files it reads.
+    files it reads. ``extra`` adds files that are not under ``paths`` - the
+    index build reads two outputs and an index file.
     """
     rows = []
-    for name in names:
-        p = cfg["_paths"].get(name)
+    targets = [(name, cfg["_paths"].get(name)) for name in names]
+    targets += [(name, Path(p)) for name, p in (extra or {}).items()]
+    for name, p in targets:
         if p is None or not p.exists():
             rows.append({"file": name, "path": str(p), "exists": False})
             continue

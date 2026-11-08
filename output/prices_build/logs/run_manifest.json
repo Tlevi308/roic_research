@@ -1,6 +1,6 @@
 {
-  "run_stamp": "2026-10-17 11:09:48",
-  "seconds": 38.2,
+  "run_stamp": "2026-10-27 17:44:25",
+  "seconds": 55.09,
   "config_path": "C:\\Users\\User\\roic_research\\research_roic\\config.yaml",
   "config_copy": "C:\\Users\\User\\roic_research\\output\\prices_build\\logs\\config_used.yaml",
   "log_path": "C:\\Users\\User\\roic_research\\output\\prices_build\\logs\\run.log",
@@ -20,6 +20,7 @@
   "rows_in_panel": 1925749,
   "columns": [
     "KEY",
+    "gvkey",
     "Date",
     "Ticker",
     "Close",

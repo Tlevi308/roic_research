@@ -396,6 +396,7 @@ def build_prices(cfg: dict[str, Any], raw: pd.DataFrame | None = None,
 
     data = {
         "KEY": keys.build_key(q["period_key"], q["symbol"], cfg),
+        "gvkey": q["gvkey"],
         "Date": q["month_end"],
         "Ticker": q["symbol"],
         "Close": close,

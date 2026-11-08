@@ -74,6 +74,19 @@ def test_key_format(cfg, seed):
     assert panel.loc[0, "KEY"] == "2016Q4_AAA"
 
 
+def test_gvkey_is_kept_as_the_source_string_even_without_a_ticker(cfg, seed):
+    """gvkey sits next to KEY, leading zeros intact, and survives a missing ticker."""
+    src = make_source(seed, tickers=("AAA", "BBB"), n_quarters=4)
+    src.loc[src["gvkey"] == "000002", "tic"] = None
+    panel = build(cfg, src)
+    assert list(panel.columns[:2]) == ["KEY", "gvkey"]
+    assert str(panel["gvkey"].dtype).startswith("string")
+    assert sorted(panel["gvkey"].unique()) == ["000001", "000002"]
+    tickerless = panel["KEY"].isna()
+    assert (panel.loc[tickerless, "gvkey"] == "000002").all()
+    assert (panel.loc[~tickerless, "gvkey"] == "000001").all()
+
+
 def test_duplicate_does_not_pair_a_quarter_with_itself(cfg, seed):
     """Without the merge, shift(1) would compare a quarter to its own copy."""
     src = make_source(seed, tickers=("AAA",), n_quarters=6)
@@ -107,6 +120,19 @@ def test_real_one_row_per_firm_quarter(real_panel):
     _, report = real_panel
     pk = report["panel_keys"]
     assert not pk.duplicated(["gvkey", "period_key"]).any()
+
+
+def test_real_gvkey_on_every_row(real_panel):
+    """Six-digit strings everywhere - including the rows that have no KEY."""
+    panel, report = real_panel
+    gv = panel["gvkey"]
+    assert gv.notna().all()
+    assert gv.str.fullmatch(r"\d{6}").all()
+    assert (gv.to_numpy() == report["panel_keys"]["gvkey"].to_numpy()).all()
+    assert int(gv[panel["KEY"].isna()].notna().sum()) == EXPECTED_ROWS_WITHOUT_TICKER
+    per_firm = panel.dropna(subset=["symbol"]).groupby("gvkey")["symbol"].nunique()
+    assert (per_firm == 1).all()
+    assert set(gv[panel["symbol"] == "AAPL"]) == {"001690"}
 
 
 def test_real_audit_accounts_for_every_removed_row(real_panel):

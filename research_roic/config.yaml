@@ -179,3 +179,39 @@ fcf:
   # the trailing sum stays strict: a three-quarter total labelled TTM is a
   # different quantity, not a missing field
   ttm_quarters: 4
+
+# ---------------------------------------------------------------------
+# index panels: scripts/run_build_index_panel.py --index <name> writes
+# output/index_panels/<name>/. Researcher 2026-11-07:
+#   * the firms are the gvkeys of the index file; every base-panel row of
+#     those firms is kept, with every column, over the whole history
+#   * prices join on (gvkey, KEY), left from the fundamentals
+#   * in_index = 1 when ONE stay in the index holds both the quarter end
+#     (read from the KEY: 2025Q1_X -> 2025-03-31) and the investment date
+#     timing.quarter_shift_months later (2025-05-31) - the month-end the
+#     price panel already uses as Date. An empty thru means still in it.
+#   * a firm can leave and rejoin: records of one gvkey whose next `from` is
+#     at most `contiguous_gap_days` after the previous `thru` are ONE stay
+#     (two share classes, a ticker change, a next-day renewal); a longer gap
+#     is a real exit and stays separate
+# A new index is one more entry under `indices`; a file in another format
+# changes `columns` / `date_format` here, or read_constituents alone.
+# ---------------------------------------------------------------------
+indices:
+  qqq100:
+    file: ../data/qqq100hist.csv        # Compustat idxcst_his, Nasdaq 100
+    gvkeyx: "000208"
+    date_format: "%Y-%m-%d"
+    columns:                            # logical name -> column in the file
+      gvkey: gvkey
+      from: from
+      thru: thru
+      index_id: gvkeyx
+      company: conm_cst
+
+index_panel:
+  output_dir: index_panels              # output/index_panels/<name>/
+  contiguous_gap_days: 1
+  file_pattern: "{name}_panel.parquet"
+  excel_file_pattern: "{name}_panel_from_{year}.xlsx"   # year = output.excel_from_year
+  excel_sheet: panel
