@@ -4,7 +4,7 @@
 decomposition of the change in NOPAT and in ROIC, nine families of labels,
 quality flags and an English explanation sentence — from `data/data.parquet`.
 
-**Status:** built and validated. 198 pytest tests pass (145 for the base panel, 22 for the price panel, 31 for the index panel). 1,903,609 rows, **all 74
+**Status:** built and validated. 223 pytest tests pass (145 for the base panel, 22 for the price panel, 31 for the index panel, 25 for the S&P 500 panel). 1,903,609 rows, **all 74
 columns computed**. No external reference data is read: the panel validates
 itself.
 
@@ -14,6 +14,7 @@ itself.
 C:\Users\User\anaconda3\python.exe research_roic\scripts\run_build_panel.py
 C:\Users\User\anaconda3\python.exe research_roic\scripts\run_build_prices.py
 C:\Users\User\anaconda3\python.exe research_roic\scripts\run_build_index_panel.py   # --index qqq100
+C:\Users\User\anaconda3\python.exe research_roic\scripts\run_build_sp500_panel.py
 C:\Users\User\anaconda3\python.exe -m pytest research_roic\tests -q
 ```
 
@@ -21,6 +22,8 @@ C:\Users\User\anaconda3\python.exe -m pytest research_roic\tests -q
 run about 40. The price run reads the base panel only for its join and timing
 tables, so run the base build first when both inputs change. The index build
 reads only the two finished panels and an index file, so it runs last (about 6
+seconds). The S&P 500 build is separate from it — its own script, code, config
+section and output folder — and also runs after the two panels (about 17
 seconds).
 
 ## Layout
@@ -30,6 +33,7 @@ data/                        input, read-only (SHA-256 checked before and after)
   data.parquet
   prices.gz                  Compustat Security Monthly, gzip CSV (price panel)
   qqq100hist.csv             Nasdaq 100 history, Compustat idxcst_his (index panel)
+  sp500hist.csv              S&P 500 history by ticker and quarter (S&P 500 panel)
 research_roic/
   config.yaml                every parameter: field map, bands, paths, Excel year
   src/
@@ -45,10 +49,12 @@ research_roic/
     pipeline.py              build_panel(cfg, raw=None) -> (panel, report)
     prices.py                build_prices(cfg, raw=None, tickers=None) -> (prices, report)
     index_panel.py           build_index_panel(cfg, name, ...) -> (panel, report), any index
+    sp500_panel.py           build_sp500_panel(cfg, ...) -> (panel, report); imports no index-panel code
   scripts/run_build_panel.py
   scripts/run_build_prices.py
   scripts/run_build_index_panel.py
-  tests/                     14 files, one invariant each
+  scripts/run_build_sp500_panel.py
+  tests/                     15 files, one invariant each
 output/                      everything the runs produce (fixed names, overwritten)
   panel.parquet              the panel, all rows
   panel_from_2025.xlsx       the same columns from a configurable year
@@ -60,6 +66,8 @@ output/                      everything the runs produce (fixed names, overwritt
   prices_build/              the price run's tables, logs and Hebrew report
   index_panels/<name>/       one folder per index: <name>_panel.parquet, the Excel
                              slice <name>_panel_from_2025.xlsx, tables/, logs/, report.md
+  sp500_panel/               the S&P 500 panel, apart from index_panels/: sp500_panel.parquet,
+                             sp500_panel_from_2025.xlsx, tables/, logs/, report.md
 ```
 
 Every output has a **fixed name and is overwritten**, so a run with new data
@@ -231,6 +239,47 @@ firms a quarter.
 * **A new index** is one entry under `indices` in `config.yaml` (file, `gvkeyx`,
   column names, date format) and `--index <name>`. Nothing else in the code
   names an index.
+
+## S&P 500 panel
+
+`scripts/run_build_sp500_panel.py` builds `output/sp500_panel/sp500_panel.parquet`
+(decided with the researcher on 2026-11-16/17): the same 85 columns as the
+index panel, for every firm the records of `data/sp500hist.csv` go to. 121,263
+rows of 785 firms; 48,014 rows carry `in_index = 1`, about 453 firms a quarter
+(359 in 2000Q1, 498 in 2025Q1).
+
+**Kept apart from the index panels on purpose.** Its own code
+(`src/sp500_panel.py`), config section (`sp500_panel`), output folder, tests and
+logger names. It imports no index-panel code and reads neither `indices` nor
+`index_panel`; a test checks both. It shares only the project base: `data_io`,
+the base and price contracts in `schema`, the quarter rule in `keys`.
+
+The file is keyed by **ticker and quarter** (`ticker, start_quarter,
+end_quarter`), so each record is first assigned to at most one firm:
+
+1. **Candidates** — firms whose ticker is the record's ticker exactly, or that
+   ticker with Compustat's `.<n>` suffix (an older firm whose ticker a newer one
+   took: `AA.3` = Alcoa Inc), with a report row inside the record's quarters.
+   In Compustat every ticker belongs to exactly one gvkey.
+2. **Exchange check** — only candidates with `exchg` 11 (NYSE) or 14 (NASDAQ)
+   stay. ⚠️ `exchg` is Compustat's header value: today's exchange, not the
+   historical one, so CBOE, SBNY and XEC drop out although they were members.
+3. **Decision** — the candidate with the most report quarters inside the record
+   wins; a tie leaves the record unassigned and listed.
+
+`in_index = 1` when an assigned record of the same gvkey has
+`start_quarter ≤ quarter < end_quarter` (the quarter from the KEY; an empty end
+is still in — the researcher's rule of 2026-09-13 for this file).
+
+* 799 of 872 records are assigned. The 73 others, each with one reason
+  (44 ticker not in the panel, 20 no report row in range, 3 not NYSE/NASDAQ,
+  3 ties, 3 zero-length), are in `tables/records_not_matched.csv`; every
+  candidate of every record is in `tables/ticker_matching.csv`.
+* ⚠️ The file holds quarters, not days: the last quarter before a removal reads
+  1 even if the firm left before the investment date.
+* ⚠️ The file starts in 2000Q1, so every earlier row reads 0. Records that start
+  there may belong to firms whose reports begin later; those quarters read 1, as
+  the file says (663 such rows have no price row).
 
 ## Not computed
 

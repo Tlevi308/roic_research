@@ -215,3 +215,35 @@ index_panel:
   file_pattern: "{name}_panel.parquet"
   excel_file_pattern: "{name}_panel_from_{year}.xlsx"   # year = output.excel_from_year
   excel_sheet: panel
+
+# ---------------------------------------------------------------------
+# S&P 500 panel: scripts/run_build_sp500_panel.py writes output/sp500_panel/.
+# Kept apart from the index panels above on purpose (researcher 2026-11-17):
+# its own code (src/sp500_panel.py), this section, its own output folder.
+# It reads neither `indices` nor `index_panel`. Researcher 2026-11-16/17:
+#   * rows: every base-panel row of the firms the file's records go to, over
+#     the whole history; prices join on (gvkey, KEY), left from the reports
+#   * the file is keyed by ticker and quarter. A record's candidates are the
+#     firms whose ticker is the record's ticker exactly, or that ticker with
+#     Compustat's ".<n>" suffix (an older firm that held it: AA.3 = Alcoa
+#     Inc), with at least one report row inside the record's quarters
+#   * exchange check: only candidates whose exchg is in `exchanges` stay.
+#     exchg is Compustat's header value - today's exchange, or the last one
+#   * the record goes to the candidate with the most report quarters inside
+#     it; a tie leaves the record unassigned and listed. One record, one firm
+#   * in_index = 1 when an assigned record of the same gvkey has
+#     start_quarter <= quarter (read from the KEY) < end_quarter; an empty
+#     end is still in (the rule of 2026-09-13 for this file)
+# ---------------------------------------------------------------------
+sp500_panel:
+  file: ../data/sp500hist.csv
+  columns:                       # logical name -> column in the file
+    ticker: ticker
+    start: start_quarter
+    end: end_quarter
+  exchange_field: exchg          # column in paths.input_parquet (data.parquet)
+  exchanges: [11, 14]            # Compustat exchg: 11 = NYSE, 14 = NASDAQ
+  output_dir: sp500_panel        # output/sp500_panel/
+  panel_file: sp500_panel.parquet
+  excel_file_pattern: "sp500_panel_from_{year}.xlsx"   # year = output.excel_from_year
+  excel_sheet: panel

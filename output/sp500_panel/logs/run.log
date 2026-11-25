@@ -1,0 +1,6 @@
+2026-11-17 20:47:46,057 | INFO    | roic.run_sp500 | Run 2026-11-17 20:47:46 | S&P 500 panel | config C:\Users\User\roic_research\research_roic\config.yaml
+2026-11-17 20:47:49,482 | INFO    | roic.sp500_panel | S&P 500 records: 872, assigned 799 ({'ONLY_CANDIDATE': 761, 'MOST_QUARTERS': 34, 'EXCHANGE_CHECK': 4}); not assigned {'TICKER_NOT_IN_PANEL': 44, 'NO_REPORT_ROW_IN_RANGE': 20, 'ZERO_LENGTH': 3, 'NOT_NYSE_NASDAQ': 3, 'TIE': 3}
+2026-11-17 20:47:53,352 | INFO    | roic.sp500_panel | S&P 500 panel: 121263 rows, 785 firms, 113688 with price, 48014 in the index
+2026-11-17 20:47:54,838 | INFO    | roic.run_sp500 | S&P 500 panel written: C:\Users\User\roic_research\output\sp500_panel\sp500_panel.parquet
+2026-11-17 20:48:01,833 | INFO    | roic.run_sp500 | Excel written: sp500_panel_from_2025.xlsx (3646 rows from 2025)
+2026-11-17 20:48:02,895 | INFO    | roic.run_sp500 | Finished in 16.8s. Report: C:\Users\User\roic_research\output\sp500_panel\report.md
